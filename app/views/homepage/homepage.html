@@ -1,0 +1,398 @@
+<link rel="stylesheet" href="animate.css" type="text/css">
+
+<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
+    <!-- Bootstrap Core CSS -->
+    <link href="views/homepage/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="views/homepage/css/shop-homepage.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#/deals">Today's Deal</a>
+                     <li>
+                        <a href="#/aboutus">About Us</a>
+                    </li> 
+                    </ul>
+          
+          <form id="demo" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="username" ng-model="user.username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" ng-model="user.password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+            
+             <a  class="btn btn-success" href="#/signup">Sign up</a>
+             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             
+
+          </form>
+           
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+<style>
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+
+/** Primary button **/
+.btn-breadcrumb .btn.btn-primary:not(:last-child):after {
+  border-left: 10px solid #428bca;
+}
+.btn-breadcrumb .btn.btn-primary:not(:last-child):before {
+  border-left: 10px solid #357ebd;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
+  border-left: 10px solid #3276b1;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
+  border-left: 10px solid #285e8e;
+}
+
+/** Success button **/
+.btn-breadcrumb .btn.btn-success:not(:last-child):after {
+  border-left: 10px solid #5cb85c;
+}
+.btn-breadcrumb .btn.btn-success:not(:last-child):before {
+  border-left: 10px solid #4cae4c;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):after {
+  border-left: 10px solid #47a447;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):before {
+  border-left: 10px solid #398439;
+}
+
+/** Danger button **/
+.btn-breadcrumb .btn.btn-danger:not(:last-child):after {
+  border-left: 10px solid #d9534f;
+}
+.btn-breadcrumb .btn.btn-danger:not(:last-child):before {
+  border-left: 10px solid #d43f3a;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
+  border-left: 10px solid #d2322d;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
+  border-left: 10px solid #ac2925;
+}
+
+/** Warning button **/
+.btn-breadcrumb .btn.btn-warning:not(:last-child):after {
+  border-left: 10px solid #f0ad4e;
+}
+.btn-breadcrumb .btn.btn-warning:not(:last-child):before {
+  border-left: 10px solid #eea236;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):after {
+  border-left: 10px solid #ed9c28;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):before {
+  border-left: 10px solid #d58512;
+}
+
+/** Info button **/
+.btn-breadcrumb .btn.btn-info:not(:last-child):after {
+  border-left: 10px solid #5bc0de;
+}
+.btn-breadcrumb .btn.btn-info:not(:last-child):before {
+  border-left: 10px solid #46b8da;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
+  border-left: 10px solid #39b3d7;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
+  border-left: 10px solid #269abc;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="btn-group btn-breadcrumb">
+            <a href="#/coverpage" class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+            <a href="#/homepage" class="btn btn-warning">Select Card</a>
+            <a href="#/event/{{card.Name}}" class="btn btn-default">Confirm Card</a>
+            <a href="#/payment" class="btn btn-default">Payment Information</a>
+            <a href="#/confirmation" class="btn btn-default">Confirmation</a>
+        </div>
+    </div>
+</div>
+<div class="container slider">
+    <img ng-repeat="slide in slides" class="slide slide-animation"
+        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+        <a class="arrow prev" href="#/homepage" ng-click="nextSlide()"></a>
+
+    <a class="arrow next" href="#/homepage" ng-click="prevSlide()"></a>
+    <nav style="position:absolute" class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#/homepage" ng-class="{'active':isCurrentSlideIndex($index)}"
+                      ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+ <div class="row" style="margin-left:20%;margin-right:20%;">
+    <h2>Shop Now</h2>           
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a class="btn btn-success" ng-click="cardDisp()">Select Card</a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a ng-click="personDisp()" class="btn btn-success"> Personalize Card</a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a  class="btn btn-success" ng-click="customDisp()">Customize Card</a>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+  </div>
+  <br>
+
+  <br>
+  <br>
+    
+<div ng-show="displayCard=='1'" class="container">
+    <div class="col-md-9" style="
+          float:left;  
+          width: 610px;
+          height: 152px;
+          padding-top: -60px;
+          top: ;
+          top: ;">
+          <h2>Search for Gift card templates</h2>
+           <div class="form-group">
+              <input ng-model="query" placeholder="Search Templates" class="form-control" >
+
+            </div>
+          Sort by:
+      <select ng-model="orderProp">
+        <option value="count">Popular</option>
+        <option value="age">Newest</option>
+      </select>
+
+    </div>
+</div>
+<div ng-show="displayCard=='1'" class="container">
+      <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Select your Card                 
+                </h1>
+            </div>
+        </div>
+      <div class="row">
+            <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+                <a href="#/event/{{card.Name}}">
+                    <img class="img-responsive" ng-src="{{card.imgUrl}}" width="150px" height="100px" alt="">
+                </a>
+                <p>
+                    <a href="#/event/{{card.Name}}">{{card.Name}}</a>
+                </p>
+                <span ng-show="hoverEdit" class="animate-show">
+              <a>
+                    <img ng-src="{{card.imgUrl}}" alt="">
+                    <h3>
+                    <a href="#">{{card.Name}}</a>
+                    </h3>
+              </a>
+            </span>
+            </div>
+            
+            
+        </div>
+</div>
+
+<div ng-show="displayCard=='2'">
+    <div id="canvas-wrapper" style="position:relative;width:704px;float:left;">
+    <div id="canvas-container" style="width: 700px; height: 400px; position: relative; -webkit-user-select: none;">
+        <canvas id="canvas1" width="650px" height="400px" style="position: absolute; width: 700px; height: 400px; left: 0; top: 0px; -webkit-user-select: none; border:1px solid black;"></canvas>
+            </div>
+    </div>
+    <p>Add <strong>shapes</strong> to canvas:</p>
+                        <p>
+                            <button type="button" ng-click="addRect()">Rectangle</button>
+                            <button type="button" ng-click="addCircle()">Circle</button>
+                            <button type="button" ng-click="addTraingle()">Triangle</button>
+                            <button type="button" onclick="addImage()">Image</button>
+                        </p>
+</div>
+
+<div ng-show="displayCard=='3'">
+<div id="bd-wrapper">
+
+      <div id="canvas-wrapper" style="position:relative;width:704px;float:left;">
+        <div id="canvas-container" style="width: 700px; height: 400px; position: relative; -webkit-user-select: none;">
+          <canvas id="canvas" width="650px" height="400px" style="position: absolute; width: 700px; height: 400px; left: 0px; top: 0px; -webkit-user-select: none; border:1px solid black;"></canvas>
+        </div>
+      </div>
+
+      <div class="tabs">
+
+        <div class="tab-content">
+
+            <div class="tab active" id="simple">
+
+            <p>Add <strong>shapes</strong> to canvas:</p>
+                <p>
+              <button type="button" ng-click="addRect()">Rectangle</button>
+              <button type="button" ng-click="addCircle()">Circle</button>
+              <button type="button" ng-click="addTraingle()">Triangle</button>
+            </p>
+
+                <p>Add <strong>images</strong> to canvas:</p>
+                <p>
+              <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
+              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
+              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
+              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
+              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
+              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
+            </p>
+<br>
+
+            <p>Add <strong>text</strong> to canvas:</p>
+                <p>
+              <div >
+              <input type="username" ng-model="personalize.text" c>
+              <button type="button" ng-click="addText(personalize)">Add Text</button>
+            </div>
+                </p>
+
+              </div>
+                    <br>
+
+              <div class="tab" id="controls">
+              <p>
+                  <button type="button" ng-click="save()" style="background-color:lightgreen">Save Image</button>
+                </p>
+              <p>
+                  <button type="button" ng-click="remove()" style="background-color:lightgreen">Remove selected object</button>
+                </p>
+
+                <p>
+                  <button type="button" ng-click="clear()" style="background-color:red">Clear Canvas</button>
+                </p>
+
+                
+                
+              </div>
+        </div>
+      </div>
+
+      
+
+    </div>
+</div>
+
+
+        <br>
+
+        <br>
+
+                
+
+
+   
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; San Jose State University(TEAM-TITANS)</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+

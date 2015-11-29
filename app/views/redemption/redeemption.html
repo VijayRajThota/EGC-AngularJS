@@ -1,0 +1,283 @@
+<link rel="stylesheet" href="animate.css" type="text/css">
+
+<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
+    <!-- Bootstrap Core CSS -->
+    <link href="views/homepage/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="views/homepage/css/shop-homepage.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="views/demo.css"></link>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#/deals">Today's Deal</a>
+                     <li>
+                        <a href="#/aboutus">About Us</a>
+                    </li> 
+                    </ul>
+          
+          <form id="demo" class="navbar-form navbar-right">
+           
+             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             
+
+          </form>
+           
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+<style>
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+
+/** Primary button **/
+.btn-breadcrumb .btn.btn-primary:not(:last-child):after {
+  border-left: 10px solid #428bca;
+}
+.btn-breadcrumb .btn.btn-primary:not(:last-child):before {
+  border-left: 10px solid #357ebd;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
+  border-left: 10px solid #3276b1;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
+  border-left: 10px solid #285e8e;
+}
+
+/** Success button **/
+.btn-breadcrumb .btn.btn-success:not(:last-child):after {
+  border-left: 10px solid #5cb85c;
+}
+.btn-breadcrumb .btn.btn-success:not(:last-child):before {
+  border-left: 10px solid #4cae4c;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):after {
+  border-left: 10px solid #47a447;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):before {
+  border-left: 10px solid #398439;
+}
+
+/** Danger button **/
+.btn-breadcrumb .btn.btn-danger:not(:last-child):after {
+  border-left: 10px solid #d9534f;
+}
+.btn-breadcrumb .btn.btn-danger:not(:last-child):before {
+  border-left: 10px solid #d43f3a;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
+  border-left: 10px solid #d2322d;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
+  border-left: 10px solid #ac2925;
+}
+
+/** Warning button **/
+.btn-breadcrumb .btn.btn-warning:not(:last-child):after {
+  border-left: 10px solid #f0ad4e;
+}
+.btn-breadcrumb .btn.btn-warning:not(:last-child):before {
+  border-left: 10px solid #eea236;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):after {
+  border-left: 10px solid #ed9c28;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):before {
+  border-left: 10px solid #d58512;
+}
+
+/** Info button **/
+.btn-breadcrumb .btn.btn-info:not(:last-child):after {
+  border-left: 10px solid #5bc0de;
+}
+.btn-breadcrumb .btn.btn-info:not(:last-child):before {
+  border-left: 10px solid #46b8da;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
+  border-left: 10px solid #39b3d7;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
+  border-left: 10px solid #269abc;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="btn-group btn-breadcrumb">
+            <a href="#/coverpage" class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+            <a href="#/redemption" class="btn btn-warning">Start Redeemption</a>
+            <button ng-click="confirmSomething()" class="btn btn-default">Claim Code</button>
+            <a href="#/confirmation" class="btn btn-default">Confirmation</a>
+        </div>
+    </div>
+</div>
+<div class="container slider">
+    <img ng-repeat="slide in slides" class="slide slide-animation"
+        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+        <a class="arrow prev" href="#/redemption" ng-click="nextSlide()"></a>
+
+    <a class="arrow next" href="#/redemption" ng-click="prevSlide()"></a>
+    <nav style="position:absolute" class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#/redemption" ng-class="{'active':isCurrentSlideIndex($index)}"
+                      ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<br>
+<br>
+
+ <div class="row" style="margin-left:45%;margin-right:45%;">        
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div style="align:center">
+                    <button class="btn btn-success" ng-click="confirmSomething()">Redeem Card</button>
+                </div>
+                
+               
+            </div>
+        </div>
+    </section>
+  </div>
+
+  <div 
+    bn-modals 
+    ng-show="subview" 
+    class="m-modals"
+    ng-switch="subview">
+
+    
+    
+
+    <!-- BEGIN: Confirm Modal. -->
+    <div 
+      ng-switch-when="confirm" 
+      ng-controller="ConfirmModalController"
+      class="modal">
+
+      <form class="form-horizontal" action='' method="POST">
+              <fieldset>
+                <div id="legend">
+                <legend class="">Enter Claim Code</legend>
+                </div>    
+                <div class="control-group">
+                <!-- Claim Code -->
+                  <div class="controls">
+                  <input type="text" id="username" ng-model="code" name="username" placeholder="" class="input-xlarge">
+                  </div>
+                </div>
+            
+
+                  <br>
+              
+                  <div class="control-group">
+                <!-- Button -->
+                    <div class="controls">
+                  <button class="btn btn-success" ng-click="redeem(code)">Submit</button>
+                    </div>
+                  </div>
+              </fieldset>
+              </form>       
+
+      
+
+    </div>
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; San Jose State University(TEAM-TITANS)</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+

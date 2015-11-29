@@ -1,0 +1,145 @@
+ <link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css"><link href="views/event/css/bootstrap.min.css" rel="stylesheet">
+    <link href="views/homepage/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="views/homepage/css/shop-homepage.css" rel="stylesheet"> 
+ <link href="views/event/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="views/event/css/3-col-portfolio.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand page-scroll" href="#/suning">{{cover.organization}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#/deals">Today's Deal</a>
+                     <li>
+                        <a href="#/aboutus">About Us</a>
+                    </li> <li>
+                        <a href="#/contact">Contact US</a>
+                    </li> 
+                    </ul>
+      
+      <form id="demo" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="username" ng-model="user.username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" ng-model="user.password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+      
+       <a  class="btn btn-success" href="#/signup">Sign up</a>
+             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             
+
+          </form>
+           
+      
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    
+  <div class="container">
+
+    <div class="row" style="width: 450px;">
+
+        <div class="col-md-3" style="width: 430px;">
+              <p class="lead">Shop Now</p>
+                <div class="list-group">
+                    <a href="#/customize" class="list-group-item" >Customize Template</a>
+                    <a href="#/personalize" class="list-group-item" >Personalize Templates</a>
+                </div>
+        </div>
+    </div>
+    <div class="col-md-9" style="
+          float:right;  
+          width: 610px;
+          height: 152px;
+          padding-top: -60px;
+          top: -90;
+          top: -130px;">
+          <h2>Search for Gift card templates</h2>
+           <div class="form-group">
+              <input ng-model="query" placeholder="Search Templates" class="form-control" >
+
+            </div>
+          Sort by:
+      <select ng-model="orderProp">
+        <option value="count">Popular</option>
+        <option value="age">Newest</option>
+      </select>
+
+    </div>
+  </div>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Select your Card                 
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-4 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" >
+                <a href="#/event/{{card.Name}}">
+                    <img class="img-responsive" ng-src="{{card.imgUrl}}" alt="">
+                </a>
+                <h3>
+                    <a href="#">{{card.Name}}</a>
+                </h3>
+            </div>
+            
+            
+        </div>
+        <!-- /.row -->
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; San Jose State University(TEAM-TITANS)</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>

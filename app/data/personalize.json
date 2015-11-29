@@ -1,0 +1,26 @@
+[
+{
+"Image":"views/images/personalize/birthday.png",
+"Name": "birthday"
+},
+{
+ "Image":"views/images/personalize/anniversary.png",
+ "Name" : "anniversary"
+},
+{
+ "Image":"views/images/personalize/universal.png",
+ "Name" :"universal "
+},
+{
+ "Image":"views/images/personalize/christmas.png",
+ "Name":"christmas"
+},
+{
+	"Image":"views/images/personalize/halloween.png",
+	"Name":"halloween"
+},
+{
+	"Image":"views/images/personalize/baby.png",
+	"Name":"baby"
+}
+]

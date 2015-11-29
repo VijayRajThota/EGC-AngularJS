@@ -1,0 +1,219 @@
+<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#/deals">Today's Deal</a>
+                     <li>
+                        <a href="#/aboutus">About Us</a>
+                    </li> 
+                    </ul>	
+
+           <div class="navbar-form navbar-right">
+            <div class="form-group">
+             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             
+
+          </div>  
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <header  >
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>{{cover.title}}</h1>                
+                <hr>
+                <p>{{cover.tag}}</p>
+                <p>Welcome {{userdetails.FirstName}},{{userdetails.Lastname}}</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">We've make your Gifts even more worthy</h2>
+                    <hr class="light">
+                    <p class="text-faded">{{cover.Description}}</p>
+                    <a href="#/homepage" class="btn btn-default btn-xl">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading2">What do we have for you</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3>{{cover.feature1}}</h3>
+                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3>{{cover.feature2}}</h3>
+                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3>{{cover.feature3}}</h3>
+                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3>{{cover.feature4}}</h3>
+                        <p class="text-muted">You have to make your websites with love these days!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="row" style="margin-left: +10px;">
+                <h2>Popular Themes</h2>
+                    
+     <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme1}}" class="portfolio-box">
+                        <img src="views/images/portfolio/1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme1}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme2}}" class="portfolio-box">
+                        <img src="views/images/portfolio/2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme2}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme3}}" class="portfolio-box">
+                        <img src="views/images/portfolio/3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme3}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme4}}" class="portfolio-box">
+                        <img src="views/images/portfolio/4.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme4}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme5}}" class="portfolio-box">
+                        <img src="views/images/portfolio/5.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme5}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#/homepage/{{cover.theme6}}" class="portfolio-box">
+                        <img src="views/images/portfolio/6.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{cover.theme6}}
+                                </div>
+                                <div class="project-name">
+                                    Theme
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Many more themes for you!</h2>
+                <a href="#/homepage" class="btn btn-default btn-xl wow tada">Explore Now!</a>
+            </div>
+        </div>
+    </aside>
+
+   
+   
+

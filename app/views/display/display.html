@@ -1,0 +1,261 @@
+<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+    
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#/deals">Today's Deal</a>
+                     <li>
+                        <a href="#/aboutus">About Us</a>
+                    </li> 
+                    </ul>
+		  
+		  <form id="demo" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="username" ng-model="user.username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" ng-model="user.password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+			
+			 <a  class="btn btn-success" href="#/signup">Sign up</a>
+             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             
+
+          </form>
+           
+		  
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <br>
+    <br>
+    <style>
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+
+/** Primary button **/
+.btn-breadcrumb .btn.btn-primary:not(:last-child):after {
+  border-left: 10px solid #428bca;
+}
+.btn-breadcrumb .btn.btn-primary:not(:last-child):before {
+  border-left: 10px solid #357ebd;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
+  border-left: 10px solid #3276b1;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
+  border-left: 10px solid #285e8e;
+}
+
+/** Success button **/
+.btn-breadcrumb .btn.btn-success:not(:last-child):after {
+  border-left: 10px solid #5cb85c;
+}
+.btn-breadcrumb .btn.btn-success:not(:last-child):before {
+  border-left: 10px solid #4cae4c;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):after {
+  border-left: 10px solid #47a447;
+}
+.btn-breadcrumb .btn.btn-success:hover:not(:last-child):before {
+  border-left: 10px solid #398439;
+}
+
+/** Danger button **/
+.btn-breadcrumb .btn.btn-danger:not(:last-child):after {
+  border-left: 10px solid #d9534f;
+}
+.btn-breadcrumb .btn.btn-danger:not(:last-child):before {
+  border-left: 10px solid #d43f3a;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
+  border-left: 10px solid #d2322d;
+}
+.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
+  border-left: 10px solid #ac2925;
+}
+
+/** Warning button **/
+.btn-breadcrumb .btn.btn-warning:not(:last-child):after {
+  border-left: 10px solid #f0ad4e;
+}
+.btn-breadcrumb .btn.btn-warning:not(:last-child):before {
+  border-left: 10px solid #eea236;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):after {
+  border-left: 10px solid #ed9c28;
+}
+.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):before {
+  border-left: 10px solid #d58512;
+}
+
+/** Info button **/
+.btn-breadcrumb .btn.btn-info:not(:last-child):after {
+  border-left: 10px solid #5bc0de;
+}
+.btn-breadcrumb .btn.btn-info:not(:last-child):before {
+  border-left: 10px solid #46b8da;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
+  border-left: 10px solid #39b3d7;
+}
+.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
+  border-left: 10px solid #269abc;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="btn-group btn-breadcrumb">
+            <a href="#/coverpage" class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+            <a href="#/homepage" class="btn btn-warning">Select Card</a>
+            <a href="#/event/{{card.Name}}" class="btn btn-warning">Confirm Card</a>
+            <a href="#/payment" class="btn btn-default">Payment Information</a>
+            <a href="#/confirmation" class="btn btn-default">Confirmation</a>
+        </div>
+    </div>
+</div>
+    <div class="container" style="padding:20px;">
+        <div class="row">
+          <div style="float:left;width:400px;margin-left:50px;">
+          <img ng-src="{{displays.image}}" width="350"/>
+          </div>
+          <style>
+          .form_class{
+           float: right;width: 500px;margin-right: 100px;
+           }.l, 
+          .form_class div{
+           padding:10px;
+           }
+          </style>
+          <div class="form_class">
+          <form action="">  
+            <div>
+            <label style="float: left;margin-right: 75px;" >Selection Type</label>
+            
+            <select ng-options="item.id as item.label for item in items" ng-model="selected"></select>
+            </div>
+            <div>            
+            <label style="float: left;margin-right: 75px;" >Amount</label>
+            <select id="" class="" ng-show="selected=='2'" ng-model="confirmation.amount" ng-options="v for v in confirmation.values">
+                    
+            </select>
+            <input size="8" ng-show="selected=='1'"ng-model="confirmation.amount" type="text" name="amount"/>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 18px;">Recepient Email</label>
+            <input size="22" type="text" ng-model="confirmation.email" name="email"/>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 51px;" >Your Name</label>
+            <input size="22" type="text" name="name" ng-model="confirmation.name" placeholder="Enter your name here."/>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 65px;" >Message</label>
+            <textarea cols="30" rows="8" ng-model="confirmation.message" placeholder="Enter your message here."></textarea>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 68px;" >Quantity</label>
+            <input type="text" size="22" ng-model="confirmation.quantity" name="quantity" value="1"/>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 75px;" >Delivery Type</label>            
+            <select ng-options="item.id as item.label for item in delivery" ng-model="deliveryStatus"></select>
+            </div>            
+            <div ng-show="deliveryStatus=='2'" >
+            <label for="exampleInput">Schedule a date after {{date | date:'yyyy-MM-dd'}}</label>
+            <input type="datetime-local" name="dateField" ng-model="minDate" md-placeholder="Enter date" required="" md-min-date="minDate" md-max-date="maxDate"/>
+            </div>
+            <div>
+            <input type="button" name="addtocart" ng-click="confirm(confirmation)" value="Add to cart"/>
+            <input type="button" name="checkout" ng-click="payInfo()" value="Proceed to checkout"/>
+            </div>            
+            <div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>  

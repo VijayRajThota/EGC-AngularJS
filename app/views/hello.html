@@ -1,0 +1,343 @@
+<script>
+      (function() {
+        var fabricUrl = 'http://fabricjs.com/lib/fabric.js';
+        if (document.location.search.indexOf('load_fabric_from=') > -1) {
+          var match = document.location.search.match(/load_fabric_from=([^&]*)/);
+          if (match && match[1]) {
+            fabricUrl = match[1];
+          }
+        }
+        document.write('<script src="' + fabricUrl + '"><\/script>');
+      })();
+</script>
+
+ <div id="bd-wrapper" >
+      <h2><span>Fabric.js demos</span> &middot; Free drawing</h2>
+
+       <style>
+#drawing-mode {
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+#drawing-mode-options {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background: #f5f2f0;
+  padding: 10px;
+}
+label {
+  display: inline-block; width: 130px;
+}
+.info {
+  display: inline-block;
+  width: 25px;
+  background: #ffc;
+}
+#bd-wrapper {
+  min-width: 1500px;
+}
+</style>
+
+<canvas id="c" width="500" height="500" style="border:1px solid #aaa"></canvas>
+<div style="display: inline-block; margin-left: 10px">
+  <button id="drawing-mode" class="btn btn-info">Cancel drawing mode</button><br>
+  <button id="clear-canvas" class="btn btn-info">Clear</button><br>
+
+  <div id="drawing-mode-options">
+    <label for="drawing-mode-selector">Mode:</label>
+    <select id="drawing-mode-selector">
+      <option>Pencil</option>
+      <option>Circle</option>
+      <option>Spray</option>
+      <option>Pattern</option>  
+
+      <option>hline</option>
+      <option>vline</option>
+      <option>square</option>
+      <option>diamond</option>
+      <option>texture</option>
+    </select><br>
+
+    <label for="drawing-line-width">Line width:</label>
+    <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+
+    <label for="drawing-color">Line color:</label>
+    <input type="color" value="#005E7A" id="drawing-color"><br>
+
+    <label for="drawing-shadow-color">Shadow color:</label>
+    <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
+
+    <label for="drawing-shadow-width">Shadow width:</label>
+    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
+
+    <label for="drawing-shadow-offset">Shadow offset:</label>
+    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+  </div>
+   <p>Add <strong>shapes</strong> to canvas:</p>
+                <p>
+              <button id="add-rect" >Rectangle</button>
+              <button type="button" onclick="addCircle()">Circle</button>
+              <button type="button" onclick="addTraingle()">Triangle</button>
+              <a id="imageSaver" href="#">Save image</a>
+              <a id="imageLoader" href="#">Load image</a>
+            </p>
+
+                <p>Add <strong>images</strong> to canvas:</p>
+                <p>
+              <button id="add-image" ><img src="birthday.png"  width="150px"></button>
+              <button type="button" onclick="addAnniversary()"><img src="anniversary.png" id="anniversary" width="150px"></button>
+              <button type="button" onclick="addUniversal()"><img src="universal.png" id="universal" width="150px"></button><br>
+              <button type="button" onclick="addChritsmas()"><img src="christmas.png" id="chritsmas" width="150px"></button>
+              <button type="button" onclick="addHalloween()"><img src="halloween.png" id="halloween" width="150px"></button>
+              <button type="button" onclick="addBaby()"><img src="baby.png" id="baby" width="150px"></button>
+            </p>
+
+            <p>Add <strong>text</strong> to canvas:</p>
+                <p>
+                  <button type="button" onclick="addText()">Text</button>
+                </p>
+
+              </div>
+</div>
+
+<script id="main">
+(function() {
+  var $ = function(id){return document.getElementById(id)};
+
+  var canvas = this.__canvas = new fabric.Canvas('c', {
+    isDrawingMode: true
+  });
+  
+  fabric.Object.prototype.transparentCorners = false;
+
+  var drawingModeEl = $('drawing-mode'),
+      drawingOptionsEl = $('drawing-mode-options'),
+      drawingColorEl = $('drawing-color'),
+      drawingShadowColorEl = $('drawing-shadow-color'),
+      drawingLineWidthEl = $('drawing-line-width'),
+      drawingShadowWidth = $('drawing-shadow-width'),
+      drawingShadowOffset = $('drawing-shadow-offset'),
+      clearEl = $('clear-canvas');
+      imageE1= $('add-image');
+      saveE1= $('imageSaver');
+      loadE1 = $('imageLoader');
+
+      loadE1.onclick = function(){
+        
+        canvas.loadFromJSON(test.json, canvas.renderAll.bind(canvas));
+
+      };
+
+      saveE1.onclick = function(){
+      this.href = canvas.toDataURL({
+        format: 'jpeg',
+        quality: 0.8
+    });
+   this.download = 'test.png'
+    // this.href = 'data:plain/text,' + JSON.stringify(canvas);
+     //this.download = 'test.json';
+   // var json = canvas.toJSON();
+//    canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+
+};
+
+
+    imageE1.onclick = function (){
+        fabric.Image.fromURL('anniversary.png', function(img) {
+  img.scale(0.5).set({
+    left: 150,
+    top: 150,
+    angle: -15
+  });
+  canvas.add(img).setActiveObject(img);
+   this.__canvases.push(canvas);
+ });
+
+
+      };
+
+  clearEl.onclick = function() { canvas.clear() };
+  
+  drawingModeEl.onclick = function() {
+    canvas.isDrawingMode = !canvas.isDrawingMode;
+    if (canvas.isDrawingMode) {
+      drawingModeEl.innerHTML = 'Cancel drawing mode';
+      drawingOptionsEl.style.display = '';
+    }
+    else {
+      drawingModeEl.innerHTML = 'Enter drawing mode';
+      drawingOptionsEl.style.display = 'none';
+    }
+  };
+
+  if (fabric.PatternBrush) {
+    var vLinePatternBrush = new fabric.PatternBrush(canvas);
+    vLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(0, 5);
+      ctx.lineTo(10, 5);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+
+    var hLinePatternBrush = new fabric.PatternBrush(canvas);
+    hLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(5, 0);
+      ctx.lineTo(5, 10);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+
+    var squarePatternBrush = new fabric.PatternBrush(canvas);
+    squarePatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 2;
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.fillStyle = this.color;
+      ctx.fillRect(0, 0, squareWidth, squareWidth);
+
+      return patternCanvas;
+    };
+
+    var diamondPatternBrush = new fabric.PatternBrush(canvas);
+    diamondPatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 5;
+      var patternCanvas = fabric.document.createElement('canvas');
+      var rect = new fabric.Rect({
+        width: squareWidth,
+        height: squareWidth,
+        angle: 45,
+        fill: this.color
+      });
+
+      var canvasWidth = rect.getBoundingRectWidth();
+
+      patternCanvas.width = patternCanvas.height = canvasWidth + squareDistance;
+      rect.set({ left: canvasWidth / 2, top: canvasWidth / 2 });
+
+      var ctx = patternCanvas.getContext('2d');
+      rect.render(ctx);
+
+      return patternCanvas;
+    };
+
+    var img = new Image();
+    img.src = 'http://fabricjs.com/assets/honey_im_subtle.png';
+
+    var texturePatternBrush = new fabric.PatternBrush(canvas);
+    texturePatternBrush.source = img;
+  }
+
+  $('drawing-mode-selector').onchange = function() {
+
+    if (this.value === 'hline') {
+      canvas.freeDrawingBrush = vLinePatternBrush;
+    }
+    else if (this.value === 'vline') {
+      canvas.freeDrawingBrush = hLinePatternBrush;
+    }
+    else if (this.value === 'square') {
+      canvas.freeDrawingBrush = squarePatternBrush;
+    }
+    else if (this.value === 'diamond') {
+      canvas.freeDrawingBrush = diamondPatternBrush;
+    }
+    else if (this.value === 'texture') {
+      canvas.freeDrawingBrush = texturePatternBrush;
+    }
+    else {
+      canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](canvas);
+    }
+
+    if (canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.color = drawingColorEl.value;
+      canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+      canvas.freeDrawingBrush.shadowBlur = parseInt(drawingShadowWidth.value, 10) || 0;
+    }
+  };
+
+  drawingColorEl.onchange = function() {
+    canvas.freeDrawingBrush.color = this.value;
+  };
+  drawingShadowColorEl.onchange = function() {
+    canvas.freeDrawingBrush.shadowColor = this.value;
+  };
+  drawingLineWidthEl.onchange = function() {
+    canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+    this.previousSibling.innerHTML = this.value;
+  };
+  drawingShadowWidth.onchange = function() {
+    canvas.freeDrawingBrush.shadowBlur = parseInt(this.value, 10) || 0;
+    this.previousSibling.innerHTML = this.value;
+  };
+  drawingShadowOffset.onchange = function() {
+    canvas.freeDrawingBrush.shadowOffsetX =
+    canvas.freeDrawingBrush.shadowOffsetY = parseInt(this.value, 10) || 0;
+    this.previousSibling.innerHTML = this.value;
+  };
+
+  if (canvas.freeDrawingBrush) {
+    canvas.freeDrawingBrush.color = drawingColorEl.value;
+    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+    canvas.freeDrawingBrush.shadowBlur = 0;
+  }
+})();
+</script>
+
+    </div>
+
+    <script>
+      (function(){
+        var mainScriptEl = document.getElementById('main');
+        if (!mainScriptEl) return;
+        var preEl = document.createElement('pre');
+        var codeEl = document.createElement('code');
+        codeEl.innerHTML = mainScriptEl.innerHTML;
+        codeEl.className = 'language-javascript';
+        preEl.appendChild(codeEl);
+        document.getElementById('bd-wrapper').appendChild(preEl);
+      })();
+    </script>
+
+    <script>
+(function() {
+  fabric.util.addListener(fabric.window, 'load', function() {
+    var canvas = this.__canvas || this.canvas,
+        canvases = this.__canvases || this.canvases;
+
+    canvas && canvas.calcOffset && canvas.calcOffset();
+
+    if (canvases && canvases.length) {
+      for (var i = 0, len = canvases.length; i < len; i++) {
+        canvases[i].calcOffset();
+      }
+    }
+  });
+})();
+</script>
