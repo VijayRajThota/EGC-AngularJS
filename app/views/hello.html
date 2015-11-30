@@ -1,20 +1,14 @@
-<script>
-      (function() {
-        var fabricUrl = 'http://fabricjs.com/lib/fabric.js';
-        if (document.location.search.indexOf('load_fabric_from=') > -1) {
-          var match = document.location.search.match(/load_fabric_from=([^&]*)/);
-          if (match && match[1]) {
-            fabricUrl = match[1];
-          }
-        }
-        document.write('<script src="' + fabricUrl + '"><\/script>');
-      })();
-</script>
+    <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
+    <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
+    <style>
+      pre { margin-left: 15px !important }
+    </style>
 
- <div id="bd-wrapper" >
-      <h2><span>Fabric.js demos</span> &middot; Free drawing</h2>
-
-       <style>
+    <script src="http://fabricjs.com/lib/prism.js"></script>
+    <script src="http://fabricjs.com/js/master.js"></script>
+  <body>
+    <div id="bd-wrapper">
+      <style>
 #drawing-mode {
   margin-bottom: 10px;
   vertical-align: top;
@@ -40,9 +34,12 @@ label {
 }
 </style>
 
+
 <canvas id="c" width="500" height="500" style="border:1px solid #aaa"></canvas>
+
 <div style="display: inline-block; margin-left: 10px">
-  <button id="drawing-mode" class="btn btn-info">Cancel drawing mode</button><br>
+
+ <button id="drawing-mode" class="btn btn-info">Cancel drawing mode</button><br>
   <button id="clear-canvas" class="btn btn-info">Clear</button><br>
 
   <div id="drawing-mode-options">
@@ -78,20 +75,19 @@ label {
    <p>Add <strong>shapes</strong> to canvas:</p>
                 <p>
               <button id="add-rect" >Rectangle</button>
-              <button type="button" onclick="addCircle()">Circle</button>
-              <button type="button" onclick="addTraingle()">Triangle</button>
+              <button type="button" ng-click="addCircle()">Circle</button>
+              <button type="button" ng-click="addTraingle()">Triangle</button>
               <a id="imageSaver" href="#">Save image</a>
               <a id="imageLoader" href="#">Load image</a>
             </p>
 
                 <p>Add <strong>images</strong> to canvas:</p>
                 <p>
-              <button id="add-image" ><img src="birthday.png"  width="150px"></button>
-              <button type="button" onclick="addAnniversary()"><img src="anniversary.png" id="anniversary" width="150px"></button>
-              <button type="button" onclick="addUniversal()"><img src="universal.png" id="universal" width="150px"></button><br>
-              <button type="button" onclick="addChritsmas()"><img src="christmas.png" id="chritsmas" width="150px"></button>
-              <button type="button" onclick="addHalloween()"><img src="halloween.png" id="halloween" width="150px"></button>
-              <button type="button" onclick="addBaby()"><img src="baby.png" id="baby" width="150px"></button>
+              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
+              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
+              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
+              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
+              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
             </p>
 
             <p>Add <strong>text</strong> to canvas:</p>
@@ -103,12 +99,12 @@ label {
 </div>
 
 <script id="main">
+
+
 (function() {
   var $ = function(id){return document.getElementById(id)};
 
-  var canvas = this.__canvas = new fabric.Canvas('c', {
-    isDrawingMode: true
-  });
+
   
   fabric.Object.prototype.transparentCorners = false;
 
@@ -312,18 +308,6 @@ label {
 
     </div>
 
-    <script>
-      (function(){
-        var mainScriptEl = document.getElementById('main');
-        if (!mainScriptEl) return;
-        var preEl = document.createElement('pre');
-        var codeEl = document.createElement('code');
-        codeEl.innerHTML = mainScriptEl.innerHTML;
-        codeEl.className = 'language-javascript';
-        preEl.appendChild(codeEl);
-        document.getElementById('bd-wrapper').appendChild(preEl);
-      })();
-    </script>
 
     <script>
 (function() {
@@ -341,3 +325,139 @@ label {
   });
 })();
 </script>
+
+<script>
+
+      var canvas = new fabric.Canvas('c'/*, {isDrawingMode: true}*/);
+
+      jQuery(document).ready(function() {
+          jQuery('.tabs .tab-links a').on('click', function(e)  {
+              var currentAttrValue = jQuery(this).attr('href');
+ 
+              // Show/Hide Tabs
+              jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+ 
+              // Change/remove current tab to active
+              jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+ 
+              e.preventDefault();
+          });
+      });
+
+      function addRect(){
+        var rect = new fabric.Rect({
+          left: 100, top: 100, fill: 'red', width: 20, height: 20, angle: 45
+        });
+
+        canvas.add(rect);
+      }
+
+      function addCircle(){
+        var circle = new fabric.Circle({
+          radius: 20, fill: 'green', left: 100, top: 100
+        });
+
+        canvas.add(circle);
+      }
+
+      function addTraingle(){
+        var triangle = new fabric.Triangle({
+          width: 20, height: 30, fill: 'blue', left: 50, top: 50
+        });
+
+        canvas.add(triangle);
+      }
+
+      function addBirthday(){
+        /*fabric.Image.fromURL('birthday.png', function(oImg){
+          canvas.add(oImg);
+        });*/
+        var imgElementB = document.getElementById('birthday');
+        var imgInstanceB = new fabric.Image(imgElementB,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceB);
+        c.renderAll
+        ();
+      }
+
+      function addAnniversary(){
+        var imgElementA = document.getElementById('anniversary');
+        var imgInstanceA = new fabric.Image(imgElementA,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceA);
+      }
+
+      function addUniversal(){
+        var imgElementU = document.getElementById('universal');
+        var imgInstanceU = new fabric.Image(imgElementU,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceU);
+      }
+
+      function addChritsmas(){
+        var imgElementC = document.getElementById('chritsmas');
+        var imgInstanceC = new fabric.Image(imgElementC,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceC);
+      }
+
+      function addHalloween(){
+        var imgElementH = document.getElementById('halloween');
+        var imgInstanceH = new fabric.Image(imgElementH,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceH);
+      }
+
+      function addBaby(){
+        var imgElementN = document.getElementById('baby');
+        var imgInstanceN = new fabric.Image(imgElementN,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceN);
+
+      }
+
+      function addText(){
+        var text = new fabric.Text("A Gift Card", {left:100, top:100});
+        canvas.add(text);
+      }
+
+      function Clear(){
+        if (confirm('Are you sure?')) {
+          canvas.clear();
+        }
+      }
+
+      function Remove(){
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+          canvas.remove(activeObject);
+        }
+      }
+
+          
+    </script>
+ 

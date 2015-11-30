@@ -62,7 +62,7 @@ myApp.config(['$routeProvider',
      }).
      when('/customize',{
        controller: 'cardCtrl',
-       templateUrl: 'views/test.html'
+       templateUrl: 'views/hello.html'
      }).
      when('/redemption',{
       controller: 'cardCtrl',

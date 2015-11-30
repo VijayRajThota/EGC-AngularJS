@@ -115,6 +115,8 @@ $scope.displayCard =3 ;
   label: 'Quick Selection'
   
 }];
+
+
 $scope.selected=2;
 $scope.test = {};
 $scope.delivery =[{
@@ -246,6 +248,15 @@ $scope.clear = function(){
           canvas.clear();
         }
 };
+
+$scope.save = function(){
+ var json = canvas.toJSON();
+
+canvas.clear();
+
+canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+ 
+};
 $scope.remove = function(){
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
@@ -258,16 +269,497 @@ $scope.hoverIn = function(){
 
     $scope.hoverOut = function(){
         this.hoverEdit = false;
-    };
-$scope.drawingMode = 1;
-$scope.drawMode = function(){
-   if($scope.drawingMode==1)
-      $scope.drawingMode=2;
-  else
-     $scope.drawingMode =1;
-};
+    }; 
+
+
+
 
 }]);
+
+myAppCtrl.controller('CustomizeCtrl',['$scope', function($scope){
+var canvas = new fabric.Canvas('c', {isDrawingMode: true });
+
+$scope.drawingModeOptions = 1;
+
+$scope.styles = [{
+code: 1,
+style : 'Pencil'
+},{
+code: 2,
+style : 'Circle'
+},{
+code: 3,
+style : 'Spray'
+},{
+code: 4,
+style : 'Pattern'
+},{
+code: 5,
+style : 'hline'
+},{
+code: 6,
+style : 'vline'
+},{
+code: 7,
+style : 'square'
+},{
+code: 8,
+style : 'diamond'
+},{
+code: 9,
+style : 'texture'
+}];
+
+
+$scope.drawingMode = function(){
+  canvas.isDrawingMode = !canvas.isDrawingMode;
+  if(canvas.isDrawingMode){
+    $scope.drawingModeOptions = 1;
+  }
+  else
+  {
+    $scope.drawingModeOptions = 0;
+  }
+};
+
+
+
+if (fabric.PatternBrush) {
+    var vLinePatternBrush = new fabric.PatternBrush(canvas);
+    vLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(0, 5);
+      ctx.lineTo(10, 5);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+ var hLinePatternBrush = new fabric.PatternBrush(canvas);
+ hLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(5, 0);
+      ctx.lineTo(5, 10);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+
+ var squarePatternBrush = new fabric.PatternBrush(canvas);
+    squarePatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 2;
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.fillStyle = this.color;
+      ctx.fillRect(0, 0, squareWidth, squareWidth);
+
+      return patternCanvas;
+    };
+var diamondPatternBrush = new fabric.PatternBrush(canvas);
+    diamondPatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 5;
+      var patternCanvas = fabric.document.createElement('canvas');
+      var rect = new fabric.Rect({
+        width: squareWidth,
+        height: squareWidth,
+        angle: 45,
+        fill: this.color
+      });
+      var canvasWidth = rect.getBoundingRectWidth();
+
+      patternCanvas.width = patternCanvas.height = canvasWidth + squareDistance;
+      rect.set({ left: canvasWidth / 2, top: canvasWidth / 2 });
+
+      var ctx = patternCanvas.getContext('2d');
+      rect.render(ctx);
+
+      return patternCanvas;
+    };
+
+    var img = new Image();
+    img.src = 'http://fabricjs.com/assets/honey_im_subtle.png';
+
+    var texturePatternBrush = new fabric.PatternBrush(canvas);
+    texturePatternBrush.source = img;
+
+  }
+
+$scope.customStyle= function(){
+ if ($scope.test == 5) {
+      canvas.freeDrawingBrush = vLinePatternBrush;
+    }
+    else if ($scope.test == 6) {
+      canvas.freeDrawingBrush = hLinePatternBrush;
+    }
+    else if ($scope.test == 7) {
+      canvas.freeDrawingBrush = squarePatternBrush;
+    }
+    else if ($scope.test == 8) {
+      canvas.freeDrawingBrush = diamondPatternBrush;
+    }
+    else if ($scope.test == 9) {
+      canvas.freeDrawingBrush = texturePatternBrush;
+    }
+    else {
+      canvas.freeDrawingBrush = new fabric[$scope.test + 'Brush'](canvas);
+    }
+
+    if (canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.color = $scope.lineColor;
+      canvas.freeDrawingBrush.width = parseInt($scope.lineWidth, 10) || 1;
+      canvas.freeDrawingBrush.shadowBlur = parseInt(drawingShadowWidth.value, 10) || 0;
+    }
+};
+
+$scope.drawingColor = function(){
+  canvas.freeDrawingBrush.color = $scope.lineColor;
+};
+
+$scope.drawingLineWidth = function(){
+  canvas.freeDrawingBrush.width = parseInt($scope.lineWidth, 10) || 1;
+    this.previousSibling.innerHTML = $scope.lineWidth;
+};
+
+$scope.drawingShadowColor = function(){
+  canvas.freeDrawingBrush.shadowColor = $scope.shadowColor;
+};
+
+$scope.drawingShadowWidth= function(){
+  canvas.freeDrawingBrush.shadowBlur = parseInt($scope.shadowWidth, 10) || 0;
+    this.previousSibling.innerHTML = $scope.shadowWidth;
+};
+
+$scope.drawingShadowOffset = function(){
+  canvas.freeDrawingBrush.shadowOffsetX =
+    canvas.freeDrawingBrush.shadowOffsetY = parseInt($scope.shadowOffset, 10) || 0;
+    this.previousSibling.innerHTML = $scope.shadowOffset;
+};
+
+fabric.Object.prototype.transparentCorners = false;
+
+var rect = new fabric.Rect({
+          left: 100, top: 100, fill: 'red', width: 20, height: 20, angle: 45
+        });
+  var circle = new fabric.Circle({
+          radius: 20, fill: 'green', left: 100, top: 100
+        });
+  var triangle = new fabric.Triangle({
+          width: 20, height: 30, fill: 'blue', left: 50, top: 50
+        });
+
+$scope.addRect = function(){
+  canvas.add(rect);
+  canvas.renderAll();
+};
+
+$scope.addCircle = function(){
+ canvas.add(circle);
+ canvas.renderAll();
+};
+$scope.addTraingle = function(){
+canvas.add(triangle);
+canvas.renderAll();
+};
+
+
+$scope.addBirthday = function (){
+        var imgElementB = document.getElementById('birthday');
+        var imgInstanceB = new fabric.Image(imgElementB,{
+            left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceB);
+
+      };
+$scope.addAnniversary = function (){
+        var imgElementA = document.getElementById('anniversary');
+        var imgInstanceA = new fabric.Image(imgElementA,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceA);
+      };
+$scope.addUniversal = function (){
+        var imgElementU = document.getElementById('universal');
+        var imgInstanceU = new fabric.Image(imgElementU,{
+         left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceU);
+      };
+ $scope.addChritsmas = function (){
+        var imgElementC = document.getElementById('chritsmas');
+        var imgInstanceC = new fabric.Image(imgElementC,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceC);
+      };
+
+$scope.addHalloween = function(){
+        var imgElementH = document.getElementById('halloween');
+        var imgInstanceH = new fabric.Image(imgElementH,{
+         left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceH);
+      };
+
+$scope.addBaby =function (){
+        var imgElementN = document.getElementById('baby');
+        var imgInstanceN = new fabric.Image(imgElementN,{
+          left: 100,
+            top: 100,
+            angle: 30,
+            opacity: 0.85
+        });
+        canvas.add(imgInstanceN);
+      };
+
+$scope.addText = function(personalize){
+  var x = personalize.text;
+var t = new fabric.Text(x, {top:300});
+        canvas.add(t);
+};
+
+$scope.clear = function(){
+   if (confirm('Are you sure?')) {
+          canvas.clear();
+        }
+};
+
+$scope.save = function(){
+ var json = canvas.toJSON();
+
+canvas.clear();
+
+canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+ 
+};
+$scope.remove = function(){
+        var activeObject = canvas.getActiveObject();
+        if (activeObject) {
+          canvas.remove(activeObject);
+        }
+      }; 
+
+}]);
+//myAppCtrl.controller('CustomizeCtrl',['$scope', function($scope))
+/*myAppCtrl.controller(
+            'CustomizeCtrl',['$scope',
+            function( $scope ) {
+            var fabricUrl = 'http://fabricjs.com/lib/fabric.js';
+        if (document.location.search.indexOf('load_fabric_from=') > -1) {
+          var match = document.location.search.match(/load_fabric_from=([^&]*)/);
+          if (match && match[1]) {
+            fabricUrl = match[1];
+          }
+        }
+$scope.customize = fabricUrl;
+
+ var $ = function(id){
+  return document.getElementById(id)
+};
+
+  var canvas = this.__canvas = new fabric.Canvas('c', {
+    isDrawingMode: true
+  });
+
+fabric.Object.prototype.transparentCorners = false;
+var drawingModeEl = $('drawing-mode'),
+      drawingOptionsEl = $('drawing-mode-options'),
+      drawingColorEl = $('drawing-color'),
+      drawingShadowColorEl = $('drawing-shadow-color'),
+      drawingLineWidthEl = $('drawing-line-width'),
+      drawingShadowWidth = $('drawing-shadow-width'),
+      drawingShadowOffset = $('drawing-shadow-offset'),
+      clearEl = $('clear-canvas');
+      imageE1= $('add-image');
+      saveE1= $('imageSaver');
+      loadE1 = $('imageLoader');
+
+clearEl.onclick = function() { canvas.clear() };
+  
+  drawingModeEl.onclick = function() {
+    canvas.isDrawingMode = !canvas.isDrawingMode;
+    if (canvas.isDrawingMode) {
+      drawingModeEl.innerHTML = 'Cancel drawing mode';
+      drawingOptionsEl.style.display = '';
+    }
+    else {
+      drawingModeEl.innerHTML = 'Enter drawing mode';
+      drawingOptionsEl.style.display = 'none';
+    }
+  };
+
+  if (fabric.PatternBrush) {
+    var vLinePatternBrush = new fabric.PatternBrush(canvas);
+    vLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(0, 5);
+      ctx.lineTo(10, 5);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+
+    var hLinePatternBrush = new fabric.PatternBrush(canvas);
+    hLinePatternBrush.getPatternSrc = function() {
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = 10;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(5, 0);
+      ctx.lineTo(5, 10);
+      ctx.closePath();
+      ctx.stroke();
+
+      return patternCanvas;
+    };
+
+    var squarePatternBrush = new fabric.PatternBrush(canvas);
+    squarePatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 2;
+
+      var patternCanvas = fabric.document.createElement('canvas');
+      patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
+      var ctx = patternCanvas.getContext('2d');
+
+      ctx.fillStyle = this.color;
+      ctx.fillRect(0, 0, squareWidth, squareWidth);
+
+      return patternCanvas;
+    };
+
+    var diamondPatternBrush = new fabric.PatternBrush(canvas);
+    diamondPatternBrush.getPatternSrc = function() {
+
+      var squareWidth = 10, squareDistance = 5;
+      var patternCanvas = fabric.document.createElement('canvas');
+      var rect = new fabric.Rect({
+        width: squareWidth,
+        height: squareWidth,
+        angle: 45,
+        fill: this.color
+      });
+
+      var canvasWidth = rect.getBoundingRectWidth();
+
+      patternCanvas.width = patternCanvas.height = canvasWidth + squareDistance;
+      rect.set({ left: canvasWidth / 2, top: canvasWidth / 2 });
+
+      var ctx = patternCanvas.getContext('2d');
+      rect.render(ctx);
+
+      return patternCanvas;
+    };
+
+    var img = new Image();
+    img.src = 'http://fabricjs.com/assets/honey_im_subtle.png';
+
+    var texturePatternBrush = new fabric.PatternBrush(canvas);
+    texturePatternBrush.source = img;
+  }
+
+  $('drawing-mode-selector').onchange = function() {
+
+    if (this.value === 'hline') {
+      canvas.freeDrawingBrush = vLinePatternBrush;
+    }
+    else if (this.value === 'vline') {
+      canvas.freeDrawingBrush = hLinePatternBrush;
+    }
+    else if (this.value === 'square') {
+      canvas.freeDrawingBrush = squarePatternBrush;
+    }
+    else if (this.value === 'diamond') {
+      canvas.freeDrawingBrush = diamondPatternBrush;
+    }
+    else if (this.value === 'texture') {
+      canvas.freeDrawingBrush = texturePatternBrush;
+    }
+    else {
+      canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](canvas);
+    }
+
+    if (canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.color = drawingColorEl.value;
+      canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+      canvas.freeDrawingBrush.shadowBlur = parseInt(drawingShadowWidth.value, 10) || 0;
+    }
+  };
+
+  drawingColorEl.onchange = function() {
+    canvas.freeDrawingBrush.color = this.value;
+  };
+  drawingShadowColorEl.onchange = function() {
+    canvas.freeDrawingBrush.shadowColor = this.value;
+  };
+  drawingLineWidthEl.onchange = function() {
+    canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+    this.previousSibling.innerHTML = this.value;
+  };
+  drawingShadowWidth.onchange = function() {
+    canvas.freeDrawingBrush.shadowBlur = parseInt(this.value, 10) || 0;
+    this.previousSibling.innerHTML = this.value;
+  };
+  drawingShadowOffset.onchange = function() {
+    canvas.freeDrawingBrush.shadowOffsetX =
+    canvas.freeDrawingBrush.shadowOffsetY = parseInt(this.value, 10) || 0;
+    this.previousSibling.innerHTML = this.value;
+  };
+
+  if (canvas.freeDrawingBrush) {
+    canvas.freeDrawingBrush.color = drawingColorEl.value;
+    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+    canvas.freeDrawingBrush.shadowBlur = 0;
+  }
+
+
+            }]);*/
 
 
 //var myAppCtrl = angular.module('myAppCtrl',[]);

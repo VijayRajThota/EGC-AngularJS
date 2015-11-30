@@ -1,104 +1,90 @@
+    <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
+    <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
+    <style>
+      pre { margin-left: 15px !important }
+    </style>
+<div id="bd-wrapper" ng-controller="CustomizeCtrl">
+      <style>
+#drawing-mode {
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+#drawing-mode-options {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background: #f5f2f0;
+  padding: 10px;
+}
+label {
+  display: inline-block; width: 130px;
+}
+.info {
+  display: inline-block;
+  width: 25px;
+  background: #ffc;
+}
+#bd-wrapper {
+  min-width: 1500px;
+}
+</style>
+<canvas id="c" width="500" height="500" style="border:1px solid #aaa"></canvas>
+<div style="display: inline-block; margin-left: 10px">
 
-<script>
-      (function() {
-        var fabricUrl = 'http://fabricjs.com/lib/fabric.js';
-        if (document.location.search.indexOf('load_fabric_from=') > -1) {
-          var match = document.location.search.match(/load_fabric_from=([^&]*)/);
-          if (match && match[1]) {
-            fabricUrl = match[1];
-          }
-        }
-        document.write('<script src="' + fabricUrl + '"><\/script>');
-      })();
-<div id="bd-wrapper">
+ <button id="drawing-mode" ng-click="drawingMode()" class="btn btn-info">Cancel drawing mode</button><br>
 
-			<div id="canvas-wrapper" style="position:relative;width:704px;float:left;">
-				<div id="canvas-container" style="width: 700px; height: 400px; position: relative; -webkit-user-select: none;">
-					<canvas id="canvas" width="650px" height="400px" style="position: absolute; width: 700px; height: 400px; left: 0px; top: 0px; -webkit-user-select: none; border:1px solid black;"></canvas>
-				</div>
-			</div>
 
-			<div class="tabs">
 
-				<div class="tab-content">
-
-    				<div class="tab active" id="simple">
-    				    <button type="button" ng-click="drawMode()">Drawing Mode</button>
-    				    <br>
-    				    <br>
-    				    <div ng-show="drawingMode=='1'">
-   							 <label for="drawing-mode-selector">Mode:</label>
-   								 <select id="drawing-mode-selector">
-      								<option>Pencil</option>
-      								<option>Circle</option>
-								      <option>Spray</option>
-								      <option>Pattern</option> 
-								      <option>hline</option>
-								      <option>vline</option>
-								      <option>square</option>
-								      <option>diamond</option>
-								      <option>texture</option>
-    </select><br>
+  <div id="drawing-mode-options" ng-show="drawingModeOptions=='1'">
+    <label for="drawing-mode-selector">Mode:</label>
+  <select ng-options="item.code as item.style for item in styles" ng-model="test" ng-change="customStyle()"></select>
+  <br>
 
     <label for="drawing-line-width">Line width:</label>
-    <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+    <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width" ng-model="lineWidth" ng-change="drawingLineWidth()"><br>
 
     <label for="drawing-color">Line color:</label>
-    <input type="color" value="#005E7A" id="drawing-color"><br>
+    <input type="color" value="#005E7A" id="drawing-color" ng-model="lineColor" ng-change="drawingColor()"><br>
 
     <label for="drawing-shadow-color">Shadow color:</label>
-    <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
+    <input type="color" value="#005E7A" id="drawing-shadow-color" ng-model="shadowColor" ng-change="drawingShadowColor()"><br>
 
     <label for="drawing-shadow-width">Shadow width:</label>
-    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
+    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width" ng-model="shadowWidth" ng-change="drawingShadowWidth()"><br>
 
     <label for="drawing-shadow-offset">Shadow offset:</label>
-    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset" ng-model="shadowOffset" ng-change="drawingShadowOffset()"><br>
   </div>
+  <p>Add <strong>shapes</strong> to canvas:</p>
+                <p>
+              <button type="button" ng-click="addRect()">Rectangle</button>
+              <button type="button" ng-click="addCircle()">Circle</button>
+              <button type="button" ng-click="addTraingle()">Triangle</button>
+            </p>
 
-						<p>Add <strong>shapes</strong> to canvas:</p>
-      					<p>
-							<button type="button" ng-click="addRect()">Rectangle</button>
-							<button type="button" ng-click="addCircle()">Circle</button>
-							<button type="button" ng-click="addTraingle()">Triangle</button>
-						</p>
-
-      					<p>Add <strong>images</strong> to canvas:</p>
-      					<p>
-							<button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
-							<button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
-							<button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
-							<button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
-							<button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
-							<button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
-						</p>
-
-						<p>Add <strong>text</strong> to canvas:</p>
-      					<p>
-      				<div class="form-group">
-              <input type="username" ng-model="personalize.text" class="form-control">
+                <p>Add <strong>images</strong> to canvas:</p>
+                <p>
+              <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
+              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
+              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
+              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
+              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
+              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
+            </p>
+<br>
+</div>
+<div class="container">
+            <p>Add <strong>text</strong> to canvas:</p>
+                <p>
+              <div >
+              <input type="username" ng-model="personalize.text" c>
               <button type="button" ng-click="addText(personalize)">Add Text</button>
-            </div>
-      					</p>
-
-      				</div>
-                    <br>
-
-      				<div class="tab" id="controls">
-      				<p>
-      						<button type="button" ng-click="remove()" style="background-color:lightgreen">Remove selected object</button>
-      					</p>
-
-      					<p>
-      						<button type="button" ng-click="clear()" style="background-color:red">Clear Canvas</button>
-      					</p>
-
-      					
-      					
-      				</div>
-				</div>
-			</div>
-
-			
-
-		</div>
+                </p>
+              <p>
+              <button type="button" ng-click="save()" style="background-color:lightgreen">Save Image</button><br>
+<button type="button" ng-click="remove()" style="background-color:lightgreen">Remove selected object</button><br>
+<button type="button" ng-click="clear()" style="background-color:red">Clear Canvas</button><br>
+              </p>
+</div>
+</div>
