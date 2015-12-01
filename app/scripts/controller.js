@@ -76,7 +76,7 @@ $scope.confirmSomething = function() {
         $scope.signUpResult = res;
       });*/
     $scope.signUpResult=eCard.signingUp();
-     
+    console.log($scope.signUpResult);  
   };
   $scope.reset = function() {
         $scope.user = angular.copy($scope.master);
