@@ -68,22 +68,15 @@ $scope.confirmSomething = function() {
       console.log("exit signup");
       $scope.reset();
    }*/
-   $http({
+   /* $http({
         method : "GET",
-        url : 'http://localhost:3000/signup',
-        data: {
-          "username" : signup.firstname,
-          "email" : signup.email,
-          "password" : signup.password,
-          "phone" : signup.phone
-
-        }
+        url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111',
       }).success(function(res) {
         //console.log("data:"+res.statusCode);
         $scope.signUpResult = res;
-      });
-   // $scope.signUpResult=eCard.signingUp({information: signup});
-    console.log($scope.signUpResult);  
+      });*/
+    $scope.signUpResult=eCard.signingUp({username: signup.firstname , email: signup.email ,password: signup.password ,phone: signup.phone});
+     
   };
   $scope.reset = function() {
         $scope.user = angular.copy($scope.master);
