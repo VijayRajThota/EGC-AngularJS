@@ -1,7 +1,7 @@
 var myAppCtrl = angular.module('myAppCtrl',[]);
 
-myAppCtrl.controller('cardCtrl',['$scope','eCard','$routeParams','$location','$anchorScroll','$window','modals',
-  function($scope,eCard,$routeParams,$location,$anchorScroll,$window,modals){
+myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','$location','$anchorScroll','$window','modals',
+  function($http,$scope,eCard,$routeParams,$location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
   $scope.master = {};
   $scope.update = function(user) {
@@ -39,7 +39,7 @@ $scope.confirmSomething = function() {
                         }
                     );
                 };
-  $scope.register=function(signup){
+ $scope.register=function(signup){
   /*  var x = signup.firstname;
      var b = signup.password;
      var c = signup.email;
@@ -68,14 +68,14 @@ $scope.confirmSomething = function() {
       console.log("exit signup");
       $scope.reset();
    }*/
-   /* $http({
+    $http({
         method : "GET",
         url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111',
       }).success(function(res) {
         //console.log("data:"+res.statusCode);
         $scope.signUpResult = res;
-      });*/
-    $scope.signUpResult=eCard.signingUp();
+      });
+   // $scope.signUpResult=eCard.signingUp();
      
   };
   $scope.reset = function() {
