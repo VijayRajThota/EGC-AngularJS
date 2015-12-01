@@ -2,13 +2,13 @@ var myAppServices = angular.module('myAppServices', ['ngResource']);
 
 myAppServices.factory('eCard', ['$resource',
   function($resource){
-    return $resource(':data/:actualcall/:file.json', {}, {
-      details: {method:'GET', params:{data:'data',file:'coverpage'} },
-      signingUp:{method:'GET', params:{data:'localhost:3000', actualcall:'signup', file:'@file'}},
-      card: {method:'GET', params:{file:'cards'}, isArray:true},
-      slides: {method:'GET', params:{file:'slides'}, isArray:true},
-      display: {method:'GET', params:{file:'newyear'} },
-      personalize : {method:'GET', params:{file:'personalize'}, isArray:true}
+    return $resource(':data/:actualcall/:file', {}, {
+      details: {method:'GET', params:{data:'data',file:'coverpage.json'} },
+      signingUp:{method:'GET', params:{data:'http://localhost:3000', actualcall:'signup?name=raj&&email=r@r.com&&password=abc&&phone=111'}},
+      card: {method:'GET', params:{data:'data',file:'cards.json'}, isArray:true},
+      slides: {method:'GET', params:{data:'data',file:'slides.json'}, isArray:true},
+      display: {method:'GET', params:{data:'data',file:'newyear.json'} },
+      personalize : {method:'GET', params:{data:'data',file:'personalize.json'}, isArray:true}
     });
   }]);
 /*

@@ -40,10 +40,10 @@ $scope.confirmSomething = function() {
                     );
                 };
   $scope.register=function(signup){
-     var x = signup.firstname;
+  /*  var x = signup.firstname;
      var b = signup.password;
      var c = signup.email;
-    /*if (/\s/.test(a)) {
+    if (/\s/.test(a)) {
      $window.alert("username should be a single string");
       }
      else if(/^[a-zA-Z0-9- ]*$/.test(b) == false) {
@@ -53,14 +53,29 @@ $scope.confirmSomething = function() {
     {
       $window.alert("Password must contain atleast 1 number and 1 Cap");
     }
-    else{*/
+    else{
       console.log("enter signup");
-     // $scope.master = angular.copy(signup);
-      console.log("enter signup");
-      $scope.signUpResult = eCard.signingUp({file:signup}); 
+      $scope.master = angular.copy(signup);
+    console.log("enter signup");
+     $scope.signUpResult = eCard.signingUp({file:signup});
+     $http({
+      method : "GET",
+      url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111'     
+
+    }).success(function(res){
+     $scope.singUpResult=res
+      }); 
       console.log("exit signup");
       $scope.reset();
-   // }
+   }*/
+   /* $http({
+        method : "GET",
+        url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111',
+      }).success(function(res) {
+        //console.log("data:"+res.statusCode);
+        $scope.signUpResult = res;
+      });*/
+    $scope.signUpResult=eCard.signingUp();
      
   };
   $scope.reset = function() {
@@ -104,7 +119,7 @@ $scope.displayCard =3 ;
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
   $scope.cardsName=$routeParams.cardName;
-  $scope.displays=eCard.display();
+ // $scope.displays=eCard.display();
   $scope.confirmation = {   
     "amount": "25.00", 
     "values": [ "25.00", "50.00", "75.00", "80.00","100.00"] 
@@ -251,14 +266,18 @@ $scope.clear = function(){
         }
 };
 
+var data;
+
 $scope.save = function(){
- var json = canvas.toJSON();
-
-canvas.clear();
-
-canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
- 
+var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+$window.location.href='#/display'
+$scope.displays={image:'image'};
+window.location.href = image;
 };
+
+var canvas2 = new fabric.Canvas('canvas2');
+canvas2.loadFromJSON(data, canvas2.renderAll.bind(canvas2));
+
 $scope.remove = function(){
         var activeObject = canvas.getActiveObject();
         if (activeObject) {
