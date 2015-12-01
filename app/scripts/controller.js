@@ -1,6 +1,6 @@
 var myAppCtrl = angular.module('myAppCtrl',[]);
 
-myAppCtrl.controller('cardCtrl',['$scope','alterDollar','eCard','$routeParams','$location','$anchorScroll','$window','modals',
+myAppCtrl.controller('cardCtrl',['$scope','eCard','$routeParams','$location','$anchorScroll','$window','modals',
   function($scope,eCard,$routeParams,$location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
   $scope.master = {};

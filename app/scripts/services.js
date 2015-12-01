@@ -2,28 +2,25 @@ var myAppServices = angular.module('myAppServices', ['ngResource']);
 
 myAppServices.factory('eCard', ['$resource',
   function($resource){
-    return $resource('data/:restcall.json', {}, {
-      details: {method:'GET', params:{restcall:'coverpage'} },
-      card: {method:'GET', params:{restcall:'cards'}, isArray:true},
-      slides: {method:'GET', params:{restcall:'slides'}, isArray:true},
-      display: {method:'GET', params:{restcall:'newyear'} },
-      personalize : {method:'GET', params:{restcall:'personalize'}, isArray:true}
+    return $resource(':data/:actualcall/:file.json', {}, {
+      details: {method:'GET', params:{data:'data',file:'coverpage'} },
+      signingUp:{method:'GET', params:{data:'localhost:3000', actualcall:'signup', file:'@file'}},
+      card: {method:'GET', params:{file:'cards'}, isArray:true},
+      slides: {method:'GET', params:{file:'slides'}, isArray:true},
+      display: {method:'GET', params:{file:'newyear'} },
+      personalize : {method:'GET', params:{file:'personalize'}, isArray:true}
     });
   }]);
+/*
 myAppServices.factory('alterDollar', ['$resource',
   function($resource){
-    return $resource('localhost:3000/:actualcall', {:file.json}, {      
+    return $resource('localhost:3000/:actualcall/:file.json', {}, {      
       singingUp : {method:'GET', params:{actualcall:'signup',file:'@file'}, }
     });
-  }]);
+  }]);*/
 
 
-/*myAppServices.factory('User',['$resource',
-	function($resource){
-		return $resource('data/:restcall',{},{
 
-		});yy
-	}]);*/
 
 myAppServices.service(
             'modals',['$rootScope','$q',
