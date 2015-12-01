@@ -68,14 +68,14 @@ $scope.confirmSomething = function() {
       console.log("exit signup");
       $scope.reset();
    }*/
-    $http({
+   /* $http({
         method : "GET",
         url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111',
       }).success(function(res) {
         //console.log("data:"+res.statusCode);
         $scope.signUpResult = res;
-      });
-   // $scope.signUpResult=eCard.signingUp();
+      });*/
+    $scope.signUpResult=eCard.signingUp();
      
   };
   $scope.reset = function() {
