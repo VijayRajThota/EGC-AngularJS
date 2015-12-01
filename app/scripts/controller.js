@@ -573,6 +573,28 @@ $scope.remove = function(){
         }
       }; 
 
+document.getElementById('imageLoader').onchange = function handleImage(e) {
+var reader = new FileReader();
+  reader.onload = function (event){
+    var imgObj = new Image();
+    imgObj.src = event.target.result;
+    imgObj.onload = function () {
+      var image = new fabric.Image(imgObj);
+      image.set({
+            angle: 0,
+            padding: 10,
+            cornersize:10,
+            height:110,
+            width:110,
+      });
+      canvas.centerObject(image);
+      canvas.add(image);
+      canvas.renderAll();
+    }
+  }
+  reader.readAsDataURL(e.target.files[0]);
+}
+
 }]);
 
 
