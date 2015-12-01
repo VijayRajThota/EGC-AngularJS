@@ -5,7 +5,7 @@ myAppCtrl.controller('cardCtrl',['$scope','eCard','$routeParams','$location','$a
   $scope.cover=eCard.details();
   $scope.master = {};
   $scope.update = function(user) {
-        var x = user.username;
+   /*     var x = user.username;
         var y = user.password;
         if (x==null|| x==""|| x=="Required!")
         {
@@ -16,10 +16,10 @@ myAppCtrl.controller('cardCtrl',['$scope','eCard','$routeParams','$location','$a
         {
           $window.alert("enter valid information");
         }
-        else {
+        else {*/
         $scope.master = angular.copy(user);
         $scope.reset();
-        }
+      //  }
       };
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
@@ -43,8 +43,8 @@ $scope.confirmSomething = function() {
      var x = signup.firstname;
      var b = signup.password;
      var c = signup.email;
-    if (/\s/.test(a)) {
-      $window.alert("username should be a single string");
+    /*if (/\s/.test(a)) {
+     $window.alert("username should be a single string");
       }
      else if(/^[a-zA-Z0-9- ]*$/.test(b) == false) {
       $window.alert("Special charcaters are not allowed");
@@ -53,11 +53,14 @@ $scope.confirmSomething = function() {
     {
       $window.alert("Password must contain atleast 1 number and 1 Cap");
     }
-    else{
-      $scope.master = angular.copy(user);
-      $scope.signUpResult = alterDollar.signingUp({file:master}); 
+    else{*/
+      console.log("enter signup");
+     // $scope.master = angular.copy(signup);
+      console.log("enter signup");
+      $scope.signUpResult = eCard.signingUp({file:signup}); 
+      console.log("exit signup");
       $scope.reset();
-    }
+   // }
      
   };
   $scope.reset = function() {
