@@ -1,6 +1,6 @@
 var myAppCtrl = angular.module('myAppCtrl',[]);
 
-myAppCtrl.controller('cardCtrl',['$scope','eCard','$routeParams','$location','$anchorScroll','$window','modals',
+myAppCtrl.controller('cardCtrl',['$scope','alterDollar','eCard','$routeParams','$location','$anchorScroll','$window','modals',
   function($scope,eCard,$routeParams,$location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
   $scope.master = {};
@@ -41,8 +41,6 @@ $scope.confirmSomething = function() {
                 };
   $scope.register=function(signup){
      var x = signup.firstname;
-     var y = signup.lastname;
-     var a = signup.username;
      var b = signup.password;
      var c = signup.email;
     if (/\s/.test(a)) {
@@ -57,6 +55,7 @@ $scope.confirmSomething = function() {
     }
     else{
       $scope.master = angular.copy(user);
+      $scope.signUpResult = alterDollar.signingUp({file:master}); 
       $scope.reset();
     }
      

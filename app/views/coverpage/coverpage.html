@@ -144,12 +144,10 @@
                 <br>
                 <!-- Username -->
                   <div class="controls">
-                  <input type="text" ng-model="signup.firstname" name="firstname" placeholder="First name" class="input-xlarge"  required>
-                  <input type="text" ng-model="signup.lastname" name="username" placeholder="Last name" class="input-xlarge" required>
+                  <input type="text" ng-model="signup.firstname" name="firstname" placeholder="Name" class="input-xlarge"  required>
+                 
                   <div role="alert">
                    <span class="error" ng-show="Signup.firstname.$error.required">
-                   Required!</span>
-                   <span class="error" ng-show="Signup.lastname.$error.required">
                    Required!</span>
 
                     </div>
@@ -158,19 +156,16 @@
                 </div>
                 <br>
                 <div class="control-group">
-                <!-- Password-->
-                  <label class="control-label" for="username">Username</label>
+                <!-- email-->
+                  <div class="control-group">
+                <!-- Email-->
+                <label class="control-label" for="email">Email</label>
                     <div class="controls">
-                    <input type="text"  ng-model="signup.username" name="username" placeholder="User Name" class="input-xlarge" ng-minlength="3" ng-maxlength="10" required>
+                  <input type="email" id="email" ng-model="signup.email" name="email" placeholder="your@email" class="input-xlarge" required>
                     </div>
                     <div role="alert">
-                    <span class="error" ng-show="Signup.username.$error.required">
+                    <span class="error" ng-show="Signup.email.$error.required">
                    Required!</span>
-                     <span class="error" ng-show="Signup.username.$error.minlength">
-                      Too short!</span>
-                      <span class="error" ng-show="Signup.username.$error.maxlength">
-                      Too long!</span>
-                      </div>
                   </div>
         
               
@@ -191,17 +186,21 @@
 
                   </div>
 
+                 
+
+                  <br>
+                  <div class="control-group">
+                <!-- email-->
                   <div class="control-group">
                 <!-- Email-->
-                <label class="control-label" for="email">Email</label>
+                <label class="control-label" for="number">Phone Number</label>
                     <div class="controls">
-                  <input type="email" id="email" ng-model="signup.email" name="email" placeholder="your@email" class="input-xlarge" required>
+                  <input type="email" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge" required>
                     </div>
                     <div role="alert">
-                    <span class="error" ng-show="Signup.email.$error.required">
+                    <span class="error" ng-show="Signup.phonenumber.$error.required">
                    Required!</span>
                   </div>
-
                   <br>
               
                   <div class="control-group">

@@ -10,6 +10,12 @@ myAppServices.factory('eCard', ['$resource',
       personalize : {method:'GET', params:{restcall:'personalize'}, isArray:true}
     });
   }]);
+myAppServices.factory('alterDollar', ['$resource',
+  function($resource){
+    return $resource('localhost:3000/:actualcall', {:file.json}, {      
+      singingUp : {method:'GET', params:{actualcall:'signup',file:'@file'}, }
+    });
+  }]);
 
 
 /*myAppServices.factory('User',['$resource',
