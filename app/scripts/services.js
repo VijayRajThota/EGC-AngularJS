@@ -4,7 +4,7 @@ myAppServices.factory('eCard', ['$resource',
   function($resource){
     return $resource('http://localhost:3000/signup', {name:'hanuman', username:'jai',email:'jai@hanuman',password:'password',phone:'1234567'}, {
       details: {method:'GET', params:{data:'data',file:'coverpage.json'} },
-      signingUp:{method:'GET'},
+      signingUp:{method:'POST'},
       card: {method:'GET', params:{data:'data',file:'cards.json'}, isArray:true},
       slides: {method:'GET', params:{data:'data',file:'slides.json'}, isArray:true},
       display: {method:'GET', params:{data:'data',file:'newyear.json'} },
