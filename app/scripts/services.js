@@ -2,22 +2,22 @@ var myAppServices = angular.module('myAppServices', ['ngResource']);
 
 myAppServices.factory('eCard', ['$resource',
   function($resource){
-    return $resource('http://localhost:3000/signup', {}, {
+    return $resource(':data/:file', {}, {
      details: {method:'GET', params:{data:'data',file:'coverpage.json'} },
-      signingUp:{method:'GET'},
+     // signingUp:{method:'GET', params:{rubycall:'signup'}},
       card: {method:'GET', params:{data:'data',file:'cards.json'}, isArray:true},
       slides: {method:'GET', params:{data:'data',file:'slides.json'}, isArray:true},
     display: {method:'GET', params:{data:'data',file:'newyear.json'} },
       personalize : {method:'GET', params:{data:'data',file:'personalize.json'}, isArray:true}
     });
   }]);
-/*
+
 myAppServices.factory('alterDollar', ['$resource',
   function($resource){
     return $resource('localhost:3000/:actualcall/:file.json', {}, {      
       singingUp : {method:'GET', params:{actualcall:'signup',file:'@file'}, }
     });
-  }]);*/
+  }]);
 
 
 

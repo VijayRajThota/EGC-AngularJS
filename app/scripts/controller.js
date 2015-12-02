@@ -1,7 +1,7 @@
 var myAppCtrl = angular.module('myAppCtrl',[]);
 
-myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','$location','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams,$location,$anchorScroll,$window,modals){
+myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar','$location','$anchorScroll','$window','modals',
+  function($http,$scope,eCard,alterDollar,$routeParams,$location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
   $scope.master = {};
   $scope.update = function(user) {
@@ -75,8 +75,13 @@ $scope.confirmSomething = function() {
         //console.log("data:"+res.statusCode);
         $scope.signUpResult = res;
       });*/
-    $scope.signUpResult=eCard.signingUp({username: signup.firstname , email: signup.email ,password: signup.password ,phone: signup.phone});
-     
+    $scope.signUpResult=alterDollar.signingUp({name: signup.name, username: signup.username , email: signup.email ,password: signup.password ,phone: signup.phone});
+     if(signUpResult.message == 'success'){
+      $window.location.href='#/homepage';
+     }
+     else{
+      $window.alert("Error");
+     }
   };
   $scope.reset = function() {
         $scope.user = angular.copy($scope.master);
