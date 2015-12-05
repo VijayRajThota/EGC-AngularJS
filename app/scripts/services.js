@@ -16,7 +16,7 @@ myAppServices.factory('alterDollar', ['$resource',
   function($resource){
     return $resource('http://adcards.herokuapp.com/:rubycall/:addcall', {}, {      
      // signingUp : {method:'GET', params:{rubycall:'signup'} },
-     signingIn : {method:'GET', params:{rubycall:'login'} }
+     signingIn : {method:'GET', params:{rubycall:'login'}, isArray:false }
    //   redeemption :{method:'GET', params:{rubycall:'redeem'}},
     //  confirmingCard : {method:'GET', params: {rubycall:'@rubycall', addcall:'order'}}
     });

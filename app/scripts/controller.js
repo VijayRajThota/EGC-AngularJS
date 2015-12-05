@@ -3,12 +3,13 @@ var myAppCtrl = angular.module('myAppCtrl',[]);
 myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
+  $scope.SignInResult = {};
   $scope.master = {};
   var nameOfTheUser;
-  $scope.update = function(user) {
+ $scope.update = function(user) {
         var x = user.username;
         var y = user.password;
-        if (x==null|| x==""|| x=="Required!")
+      /*  if (x==null|| x==""|| x=="Required!")
         {
           $window.alert("enter valid information");
           $scope.user={username:'Required!'};
@@ -17,17 +18,18 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         {
           $window.alert("enter valid information");
         }
-        else {
-        var SignInResult ={};
+        else {*/
         $scope.SignInResult = alterDollar.signingIn({username: user.username ,password: user.password});
-        if (SignInResult.message == 'success'){
-            nameOfTheUser = user.username;
-           $window.location.href='#/homepage';
-        } 
-        else{
-          $window.alert("Error");
-        }      
-       }
+        $scope.SignInResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/homepage';
+          }
+          else{
+            $window.alert("Error");
+          }
+       });
+               
+       //}
       };
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
