@@ -25,8 +25,6 @@
         <div id="navbar" class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
                     <li >
-                        <a href="#/deals">Today's Deal</a>
-                     <li>
                         <a href="#/aboutus">About Us</a>
                     </li> 
                     </ul>
@@ -40,11 +38,7 @@
             </div>
             <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
 			
-			 <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>             
-
-             
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
-             
+			 <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
           </form>
            
@@ -212,11 +206,13 @@
                 <!-- Email-->
                 <label class="control-label" for="number">Phone Number</label>
                     <div class="controls">
-                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge" required>
+                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge" ng-length="10" required>
                     </div>
                     <div role="alert">
                     <span class="error" ng-show="Signup.phonenumber.$error.required">
                    Required!</span>
+                   <span class="error" ng-show="Signup.phonenumber.$error.length">
+                      Invalid Phone Number!</span>
                   </div>
                   <br>
               

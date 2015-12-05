@@ -230,16 +230,16 @@
             <input size="22" type="text" ng-model="confirmation.email" name="email"/>
             </div>
             <div>
-            <label style="float: left;margin-right: 51px;" >Your Name</label>
-            <input size="22" type="text" name="name" ng-model="confirmation.name" placeholder="Enter your name here."/>
+            <label style="float: left;margin-right: 51px;" >Recepient Name</label>
+            <input size="22" type="text" name="name" ng-model="confirmation.name" placeholder="Enter name here."/>
+            </div>
+            <div>
+            <label style="float: left;margin-right: 51px;" >Recepient Phone Number</label>
+            <input size="22" type="number" name="name" ng-model="confirmation.phone" placeholder="Enter number."/>
             </div>
             <div>
             <label style="float: left;margin-right: 65px;" >Message</label>
             <textarea cols="30" rows="8" ng-model="confirmation.message" placeholder="Enter your message here."></textarea>
-            </div>
-            <div>
-            <label style="float: left;margin-right: 68px;" >Quantity</label>
-            <input type="text" size="22" ng-model="confirmation.quantity" name="quantity" value="1"/>
             </div>
             <div>
             <label style="float: left;margin-right: 75px;" >Delivery Type</label>            
@@ -250,8 +250,7 @@
             <input type="datetime-local" name="dateField" ng-model="minDate" md-placeholder="Enter date" required="" md-min-date="minDate" md-max-date="maxDate"/>
             </div>
             <div>
-            <input type="button" name="addtocart" ng-click="confirm(confirmation)" value="Add to cart"/>
-            <input type="button" name="checkout" ng-click="payInfo()" value="Proceed to checkout"/>
+            <input type="button" name="checkout" ng-click="confirmCard(confirmation)" value="Proceed to checkout"/>
             </div>            
             <div>
             </div>

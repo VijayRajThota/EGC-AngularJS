@@ -1,11 +1,12 @@
 var myAppCtrl = angular.module('myAppCtrl',[]);
 
-myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar','$location','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,alterDollar,$routeParams,$location,$anchorScroll,$window,modals){
+myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
+  function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
   $scope.master = {};
+  var nameOfTheUser;
   $scope.update = function(user) {
-   /*     var x = user.username;
+        var x = user.username;
         var y = user.password;
         if (x==null|| x==""|| x=="Required!")
         {
@@ -16,10 +17,17 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         {
           $window.alert("enter valid information");
         }
-        else {*/
-        $scope.master = angular.copy(user);
-        $scope.reset();
-      //  }
+        else {
+        var SignInResult ={};
+        $scope.SignInResult = alterDollar.signingIn({username: user.username ,password: user.password});
+        if (SignInResult.message == 'success'){
+            nameOfTheUser = user.username;
+           $window.location.href='#/homepage';
+        } 
+        else{
+          $window.alert("Error");
+        }      
+       }
       };
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
@@ -40,9 +48,11 @@ $scope.confirmSomething = function() {
                     );
                 };
  $scope.register=function(signup){
-  /*  var x = signup.firstname;
+   var x = signup.name;
+   var a = signup.username;
      var b = signup.password;
      var c = signup.email;
+     var y = signup.phone; 
     if (/\s/.test(a)) {
      $window.alert("username should be a single string");
       }
@@ -55,38 +65,39 @@ $scope.confirmSomething = function() {
     }
     else{
       console.log("enter signup");
-      $scope.master = angular.copy(signup);
-    console.log("enter signup");
-     $scope.signUpResult = eCard.signingUp({file:signup});
-     $http({
-      method : "GET",
-      url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111'     
-
-    }).success(function(res){
-     $scope.singUpResult=res
-      }); 
-      console.log("exit signup");
-      $scope.reset();
-   }*/
-   /* $http({
-        method : "GET",
-        url : 'http://localhost:3000/signup?name=raj&&email=r@r.com&&password=abc&&phone=111',
-      }).success(function(res) {
-        //console.log("data:"+res.statusCode);
-        $scope.signUpResult = res;
-      });*/
+     var signUpResult = {};
     $scope.signUpResult=alterDollar.signingUp({name: signup.name, username: signup.username , email: signup.email ,password: signup.password ,phone: signup.phone});
-     if(signUpResult.message == 'success'){
+     if(signUpResult == 404){
+      nameOfTheUser = signup.username;
       $window.location.href='#/homepage';
      }
      else{
       $window.alert("Error");
+     }     
+   }
+  };
+
+  //$scope.displayCard = function(card.id){
+   //$scope.displays = eCard.display({card:card.id});
+
+  //};
+
+  $scope.redeem = function(code){
+    var redeemResult = {};
+    $scope.redeemResult = alterDollar.redeemption({code:code.redeemCode});
+    if (redeemResult.message=='success'){
+      $window.location.href='#/confirmDetails';
+    }
+    else{
+      $window.alert("Error");
      }
   };
+
   $scope.reset = function() {
         $scope.user = angular.copy($scope.master);
       };
 $scope.reset();
+
 $scope.displayCard=1;
 $scope.cardDisp = function(){
   $scope.displayCard=1;
@@ -124,7 +135,7 @@ $scope.displayCard =3 ;
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
   $scope.cardsName=$routeParams.cardName;
- // $scope.displays=eCard.display();
+ $scope.displays=eCard.display();
   $scope.confirmation = {   
     "amount": "25.00", 
     "values": [ "25.00", "50.00", "75.00", "80.00","100.00"] 
@@ -169,9 +180,28 @@ $scope.confirm = function(confirmation) {
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() + 11,
       $scope.myDate.getDate()); 
-  $scope.payInfo = function(){
-      $window.location.href='#/payment';
+
+  $scope.confirmCard = function(confirmation){
+      var confirmCardResult;
+      $scope.confirmCardResult = alterDollar.confirmingCard({rubycall : nameOfTheUser, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone})
+      if(confirmCardResult.message == 'success'){
+        $window.location.href='#/payment';
+      }
+      else
+      {
+        $window.alert("Error");
+      }      
+
   };
+
+  $scope.payment = function(){
+     var braintree = Braintree.create("YourClientSideEncryptionKey")
+      braintree.onSubmitEncryptForm('braintree-payment-form');
+
+  };
+
+ 
+
  $scope.redeem = new function(code){
      $scope.test=1;
  };
@@ -276,12 +306,12 @@ var data;
 $scope.save = function(){
 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 $window.location.href='#/display'
-$scope.displays={image:'image'};
+//$scope.displays={image:'image'};
 window.location.href = image;
+
 };
 
-var canvas2 = new fabric.Canvas('canvas2');
-canvas2.loadFromJSON(data, canvas2.renderAll.bind(canvas2));
+
 
 $scope.remove = function(){
         var activeObject = canvas.getActiveObject();
@@ -585,11 +615,15 @@ $scope.clear = function(){
 };
 
 $scope.save = function(){
- var json = canvas.toJSON();
+/* var json = canvas.toJSON();
 
 canvas.clear();
 
-canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));*/
+var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+//$window.location.href='#/suning'
+//$scope.displays={image:'image'};
+window.location.href = image;
  
 };
 $scope.remove = function(){

@@ -41,21 +41,11 @@
                     </li> 
                     </ul>
           
-          <form id="demo" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="username" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" ng-model="user.password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
-            
-             <a  class="btn btn-success" href="#/signup">Sign up</a>
+          <div id="demo" class="navbar-form navbar-right">
              
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
-             
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >             
 
-          </form>
+          </div>
            
           
         </div><!--/.navbar-collapse -->
@@ -199,7 +189,7 @@
         </div>
     </div>
 </div>
-<div class="container slider">
+<div ng-show="displayCard=='1'"class="container slider">
     <img ng-repeat="slide in slides" class="slide slide-animation"
         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
         <a class="arrow prev" href="#/homepage" ng-click="nextSlide()"></a>
