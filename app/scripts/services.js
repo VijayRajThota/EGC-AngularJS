@@ -4,7 +4,6 @@ myAppServices.factory('eCard', ['$resource',
   function($resource){
     return $resource(':data/:file', {}, {
      details: {method:'GET', params:{data:'data',file:'coverpage.json'} },
-     //signingUp:{method:'GET', params:{rubycall:'signup'}},
       card: {method:'GET', params:{data:'data',file:'cards.json'}, isArray:true},
       slides: {method:'GET', params:{data:'data',file:'slides.json'}, isArray:true},
     display: {method:'GET', params:{data:'data',file:'newyear.json'} },
@@ -15,7 +14,7 @@ myAppServices.factory('eCard', ['$resource',
 myAppServices.factory('alterDollar', ['$resource',
   function($resource){
     return $resource('http://adcards.herokuapp.com/:rubycall/:addcall', {}, {      
-     // signingUp : {method:'GET', params:{rubycall:'signup'} },
+      signingUp : {method:'GET', params:{rubycall:'signup'} },
      signingIn : {method:'GET', params:{rubycall:'login'}, isArray:false }
    //   redeemption :{method:'GET', params:{rubycall:'redeem'}},
     //  confirmingCard : {method:'GET', params: {rubycall:'@rubycall', addcall:'order'}}

@@ -3,13 +3,12 @@ var myAppCtrl = angular.module('myAppCtrl',[]);
 myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
   $scope.cover=eCard.details();
-  $scope.SignInResult = {};
   $scope.master = {};
   var nameOfTheUser;
  $scope.update = function(user) {
-        var x = user.username;
+      var x = user.username;
         var y = user.password;
-      /*  if (x==null|| x==""|| x=="Required!")
+        if (x==null|| x==""|| x=="Required!")
         {
           $window.alert("enter valid information");
           $scope.user={username:'Required!'};
@@ -18,7 +17,7 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         {
           $window.alert("enter valid information");
         }
-        else {*/
+        else {
         $scope.SignInResult = alterDollar.signingIn({username: user.username ,password: user.password});
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
@@ -28,8 +27,7 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
             $window.alert("Error");
           }
        });
-               
-       //}
+      }
       };
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
@@ -55,7 +53,7 @@ $scope.confirmSomething = function() {
      var b = signup.password;
      var c = signup.email;
      var y = signup.phone; 
-    if (/\s/.test(a)) {
+  /*  if (/\s/.test(a)) {
      $window.alert("username should be a single string");
       }
      else if(/^[a-zA-Z0-9- ]*$/.test(b) == false) {
@@ -65,18 +63,19 @@ $scope.confirmSomething = function() {
     {
       $window.alert("Password must contain atleast 1 number and 1 Cap");
     }
-    else{
+    else{*/
       console.log("enter signup");
-     var signUpResult = {};
+     
     $scope.signUpResult=alterDollar.signingUp({name: signup.name, username: signup.username , email: signup.email ,password: signup.password ,phone: signup.phone});
-     if(signUpResult == 404){
-      nameOfTheUser = signup.username;
-      $window.location.href='#/homepage';
-     }
-     else{
-      $window.alert("Error");
-     }     
-   }
+    $scope.signUpResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/homepage';
+          }
+          else{
+            $window.alert("Error");
+          }
+       });    
+  // }
   };
 
   //$scope.displayCard = function(card.id){
