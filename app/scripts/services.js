@@ -13,7 +13,7 @@ myAppServices.factory('eCard', ['$resource',
 
 myAppServices.factory('alterDollar', ['$resource',
   function($resource){
-    return $resource('http://adcards.herokuapp.com/:rubycall/:addcall', {}, {      
+    return $resource('http://localhost:3000/:rubycall/:addcall', {}, {      
       signingUp : {method:'GET', params:{rubycall:'signup'} },
      signingIn : {method:'GET', params:{rubycall:'login'}, isArray:false }
    //   redeemption :{method:'GET', params:{rubycall:'redeem'}},
