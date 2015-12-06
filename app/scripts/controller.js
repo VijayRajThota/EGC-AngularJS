@@ -2,11 +2,11 @@ var myAppCtrl = angular.module('myAppCtrl',[]);
 
 myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
+ //cover page details   
   $scope.cover=eCard.details();
-  $scope.master = {};
-  var nameOfTheUser;
+ //login 
  $scope.update = function(user) {
-      var x = user.username;
+     /*    var x = user.username;
         var y = user.password;
         if (x==null|| x==""|| x=="Required!")
         {
@@ -17,18 +17,21 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         {
           $window.alert("enter valid information");
         }
-        else {
-        $scope.SignInResult = alterDollar.signingIn({username: user.username ,password: user.password});
+        else {*/
+        $scope.SignInResult = alterDollar.signingIn();
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
-            $window.location.href='#/homepage';
+            $window.location.href='#/homepage';            
           }
           else{
             $window.alert("Error");
           }
        });
-      }
+    //  }
       };
+
+  
+ //pop up     
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
                     // resolved or rejected when the modal window is closed.
@@ -47,13 +50,14 @@ $scope.confirmSomething = function() {
                         }
                     );
                 };
+    //signUp            
  $scope.register=function(signup){
-   var x = signup.name;
+ /* var x = signup.name;
    var a = signup.username;
      var b = signup.password;
      var c = signup.email;
      var y = signup.phone; 
-  /*  if (/\s/.test(a)) {
+    if (/\s/.test(a)) {
      $window.alert("username should be a single string");
       }
      else if(/^[a-zA-Z0-9- ]*$/.test(b) == false) {
@@ -66,7 +70,7 @@ $scope.confirmSomething = function() {
     else{*/
       console.log("enter signup");
      
-    $scope.signUpResult=alterDollar.signingUp({name: signup.name, username: signup.username , email: signup.email ,password: signup.password ,phone: signup.phone});
+    $scope.signUpResult=alterDollar.signingUp();
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
             $window.location.href='#/homepage';
@@ -75,30 +79,25 @@ $scope.confirmSomething = function() {
             $window.alert("Error");
           }
        });    
-  // }
+ //  }
   };
 
-  //$scope.displayCard = function(card.id){
-   //$scope.displays = eCard.display({card:card.id});
 
-  //};
-
+//redeemption
   $scope.redeem = function(code){
     var redeemResult = {};
     $scope.redeemResult = alterDollar.redeemption({code:code.redeemCode});
-    if (redeemResult.message=='success'){
-      $window.location.href='#/confirmDetails';
-    }
-    else{
-      $window.alert("Error");
-     }
+    $scope.redeemResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/homepage';
+          }
+          else{
+            $window.alert("Error");
+          }
+       }); 
   };
 
-  $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-      };
-$scope.reset();
-
+//homepage
 $scope.displayCard=1;
 $scope.cardDisp = function(){
   $scope.displayCard=1;
@@ -110,9 +109,42 @@ $scope.customDisp = function(){
 $scope.personDisp = function(){
 $scope.displayCard =3 ;
 };
+
+//select card
   $scope.query=$routeParams.theme;
   $scope.cards=eCard.card();
-  $scope.orderProp='age';  
+  $scope.orderProp='age'; 
+ 
+ //display card
+ // var q ;
+ $scope.specificCard = function(card){
+  var q = card.id;
+  $scope.vijay = alterDollar.getCard({cardID:card.id});
+  $scope.vijay.$promise.then(function(data) { 
+    if( data.id == q)
+      $window.location.href='#/cardDetails';
+
+   };
+
+ /* var q;
+  var v = card.id;
+ $scope.displays = eCard.card();
+ $scope.displays.$promise.then(function(data) { 
+    for(var i = 0; i< data.length; i++)
+   {
+    var counter = data[i];
+    if( counter.id == v){
+     q = counter.id;
+
+    }  console.log(q);          
+   } console.log(q); 
+  }); */
+
+//console.log(q);  
+ };
+//console.log(q);  
+// $scope.vijay = r;
+//silder
   $scope.gotonext = function() {        
         $location.hash('services');        
         $anchorScroll();
@@ -136,7 +168,8 @@ $scope.displayCard =3 ;
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
   $scope.cardsName=$routeParams.cardName;
- $scope.displays=eCard.display();
+
+ //payment page
   $scope.confirmation = {   
     "amount": "25.00", 
     "values": [ "25.00", "50.00", "75.00", "80.00","100.00"] 
@@ -166,9 +199,7 @@ $scope.confirm = function(confirmation) {
         $scope.test = angular.copy(confirmation);
         
       };
- //$scope.example = {
-   //     value: new Date(2010, 11, 28, 14, 57)
-     // };
+
   $scope.date = new Date();
   $scope.myDate = new Date();
 
@@ -185,17 +216,22 @@ $scope.confirm = function(confirmation) {
   $scope.confirmCard = function(confirmation){
       var confirmCardResult;
       $scope.confirmCardResult = alterDollar.confirmingCard({rubycall : nameOfTheUser, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone})
-      if(confirmCardResult.message == 'success'){
-        $window.location.href='#/payment';
-      }
-      else
-      {
-        $window.alert("Error");
-      }      
+     $scope.confirmCardResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/homepage';
+          }
+          else{
+            $window.alert("Error");
+          }
+       });     
 
   };
 
-  $scope.payment = function(){
+
+//payment
+
+
+  $scope.approvePayment = function(payment){
      var braintree = Braintree.create("YourClientSideEncryptionKey")
       braintree.onSubmitEncryptForm('braintree-payment-form');
 

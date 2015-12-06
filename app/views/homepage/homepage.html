@@ -42,7 +42,7 @@
                     </ul>
           
           <div id="demo" class="navbar-form navbar-right">
-             
+
              <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >             
 
           </div>
@@ -261,11 +261,10 @@
         </div>
       <div class="row">
             <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                <a href="#/event/{{card.Name}}">
-                    <img class="img-responsive" ng-src="{{card.imgUrl}}" width="150px" height="100px" alt="">
-                </a>
+               <img class="img-responsive" ng-src="{{card.imgUrl}}" ng-click="specificCard(card)" width="150px" height="100px" alt="">
+               
                 <p>
-                    <a href="#/event/{{card.Name}}">{{card.Name}}</a>
+                    <a ng-click="specificCard(card)">{{card.Name}}{{vijay.image}}</a>
                 </p>
                 <span ng-show="hoverEdit" class="animate-show">
               <a>

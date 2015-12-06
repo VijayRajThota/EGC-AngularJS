@@ -268,13 +268,13 @@ label.error {
                     <h3 class="panel-title"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Payment Details</h3>
                 </div>
                 <div class="panel-body">
-                    <form action="payment()" method="POST">
+                    <form >
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="cardNumber">CARD NUMBER</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" data-encrypted-name="number"  />
+                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" ng-model="payment.carNumber"  />
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
                                 </div>                            
@@ -285,17 +285,17 @@ label.error {
                                 <div class="form-group">
                                     <label for="expMonth">EXPIRATION DATE</label>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control"  placeholder="MM" required data-stripe="exp_month" data-encrypted-name="month" />
+                                        <input type="text" class="form-control"  placeholder="MM" required data-stripe="exp_month"  ng-model="payment.cardMonth" />
                                     </div>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" data-encrypted-name="year" />
+                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" ng-model="payment.cardYear" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-5 col-md-5 pull-right">
                                 <div class="form-group">
                                     <label for="cvCode">CV CODE</label>
-                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" data-encrypted-name="cvv" />
+                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" ng-model="payment.cvv" />
                                 </div>
                             </div>
                         </div>
@@ -309,7 +309,7 @@ label.error {
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                            <input class="btn btn-success btn-lg btn-block" type="submit" id="submit" />
+                            <input class="btn btn-success btn-lg btn-block" type="submit" ng-click="approvePayment(payment)" id="submit" />
                             </div>
                         </div>
                         

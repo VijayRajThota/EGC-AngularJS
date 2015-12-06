@@ -36,7 +36,7 @@
             <div class="form-group">
               <input type="password" ng-model="user.password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in </button>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
 			
 			 <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
@@ -206,7 +206,7 @@
                 <!-- Email-->
                 <label class="control-label" for="number">Phone Number</label>
                     <div class="controls">
-                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge" required>
+                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge" ng-length="10" required>
                     </div>
                     <div role="alert">
                     <span class="error" ng-show="Signup.phonenumber.$error.required">

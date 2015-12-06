@@ -28,7 +28,7 @@ myApp.config(['$routeProvider',
       controller: 'cardCtrl',
       templateUrl: 'views/event/event.html'
      }).
-     when('/event/:cardName',{
+     when('/cardDetails',{
       controller: 'cardCtrl',
       templateUrl: 'views/display/display.html'
      }).
