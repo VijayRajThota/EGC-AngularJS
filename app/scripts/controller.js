@@ -5,6 +5,7 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
  //cover page details   
   $scope.cover=eCard.details();
  //login 
+ $scope.master = {};
  $scope.update = function(user) {
      /*    var x = user.username;
         var y = user.password;
@@ -18,7 +19,8 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
           $window.alert("enter valid information");
         }
         else {*/
-        $scope.SignInResult = alterDollar.signingIn();
+        $scope.master = angular.copy(user);
+        $scope.SignInResult = alterDollar.signingIn({username:user.username,password:user.password});
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
             $window.location.href='#/homepage';            
@@ -68,9 +70,9 @@ $scope.confirmSomething = function() {
       $window.alert("Password must contain atleast 1 number and 1 Cap");
     }
     else{*/
-      console.log("enter signup");
-     
-    $scope.signUpResult=alterDollar.signingUp();
+      
+    $scope.master = angular.copy(user);
+    $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
             $window.location.href='#/homepage';
@@ -124,7 +126,7 @@ $scope.displayCard =3 ;
     if( data.id == q)
       $window.location.href='#/cardDetails';
 
-   };
+   });
 
  /* var q;
   var v = card.id;
