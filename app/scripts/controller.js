@@ -118,26 +118,30 @@ $scope.displayCard =3 ;
   $scope.orderProp='id'; 
  
  //display card
- $scope.test ={};
  var q;
- $scope.specificCard = function(card){
+ 
+$scope.specificCard =( function(card){
+  $window.location.href='#/cardDetails';
+ $scope.card_data =  2;
+  return function() {
+  $scope.card_data;
+ }
+})();
+
+data =$scope.specificCard();
+console.log(data);
+
  // $scope.test= angular.copy(card);
   //var q = card.card_id;
-   $window.location.href='#/cardDetails';
-  $scope.vijay = alterDollar.getSpecificCard({addcall : card.card_id});
-  $scope.vijay.$promise.then(function(data) {
-          console.log(data);
-          $scope.test = data;
-          var q = data
-       }); 
-  console.log(q);
-  console.log($scope.test);
+  // $window.location.href='#/cardDetails';
+  //$scope.vijay = alterDollar.getSpecificCard({addcall : card.card_id});
+ 
 
  // $scope.vijay.$promise.then(function(data) { 
-   // if( data.id == q)
+   // q = data;
      
 
-   //});
+  // });
 
  /* var q;
   var v = card.id;
@@ -154,9 +158,12 @@ $scope.displayCard =3 ;
   }); */
 
 //console.log(q);  
- };
- console.log(q);
-  console.log($scope.test);
+// };
+ console.log("Hello");
+
+
+  
+
 
 //console.log(q);  
 // $scope.vijay = r;
