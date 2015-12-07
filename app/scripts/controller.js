@@ -118,7 +118,8 @@ $scope.displayCard =3 ;
   $scope.orderProp='id'; 
  
  //display card
- // var q ;
+ $scope.test ={};
+ var q;
  $scope.specificCard = function(card){
  // $scope.test= angular.copy(card);
   //var q = card.card_id;
@@ -126,7 +127,12 @@ $scope.displayCard =3 ;
   $scope.vijay = alterDollar.getSpecificCard({addcall : card.card_id});
   $scope.vijay.$promise.then(function(data) {
           console.log(data);
+          $scope.test = data;
+          var q = data
        }); 
+  console.log(q);
+  console.log($scope.test);
+
  // $scope.vijay.$promise.then(function(data) { 
    // if( data.id == q)
      
@@ -149,6 +155,9 @@ $scope.displayCard =3 ;
 
 //console.log(q);  
  };
+ console.log(q);
+  console.log($scope.test);
+
 //console.log(q);  
 // $scope.vijay = r;
 //silder
