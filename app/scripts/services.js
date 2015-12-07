@@ -16,7 +16,7 @@ myAppServices.factory('alterDollar', ['$resource',
     return $resource('http://localhost:3000/:rubycall/:addcall', {}, {      
       signingUp : {method:'GET', params:{rubycall:'signup'} },
      signingIn : {method:'GET', params:{rubycall:'login'} },
-     //getCard : {method:'PUT', params:{ruby:'getCard'}}
+     getCards : {method:'GET', params:{rubycall:'getCards'}, isArray:true}
    //   redeemption :{method:'GET', params:{rubycall:'redeem'}},
     //  confirmingCard : {method:'GET', params: {rubycall:'@rubycall', addcall:'order'}}
     });

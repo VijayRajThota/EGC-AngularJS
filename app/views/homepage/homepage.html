@@ -39,6 +39,9 @@
                      <li>
                         <a href="#/aboutus">About Us</a>
                     </li> 
+                    <li>
+                        <a href="#/aboutus">{{master.username}}</a>
+                    </li>
                     </ul>
           
           <div id="demo" class="navbar-form navbar-right">
@@ -189,22 +192,6 @@
         </div>
     </div>
 </div>
-<div ng-show="displayCard=='1'"class="container slider">
-    <img ng-repeat="slide in slides" class="slide slide-animation"
-        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
-        <a class="arrow prev" href="#/homepage" ng-click="nextSlide()"></a>
-
-    <a class="arrow next" href="#/homepage" ng-click="prevSlide()"></a>
-    <nav style="position:absolute" class="nav">
-        <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <a href="#/homepage" ng-class="{'active':isCurrentSlideIndex($index)}"
-                      ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
 
  <div class="row" style="margin-left:20%;margin-right:20%;">
     <h2>Shop Now</h2>           
@@ -261,17 +248,11 @@
         </div>
       <div class="row">
             <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-               <img class="img-responsive" ng-src="{{card.imgUrl}}" ng-click="specificCard(card)" width="150px" height="100px" alt="">
+               <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt="">
                
-                <p>
-                    <a ng-click="specificCard(card)">{{card.Name}}{{vijay.image}}</a>
-                </p>
                 <span ng-show="hoverEdit" class="animate-show">
               <a>
                     <img ng-src="{{card.imgUrl}}" alt="">
-                    <h3>
-                    <a href="#">{{card.Name}}</a>
-                    </h3>
               </a>
             </span>
             </div>
@@ -457,18 +438,5 @@ label {
 
 
    
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; San Jose State University(TEAM-TITANS)</p>
-                </div>
-            </div>
-        </footer>
-
-    </div>
+    
 

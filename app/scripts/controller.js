@@ -100,7 +100,7 @@ $scope.confirmSomething = function() {
   };
 
 //homepage
-$scope.displayCard=1;
+//$scope.displayCard=1;
 $scope.cardDisp = function(){
   $scope.displayCard=1;
 };
@@ -114,8 +114,8 @@ $scope.displayCard =3 ;
 
 //select card
   $scope.query=$routeParams.theme;
-  $scope.cards=eCard.card();
-  $scope.orderProp='age'; 
+  $scope.cards=alterDollar.getCards();
+  $scope.orderProp='id'; 
  
  //display card
  // var q ;
