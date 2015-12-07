@@ -200,8 +200,8 @@
 </div>
     <div class="container" style="padding:20px;">
         <div class="row">
-          <div style="float:left;width:400px;margin-left:50px;">
-          <img ng-src="{{vijay.url}}" width="350"/>
+          <div style="float:left;width:400px;margin-left:50px;" ng-repeat="card in vijay">
+          <img ng-src="{{card.url}}" width="350"/>
           </div>
           <style>
           .form_class{
