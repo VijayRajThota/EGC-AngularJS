@@ -120,13 +120,13 @@ $scope.displayCard =3 ;
  //display card
  var q;
  
-$scope.specificCard =( function(card){
+$scope.specificCard =function(card){
   //$window.location.href='#/cardDetails';
  $scope.card_data =  2;
   return function() {
   $scope.card_data;
  }
-})();
+};
 
 data =$scope.specificCard();
 console.log(data);
