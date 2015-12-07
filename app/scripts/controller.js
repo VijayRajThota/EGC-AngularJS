@@ -123,7 +123,7 @@ $scope.displayCard =3 ;
  // $scope.test= angular.copy(card);
   //var q = card.card_id;
    $window.location.href='#/cardDetails';
-  $scope.vijay = eCard.getSpecificCard({rubycall : card.card_id});
+  $scope.vijay = eCard.getSpecificCard({addcall : card.card_id});
  // $scope.vijay.$promise.then(function(data) { 
    // if( data.id == q)
      
