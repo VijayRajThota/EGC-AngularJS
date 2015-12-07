@@ -122,10 +122,13 @@ $scope.displayCard =3 ;
  
 $scope.specificCard =function(card){
   //$window.location.href='#/cardDetails';
- $scope.card_data =  2;
+  $scope.vijay = $scope.closure; 
+};
+$scope.closure=function(){
+$scope.card_data =  2;
   return function() {
   $scope.card_data;
- }
+}
 };
 
 data =$scope.specificCard();
