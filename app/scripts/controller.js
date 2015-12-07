@@ -114,7 +114,7 @@ $scope.displayCard =3 ;
 
 //select card
   $scope.query=$routeParams.theme;
-  $scope.cards=eCard.card();
+  $scope.cards=alterDollar.getCards();
   $scope.orderProp='id'; 
  
  //display card
