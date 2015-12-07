@@ -39,9 +39,6 @@
                      <li>
                         <a href="#/aboutus">About Us</a>
                     </li> 
-                    <li>
-                        <a href="#/aboutus">{{master.username}}</a>
-                    </li>
                     </ul>
           
           <div id="demo" class="navbar-form navbar-right">
@@ -193,6 +190,7 @@
     </div>
 </div>
 
+
  <div class="row" style="margin-left:20%;margin-right:20%;">
     <h2>Shop Now</h2>           
     <section class="no-padding" id="portfolio">
@@ -248,7 +246,8 @@
         </div>
       <div class="row">
             <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" >
-               <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt="">
+               <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt=""> 
+               <br>              
             </div>
             
             
@@ -432,5 +431,5 @@ label {
 
 
    
-    
+   
 

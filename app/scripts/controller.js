@@ -114,19 +114,19 @@ $scope.displayCard =3 ;
 
 //select card
   $scope.query=$routeParams.theme;
-  $scope.cards=alterDollar.getCards();
+  $scope.cards=eCard.card();
   $scope.orderProp='id'; 
  
  //display card
  // var q ;
  $scope.specificCard = function(card){
   var q = card.id;
-  $scope.vijay = alterDollar.getCard({cardID:card.id});
-  $scope.vijay.$promise.then(function(data) { 
-    if( data.id == q)
+  $scope.vijay = eCard.display();
+ // $scope.vijay.$promise.then(function(data) { 
+   // if( data.id == q)
       $window.location.href='#/cardDetails';
 
-   });
+   //});
 
  /* var q;
   var v = card.id;
