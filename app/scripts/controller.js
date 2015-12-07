@@ -114,25 +114,41 @@ $scope.displayCard =3 ;
 
 //select card
   $scope.query=$routeParams.theme;
-  $scope.cards=alterDollar.getCards();
+ // $scope.cards=alterDollar.getCards();
+ $scope.cards=alterDollar.getCards();
   $scope.orderProp='id'; 
  
  //display card
- var q;
+ $scope.specificCard = function(card){
+  localStorage.setItem('id',card.url);
+  $window.location.href='#/cardDetails'
+ };
  
-$scope.specificCard =function(card){
-  //$window.location.href='#/cardDetails';
-  $scope.vijay = $scope.closure; 
-};
-$scope.closure=function(){
+ $scope.vijay = localStorage.getItem('id');
+// localStorage.clear;
+ /*var q;
+ $scope.closure=(function(){
+  console.log("test");
 $scope.card_data =  2;
   return function() {
-  $scope.card_data;
+ // $scope.card_data;
+  console.log($scope.card_data);
 }
+return $scope.card_data;
+})();
+ 
+$scope.specificCard =function(card){
+  console.log(card);
+  //$window.location.href='#/cardDetails';
+   $scope.vijay = $scope.closure(); 
+  console.log($scope.vijay);
+return $scope.vijay;
+  
 };
 
-data =$scope.specificCard();
+data=$scope.specificCard();
 console.log(data);
+
 
  // $scope.test= angular.copy(card);
   //var q = card.card_id;
@@ -162,10 +178,6 @@ console.log(data);
 
 //console.log(q);  
 // };
- console.log("Hello");
-
-
-  
 
 
 //console.log(q);  
