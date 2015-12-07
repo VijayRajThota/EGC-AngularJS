@@ -121,7 +121,7 @@ $scope.displayCard =3 ;
  var q;
  
 $scope.specificCard =( function(card){
-  $window.location.href='#/cardDetails';
+  //$window.location.href='#/cardDetails';
  $scope.card_data =  2;
   return function() {
   $scope.card_data;
