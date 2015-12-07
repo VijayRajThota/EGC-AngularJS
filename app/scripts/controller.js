@@ -124,6 +124,9 @@ $scope.displayCard =3 ;
   //var q = card.card_id;
    $window.location.href='#/cardDetails';
   $scope.vijay = alterDollar.getSpecificCard({addcall : card.card_id});
+  $scope.vijay.$promise.then(function(data) {
+          console.log(data);
+       }); 
  // $scope.vijay.$promise.then(function(data) { 
    // if( data.id == q)
      
