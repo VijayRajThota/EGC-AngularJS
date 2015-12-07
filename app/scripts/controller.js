@@ -358,13 +358,13 @@ $scope.remove = function(){
           canvas.remove(activeObject);
         }
       }; 
-$scope.hoverIn = function(){
+/*$scope.hoverIn = function(){
         this.hoverEdit = true;
     };
 
     $scope.hoverOut = function(){
         this.hoverEdit = false;
-    }; 
+    }; */
 
 
 

@@ -247,7 +247,7 @@
             </div>
         </div>
       <div class="row">
-            <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+            <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" >
                <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt="">
             </div>
             
