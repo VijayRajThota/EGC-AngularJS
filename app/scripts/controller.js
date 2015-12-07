@@ -120,11 +120,13 @@ $scope.displayCard =3 ;
  //display card
  // var q ;
  $scope.specificCard = function(card){
-  var q = card.id;
-  $scope.vijay = eCard.display();
+ // $scope.test= angular.copy(card);
+  //var q = card.card_id;
+   $window.location.href='#/cardDetails';
+  $scope.vijay = eCard.getSpecificCard({rubycall : card.card_id});
  // $scope.vijay.$promise.then(function(data) { 
    // if( data.id == q)
-      $window.location.href='#/cardDetails';
+     
 
    //});
 
