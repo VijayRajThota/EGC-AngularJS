@@ -37,21 +37,13 @@
                     </li> 
                     </ul>
 		  
-		  <form id="demo" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="username" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" ng-model="user.password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
-			
-			 <a  class="btn btn-success" href="#/signup">Sign up</a>
+		  <div class="navbar-form navbar-right">
+    
              
              <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/aboutus/vijay.jpg" alt="" >
              
 
-          </form>
+          </div>
            
 		  
         </div><!--/.navbar-collapse -->
@@ -190,11 +182,11 @@
 <div class="container">
     <div class="row">
         <div class="btn-group btn-breadcrumb">
-            <a href="#/coverpage" class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
-            <a href="#/homepage" class="btn btn-warning">Select Card</a>
-            <a href="#/event/{{card.Name}}" class="btn btn-warning">Confirm Card</a>
-            <a href="#/payment" class="btn btn-default">Payment Information</a>
-            <a href="#/confirmation" class="btn btn-default">Confirmation</a>
+            <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+            <a  class="btn btn-warning">Select Card</a>
+            <a  class="btn btn-warning">Confirm Card</a>
+            <a  class="btn btn-default">Payment Information</a>
+            <a  class="btn btn-default">Confirmation</a>
         </div>
     </div>
 </div>
@@ -247,7 +239,7 @@
             </div>            
             <div ng-show="deliveryStatus=='2'" >
             <label for="exampleInput">Schedule a date after {{date | date:'yyyy-MM-dd'}}</label>
-            <input type="datetime-local" name="dateField" ng-model="minDate" md-placeholder="Enter date" required="" md-min-date="minDate" md-max-date="maxDate"/>
+            <input type="datetime-local" name="dateField" ng-model="confirmation.date" md-placeholder="Enter date" required="" md-min-date="minDate" md-max-date="maxDate"/>
             </div>
             <div>
             <input type="button" name="checkout" ng-click="confirmCard(confirmation)" value="Proceed to checkout"/>

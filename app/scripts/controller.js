@@ -125,63 +125,7 @@ $scope.displayCard =3 ;
  };
  
  $scope.vijay = localStorage.getItem('id');
-// localStorage.clear;
- /*var q;
- $scope.closure=(function(){
-  console.log("test");
-$scope.card_data =  2;
-  return function() {
- // $scope.card_data;
-  console.log($scope.card_data);
-}
-return $scope.card_data;
-})();
- 
-$scope.specificCard =function(card){
-  console.log(card);
-  //$window.location.href='#/cardDetails';
-   $scope.vijay = $scope.closure(); 
-  console.log($scope.vijay);
-return $scope.vijay;
-  
-};
 
-data=$scope.specificCard();
-console.log(data);
-
-
- // $scope.test= angular.copy(card);
-  //var q = card.card_id;
-  // $window.location.href='#/cardDetails';
-  //$scope.vijay = alterDollar.getSpecificCard({addcall : card.card_id});
- 
-
- // $scope.vijay.$promise.then(function(data) { 
-   // q = data;
-     
-
-  // });
-
- /* var q;
-  var v = card.id;
- $scope.displays = eCard.card();
- $scope.displays.$promise.then(function(data) { 
-    for(var i = 0; i< data.length; i++)
-   {
-    var counter = data[i];
-    if( counter.id == v){
-     q = counter.id;
-
-    }  console.log(q);          
-   } console.log(q); 
-  }); */
-
-//console.log(q);  
-// };
-
-
-//console.log(q);  
-// $scope.vijay = r;
 //silder
   $scope.gotonext = function() {        
         $location.hash('services');        
@@ -252,11 +196,10 @@ $scope.confirm = function(confirmation) {
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
-      var confirmCardResult;
-      $scope.confirmCardResult = alterDollar.confirmingCard({rubycall : nameOfTheUser, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone})
+      $scope.confirmCardResult = alterDollar.confirmingCard({card_id: $scope.vijay , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
-            $window.location.href='#/homepage';
+            $window.location.href='#/payment';
           }
           else{
             $window.alert("Error");
@@ -267,7 +210,6 @@ $scope.confirm = function(confirmation) {
 
 
 //payment
-
 
   $scope.approvePayment = function(payment){
      var braintree = Braintree.create("YourClientSideEncryptionKey")
