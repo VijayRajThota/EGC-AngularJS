@@ -276,7 +276,7 @@ label.error {
                                 <div class="form-group">
                                     <label for="cardNumber">CARD NUMBER</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" ng-model="payment.cardNumber" data-encrypted -name="btname"  />
+                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" ng-model="payment.cardNumber" encrypted-name="number"  />
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
                                 </div>                            
@@ -287,17 +287,17 @@ label.error {
                                 <div class="form-group">
                                     <label for="expMonth">EXPIRATION DATE</label>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control"  placeholder="MM" required data-stripe="exp_month"  ng-model="payment.cardMonth" />
+                                        <input type="text" class="form-control"  placeholder="MM" required data-stripe="exp_month"  ng-model="payment.cardMonth" encrypted-name="month" />
                                     </div>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" ng-model="payment.cardYear"  required />
+                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" ng-model="payment.cardYear" encrypted-name="year" required />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-5 col-md-5 pull-right">
                                 <div class="form-group">
                                     <label for="cvCode">CV CODE</label>
-                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" ng-model="payment.cvv"  />
+                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" ng-model="payment.cvv" encrypted-name="cvv" />
                                 </div>
                             </div>
                         </div>

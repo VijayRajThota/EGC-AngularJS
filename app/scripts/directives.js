@@ -39,3 +39,19 @@ myAppDirect.directive(
                     );
                 }
             }]);
+
+myAppDirect.directive('encryptedName', function() {
+  return {
+    restrict: "A",
+    require: '?ngModel',
+    link: (function(scope, elm, attrs, ctrl) {
+      return elm.bind('blur keyup paste', function(e) {
+        return scope.$apply(function() {
+          var val;
+          val = elm.val();
+          return ctrl.$setViewValue(scope.braintree.encrypt(val));
+        });
+      });
+    })
+  };
+});

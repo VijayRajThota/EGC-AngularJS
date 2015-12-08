@@ -222,7 +222,7 @@ $scope.file = localStorage.getItem('id');
       $scope.upload($scope.file);
   };
 
-  $scope.upload = function() {
+  /*$scope.upload = function() {
     AWS.config.update({ accessKeyId: "AKIAJ7JCTZYHPV3SWA2A", secretAccessKey: "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" });
     AWS.config.region = 'us-west-2';
     var bucket = new AWS.S3({ params: { Bucket: "sjsuraj" } });
@@ -269,8 +269,27 @@ $scope.file = localStorage.getItem('id');
     }
     return text;
   }; 
+*/
+ $scope.upload = function(){
+   AWS.config.update({ accessKeyId: 'AKIAJ7JCTZYHPV3SWA2A', secretAccessKey: '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' });
+  AWS.config.region = 'us-west-2';
+  var bucket = new AWS.S3({ params: { Bucket:" " } });
 
+  var params = { Key: 'sjsuraj/test' };
  
+    bucket.getObject(params, function(err, data) {
+      if(err) {
+        // There Was An Error With Your S3 Config
+        alert(err.message);
+        return false;
+      }
+      else {
+        // Success!
+        alert('Upload Done');
+      }
+    })
+
+ };
 
  $scope.redeem = new function(code){
      $scope.test=1;
@@ -405,7 +424,8 @@ $scope.remove = function(){
 
 }]);
 
-myAppCtrl.controller('CustomizeCtrl',['$scope', function($scope){
+myAppCtrl.controller('CustomizeCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
+  function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
 var canvas = new fabric.Canvas('c', {isDrawingMode: true });
 
 $scope.drawingModeOptions = 1;
