@@ -42,21 +42,13 @@
                     </li> 
                     </ul>
           
-          <form id="demo" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="username" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" ng-model="user.password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+          <div id="demo" class="navbar-form navbar-right">
             
-             <a  class="btn btn-success" href="#/signup">Sign up</a>
              
              <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
              
 
-          </form>
+          </div>
            
           
         </div><!--/.navbar-collapse -->
@@ -246,10 +238,20 @@ label.error {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for="cardNumber">Electronic Gift Card </label>
-                                    <div class="input-group">
-                                      
-                                        
+                                    <label for="cardNumber">Your Gift Card</label>
+                                    <div class="container" style="padding:20px;">
+                                      <div class="row">
+                                        <div style="float:left;width:400px;margin-left:50px;" >
+                                         <img ng-src="{{vijay}}" width="350"/>
+                                        </div>
+                                        <div style="float:left;width: 450px;margin-right: 100px;font-weight: bold;">
+                                        <p> Amount = {{sai.amount}} </p>
+                                        <p> Recepient Email = {{sai.reciever_email}}</p>
+                                        <p> Recepient Phone = {{sai.reciever_phone}}</p>
+                                        <p> Message = {{sai.message}}</p>
+                                        <p> Schedule Date ={{sai.date}}</p>
+                                        </div>  
+                                      </div>                                      
                                     </div>
                                 </div>                            
                             </div>
@@ -274,7 +276,7 @@ label.error {
                                 <div class="form-group">
                                     <label for="cardNumber">CARD NUMBER</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" ng-model="payment.carNumber"  />
+                                        <input type="text" class="form-control"  placeholder="Valid Card Number" required autofocus data-stripe="number" autocomplete="off" ng-model="payment.cardNumber" data-encrypted -name="btname"  />
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
                                 </div>                            
@@ -288,14 +290,14 @@ label.error {
                                         <input type="text" class="form-control"  placeholder="MM" required data-stripe="exp_month"  ng-model="payment.cardMonth" />
                                     </div>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" ng-model="payment.cardYear" />
+                                        <input type="text" class="form-control"  placeholder="YY" required data-stripe="exp_year" ng-model="payment.cardYear"  required />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-5 col-md-5 pull-right">
                                 <div class="form-group">
                                     <label for="cvCode">CV CODE</label>
-                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" ng-model="payment.cvv" />
+                                    <input type="password" class="form-control"  placeholder="CVV" required data-stripe="cvc" autocomplete="off" ng-model="payment.cvv"  />
                                 </div>
                             </div>
                         </div>
@@ -303,7 +305,7 @@ label.error {
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="couponCode">BILLING ADDRESS</label>
-                                    <input type="text" class="form-control"  data-encrypted-name="address" />
+                                    <input type="text" class="form-control" />
                                 </div>
                             </div>                        
                         </div>

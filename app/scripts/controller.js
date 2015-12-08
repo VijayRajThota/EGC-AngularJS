@@ -121,10 +121,12 @@ $scope.displayCard =3 ;
  //display card
  $scope.specificCard = function(card){
   localStorage.setItem('id',card.url);
+  localStorage.setItem('cardId',card.card_id);
   $window.location.href='#/cardDetails'
  };
  
  $scope.vijay = localStorage.getItem('id');
+ $scope.sai = localStorage.getItem('cardId');
 
 //silder
   $scope.gotonext = function() {        
@@ -212,8 +214,9 @@ $scope.confirm = function(confirmation) {
 //payment
 
   $scope.approvePayment = function(payment){
-     var braintree = Braintree.create("YourClientSideEncryptionKey")
-      braintree.onSubmitEncryptForm('braintree-payment-form');
+     var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
+      $scope.EncryptedInfo = braintree.encrypt(payment);
+      $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:$scope.EncryptedInfo});
 
   };
 
@@ -322,11 +325,14 @@ var data;
 
 $scope.save = function(){
 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-$window.location.href='#/display'
+localStorage.setItem('id', image);
+
+$window.location.href='#/cardDetails'
 //$scope.displays={image:'image'};
 window.location.href = image;
 
 };
+//$scope.vijay = localStorage.getItem('id');
 
 
 
@@ -632,13 +638,9 @@ $scope.clear = function(){
 };
 
 $scope.save = function(){
-/* var json = canvas.toJSON();
-
-canvas.clear();
-
-canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));*/
 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-//$window.location.href='#/suning'
+localStorage.setItem('id', image);
+$window.location.href='#/cardDetails'
 //$scope.displays={image:'image'};
 window.location.href = image;
  
@@ -690,6 +692,7 @@ myAppCtrl.controller(
                 $scope.confirm = modals.resolve;
                 $scope.deny = modals.reject;
             }]);
+
         
 
 
