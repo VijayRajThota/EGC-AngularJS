@@ -225,7 +225,7 @@ $scope.file = localStorage.getItem('id');
       $scope.fake = 'payment_method_nonce: fake-valid-debit-nonce';
       $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce: $scope.fake});
      $scope.paymentSuccess.$promise.then(function(data) {
-          if(data.message=="transaction_status"){
+          if(data){
             $window.location.href='#/confirmation';
           }
           else{

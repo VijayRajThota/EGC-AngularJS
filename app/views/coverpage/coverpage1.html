@@ -30,13 +30,18 @@
                     </li> 
                     </ul>	
 
-           <div class="navbar-form navbar-right">
+           <form name="Signin" class="navbar-form navbar-right">
             <div class="form-group">
-             
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
-             
+              <input type="username" name="userName" ng-model="user.username" class="form-control" value="user.username" >    
+            </div>             
+            <div class="form-group">
+              <input type="password" ng-model="user.password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+            
+             <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
-          </div>  
+          </form> 
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
