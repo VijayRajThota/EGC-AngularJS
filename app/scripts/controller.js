@@ -225,7 +225,7 @@ $scope.test = test;
   $scope.upload = function() {
     AWS.config.update({ accessKeyId: "AKIAJ7JCTZYHPV3SWA2A", secretAccessKey: "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" });
     AWS.config.region = 'us-west-2';
-    var bucket = new AWS.S3({ params: { Bucket: "alterDollar" } });
+    var bucket = new AWS.S3({ params: { Bucket: "sjsuraj" } });
     
     
    // if($scope.file) {
