@@ -213,10 +213,12 @@ $scope.confirm = function(confirmation) {
 
 //payment
 $scope.file = localStorage.getItem('id');
+ //var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
+$scope.key = alterDollar.getKey();
+var braintree = Braintree.create(key);
 //$scope.raghav = raghav;
   $scope.approvePayment = function(payment){
-     var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
-      $scope.EncryptedInfo = braintree.encrypt(payment);
+      $scope.EncryptedInfo = braintree.encrypt(payment);   
       $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:$scope.EncryptedInfo});
       $scope.file = localStorage.getItem('id');
       $scope.upload($scope.file);
