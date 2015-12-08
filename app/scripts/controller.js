@@ -84,21 +84,6 @@ $scope.confirmSomething = function() {
  //  }
   };
 
-
-//redeemption
-  $scope.redeem = function(code){
-    var redeemResult = {};
-    $scope.redeemResult = alterDollar.redeemption({code:code.redeemCode});
-    $scope.redeemResult.$promise.then(function(data) {
-          if(data.message=="success"){
-            $window.location.href='#/homepage';
-          }
-          else{
-            $window.alert("Error");
-          }
-       }); 
-  };
-
 //homepage
 //$scope.displayCard=1;
 $scope.cardDisp = function(){
@@ -223,7 +208,7 @@ $scope.file = localStorage.getItem('id');
 
    $scope.paymentSuccess = alterDollar.paymentService();
            $scope.paymentSuccess.$promise.then(function(result) {
-          if(result.transaction_status=='success'){
+          if(result.transaction_status=='Success'){
             $window.location.href='#/confirmation';
           }
           else{

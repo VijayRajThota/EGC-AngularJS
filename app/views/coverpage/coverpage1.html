@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -11,15 +11,15 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-       <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        </button>
+        <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
@@ -30,7 +30,7 @@
                     </li> 
                     </ul>	
 
-           <form name="Signin" class="navbar-form navbar-right">
+        <form name="Signin" class="navbar-form navbar-right">
             <div class="form-group">
               <input type="username" name="userName" ng-model="user.username" class="form-control" value="user.username" >    
             </div>             
@@ -39,23 +39,23 @@
             </div>
             <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
             
-             <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
+            <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
-          </form> 
+        </form> 
         </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <header  >
-        <div class="header-content">
-            <div class="header-content-inner">
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
                 <h1>{{cover.title}}</h1>                
                 <hr>
                 <p>{{cover.tag}}</p>
                 <p>Welcome {{userdetails.FirstName}},{{userdetails.Lastname}}</p>
-            </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <section class="bg-primary" id="about">
         <div class="container">
