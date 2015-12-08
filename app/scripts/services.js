@@ -21,7 +21,7 @@ myAppServices.factory('alterDollar', ['$resource',
      paymentService : {method:'GET', params:{rubycall:'checkout'}},
     // getKey : {method:'GET', params:{rubycall:'client_token'}},
     // getSpecificCard : {method:'GET', params:{rubycall : 'card_info',addcall :'@addcall'}, isArray:true}
-   //   redeemption :{method:'GET', params:{rubycall:'redeem'}},
+     redeemption :{method:'GET', params:{rubycall:'redeem'}},
      confirmingCard : {method:'GET', params: {rubycall:'directOrder'}}
     });
   }]);
