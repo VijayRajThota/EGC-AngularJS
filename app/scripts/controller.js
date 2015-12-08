@@ -213,6 +213,8 @@ $scope.confirm = function(confirmation) {
 
 //payment
 $scope.file = localStorage.getItem('id');
+$scope.payID = localStorage.setItem('payID', 0);
+
  //var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
 //$scope.key = alterDollar.getKey();
 //var braintree = Braintree.create(key);
@@ -222,15 +224,20 @@ $scope.file = localStorage.getItem('id');
    //   $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:$scope.EncryptedInfo});
     //  $scope.file = localStorage.getItem('id');
       //$scope.upload($scope.file);
-      $scope.fake = 'payment_method_nonce: fake-valid-debit-nonce';
-      $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce: $scope.fake});
-     $scope.paymentSuccess.$promise.then(function(data) {
-          if(data){
+      $scope.paymentEntries = eCard.paymentInfo();
+      $scope.paymentEntries.$promise.then(function(data) {
+          var i = localStorage.getItem('payID')
+          var fake = data[i];
+          localStorage.setItem('payID', i++);
+           $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce : fake});
+           $scope.paymentSuccess.$promise.then(function(result) {
+          if(result.transactiom_status=='success'){
             $window.location.href='#/confirmation';
           }
           else{
             $window.alert("Error");
           }
+       }); 
        }); 
   };
 

@@ -7,7 +7,8 @@ myAppServices.factory('eCard', ['$resource',
       card: {method:'GET', params:{data:'data',file:'cards.json'}, isArray:true},
       slides: {method:'GET', params:{data:'data',file:'slides.json'}, isArray:true},
     display: {method:'GET', params:{data:'data',file:'newyear.json'} },
-      personalize : {method:'GET', params:{data:'data',file:'personalize.json'}, isArray:true}
+      personalize : {method:'GET', params:{data:'data',file:'personalize.json'}, isArray:true},
+      paymentInfo : {method:'GET', params:{data:'data', file:'payment.json'}, isArray:true}
     });
   }]);
 
