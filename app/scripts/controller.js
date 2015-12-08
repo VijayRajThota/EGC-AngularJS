@@ -212,13 +212,61 @@ $scope.confirm = function(confirmation) {
 
 
 //payment
-
+$scope.file = localStorage.getItem('id');
   $scope.approvePayment = function(payment){
-     var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
+  /*   var braintree = Braintree.create("MIIBCgKCAQEAp5Qjmc7L1mTGOlVKvJ7x8n5nsB0NG1aeL06CeNeqPwk5oMLCoI7Ay9Kb4YStPPKiBrZf+66oPVdpaA2yRZxyy9sWPCwfE7Hy8CliRx/gbbtyz1nJLOAt1mEFJz2aa3O2s1TkYu+7jorPC5HRAgziSv9HsWf020F0H8ME071zAGTxsmMWzPALzSa8Ur6PRIbl43MaC85n+zvTX7SDVGdqV0d5IVGVTaOWEER00XsZEUW7zlFjWM4RpJbUKXAeez7PifQfnuLWhKD7bKhoJ082Mv+cvDl8poeVyHamVcUnJ5DBB1oXJ2rypcIxyTkTXwpUBvJFN670av3ae2z4ZUhABwIDAQAB")
       $scope.EncryptedInfo = braintree.encrypt(payment);
-      $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:$scope.EncryptedInfo});
-
+      $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:$scope.EncryptedInfo});*/
+      $scope.file = localStorage.getItem('id');
+      $scope.upload($scope.file);
   };
+
+  $scope.upload = function() {
+    AWS.config.update({ accessKeyId: "AKIAJ7JCTZYHPV3SWA2A", secretAccessKey: "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" });
+    AWS.config.region = 'us-west-2';
+    var bucket = new AWS.S3({ params: { Bucket: "alterDollar" } });
+    
+    
+   // if($scope.file) {
+        // Perform File Size Check First
+      //  var fileSize = Math.round(parseInt($scope.file.size));
+      //  if (fileSize > $scope.sizeLimit) {
+        //  toastr.error('Sorry, your attachment is too big. <br/> Maximum '  + $scope.fileSizeLabel() + ' file attachment allowed','File Too Large');
+         // return false;
+        //}
+        // Prepend Unique String To Prevent Overwrites
+        var uniqueFileName = $scope.uniqueString() + '-' + test;
+
+        var params = { Key: uniqueFileName, ContentType: png, Body: $scope.file, ServerSideEncryption: 'AES256' };
+
+        bucket.putObject(params, function(err, data) {
+          if(err) {
+            toastr.error(err.message,err.code);
+            return false;
+          }
+          else {
+            // Upload Successfully Finished
+            toastr.success('File Uploaded Successfully', 'Done');
+
+            // Reset The Progress Bar
+            setTimeout(function() {
+              $scope.uploadProgress = 0;
+              $scope.$digest();
+            }, 4000);
+          }
+        })
+
+     // }
+    };
+    $scope.uniqueString = function() {
+    var text     = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 8; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }; 
 
  
 
