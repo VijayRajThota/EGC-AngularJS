@@ -20,11 +20,11 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         }
         else {*/
         $scope.master = angular.copy(user);
-        localStorage.setItem('username', user.username);
+        localStorage.setItem('username',user.username);
         $scope.SignInResult = alterDollar.signingIn({username:user.username,password:user.password});
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
-            
+            localStorage.setItem('username', user.username);
             $window.location.href='#/homepage';            
           }
           else{
@@ -78,7 +78,7 @@ $scope.confirmSomething = function() {
     $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
-            
+            localStorage.setItem('username', user.username);
             $window.location.href='#/homepage';
           }
           else{
@@ -187,7 +187,7 @@ $scope.confirm = function(confirmation) {
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
-    localStorage.setItem('phoneNo': confirmation.phone);
+    localStorage.setItem('phoneNo', confirmation.phone);
       $scope.confirmCardResult = alterDollar.confirmingCard({username: localStorage.getItem('username'), card_id: $scope.vijay , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
@@ -211,7 +211,7 @@ $scope.file = localStorage.getItem('id');
 //$scope.raghav = raghav;
   $scope.approvePayment = function(payment){
 
-   $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username'), receiver_phone:localStorage.getItem('phoneNo')});
+   $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username'), phone:localStorage.getItem('phoneNo') });
            $scope.paymentSuccess.$promise.then(function(result) {
           if(result.transaction_status=='Success'){
             localStorage.setItem('payID', result.orderID);
