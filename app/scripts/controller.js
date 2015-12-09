@@ -74,7 +74,7 @@ $scope.confirmSomething = function() {
     else{*/
       
     $scope.master = angular.copy(signup);
-    localStorage.setItem('username', user.username);
+    localStorage.setItem('username', signup.username);
     $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
