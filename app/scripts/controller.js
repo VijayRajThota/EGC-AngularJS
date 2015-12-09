@@ -23,6 +23,7 @@ myAppCtrl.controller('cardCtrl',['$routeParams','$scope','eCard','$http','alterD
         $scope.SignInResult = alterDollar.signingIn({username:user.username,password:user.password});
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
+            localStorage.setItem('username', user.username);
             $window.location.href='#/homepage';            
           }
           else{
@@ -75,6 +76,7 @@ $scope.confirmSomething = function() {
     $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
+            localStorage.setItem('username', user.username);
             $window.location.href='#/homepage';
           }
           else{
@@ -183,7 +185,7 @@ $scope.confirm = function(confirmation) {
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
-      $scope.confirmCardResult = alterDollar.confirmingCard({card_id: $scope.vijay , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
+      $scope.confirmCardResult = alterDollar.confirmingCard({username: localStorage.getItem('username'), card_id: $scope.vijay , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
             $window.location.href='#/payment';
@@ -209,6 +211,7 @@ $scope.file = localStorage.getItem('id');
    $scope.paymentSuccess = alterDollar.paymentService();
            $scope.paymentSuccess.$promise.then(function(result) {
           if(result.transaction_status=='Success'){
+            localStorage.setItem('payID', result.orderID);
             $window.location.href='#/confirmation';
           }
           else{
@@ -216,6 +219,8 @@ $scope.file = localStorage.getItem('id');
           }
        }); 
   };
+
+  $scope.hurrey= localStorage.getItem('payID');
 
   /*$scope.upload = function() {
     AWS.config.update({ accessKeyId: "AKIAJ7JCTZYHPV3SWA2A", secretAccessKey: "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" });
@@ -740,6 +745,131 @@ var reader = new FileReader();
 }
 
 }]);
+
+myAppCtrl.controller('redeemCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$anchorScroll','$window','modals',
+  function($http,$scope,eCard,$routeParams, alterDollar, $location,$anchorScroll,$window,modals){
+ //cover page details   
+  $scope.cover=eCard.details();
+ //login 
+// $scope.master = {};
+ $scope.update = function(user) {
+     /*    var x = user.username;
+        var y = user.password;
+        if (x==null|| x==""|| x=="Required!")
+        {
+          $window.alert("enter valid information");
+          $scope.user={username:'Required!'};
+        }
+        else if(y==null || y=="")
+        {
+          $window.alert("enter valid information");
+        }
+        else {*/
+        $scope.master = angular.copy(user);
+        $scope.SignInResult = alterDollar.signingIn({username:user.username,password:user.password});
+        $scope.SignInResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/redemption';            
+          }
+          else{
+            $window.alert("Error");
+          }
+       });
+    //  }
+      };
+
+  
+ //pop up     
+$scope.confirmSomething = function() {
+                    // The .open() method returns a promise that will be either
+                    // resolved or rejected when the modal window is closed.
+                    var promise = modals.open(
+                        "confirm",
+                        {
+                            message: "Are you sure you want to taste that?!"
+                        }
+                    );
+                    promise.then(
+                        function handleResolve( response ) {
+                            console.log( "Confirm resolved." );
+                        },
+                        function handleReject( error ) {
+                            console.warn( "Confirm rejected!" );
+                        }
+                    );
+                };
+    //signUp            
+ $scope.register=function(signup){
+ /* var x = signup.name;
+   var a = signup.username;
+     var b = signup.password;
+     var c = signup.email;
+     var y = signup.phone; 
+    if (/\s/.test(a)) {
+     $window.alert("username should be a single string");
+      }
+     else if(/^[a-zA-Z0-9- ]*$/.test(b) == false) {
+      $window.alert("Special charcaters are not allowed");
+      }
+    else if(!(/\d/.test(b) && /[A-Z]/.test(b)))
+    {
+      $window.alert("Password must contain atleast 1 number and 1 Cap");
+    }
+    else{*/
+      
+    $scope.master = angular.copy(signup);
+    $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
+    $scope.signUpResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/redemption';
+          }
+          else{
+            $window.alert("Error");
+          }
+       });    
+ //  }
+  };
+
+  //redeemption
+  $scope.redeem = function(code){
+    var redeemResult = {};
+    $scope.redeemResult = alterDollar.redeemption({code:code.redeemCode});
+    $scope.redeemResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/confirmDetails';
+          }
+          else{
+            $window.alert("Error");
+          }
+       }); 
+  };
+//slider
+   $scope.gotonext = function() {        
+        $location.hash('services');        
+        $anchorScroll();
+      };
+  $scope.slides=eCard.slides();
+  
+  $scope.currentIndex = 0;
+
+        $scope.setCurrentSlideIndex = function (index) {
+            $scope.currentIndex = index;
+        };
+
+        $scope.isCurrentSlideIndex = function (index) {
+            return $scope.currentIndex === index;
+        };
+        $scope.prevSlide = function () {
+            $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+        };
+
+        $scope.nextSlide = function () {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+        };
+}]);
+
+
+
 
 
 myAppCtrl.controller(

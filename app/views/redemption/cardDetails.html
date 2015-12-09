@@ -42,21 +42,13 @@
                     </li> 
                     </ul>
           
-          <form id="demo" class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="username" ng-model="user.username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" ng-model="user.password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
-            
-             <a  class="btn btn-success" href="#/signup">Sign up</a>
+          <div id="demo" class="navbar-form navbar-right">
+           
              
              <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
              
 
-          </form>
+          </div>
            
           
         </div><!--/.navbar-collapse -->
@@ -192,10 +184,10 @@
 <div class="container">
     <div class="row">
         <div class="btn-group btn-breadcrumb">
-            <a href="#/coverpage" class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
-            <a href="#/redemption" class="btn btn-warning">Start Redeemption</a>
-            <button ng-click="confirmSomething()" class="btn btn-warning">Claim Code</button>
-            <a href="#/confirmation" class="btn btn-default">Confirmation</a>
+            <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+            <a  class="btn btn-warning">Start Redeemption</a>
+            <a class="btn btn-warning">Claim Code</a>
+            <a  class="btn btn-default">Confirmation</a>
         </div>
     </div>
 </div>
@@ -245,20 +237,16 @@ label.error {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for="cardNumber">Electronic Gift Card </label>
-                                    <div class="row" style="margin-left:45%;margin-right:45%;">        
-    <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div style="align:center">
-                    <button class="btn btn-success" ng-click="confirmSomething()">Confirm</button>
-                </div>
-                
-               
-            </div>
-        </div>
-    </section>
-  </div>
+                                    <div style="float:left;width:400px;margin-left:50px;" >
+                                    <img ng-src="{{vijay}}" width="350"/>
+                                        </div>
+                                        <div style="float:left;width: 450px;margin-right: 100px;font-weight: bold;">
+                                        <p> Amount = {{sai.amount}} </p>
+                                        <p>Sent From = {{sai.reciever_email}}</p>
+                                        <p> Message = {{sai.message}}</p>
+                                        <button class="btn btn-success" ng-click="confirmSomething()">Confirm</button>
+                                        </div>    
+                                    </div>
                                 </div>                            
                             </div>
                         </div>
