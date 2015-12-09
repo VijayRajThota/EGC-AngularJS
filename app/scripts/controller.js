@@ -213,14 +213,11 @@ $scope.file = localStorage.getItem('id');
 
    $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username'), phone:localStorage.getItem('phoneNo') });
            $scope.paymentSuccess.$promise.then(function(result) {
-          if(result.transaction_status=='Success'){
-            localStorage.setItem('payID', result.orderID);
-            $window.location.href='#/confirmation';
-          }
-          else{
-            $window.alert("Error");
-          }
+            localStorage.setItem('payID', result.ADR);
+            
+          
        }); 
+           $window.location.href='#/confirmation';
   };
 
   $scope.hurrey= localStorage.getItem('payID');
