@@ -185,6 +185,7 @@ $scope.confirm = function(confirmation) {
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
+    localStorage.setItem('phoneNo': confirmation.phone);
       $scope.confirmCardResult = alterDollar.confirmingCard({username: localStorage.getItem('username'), card_id: $scope.vijay , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
@@ -208,7 +209,7 @@ $scope.file = localStorage.getItem('id');
 //$scope.raghav = raghav;
   $scope.approvePayment = function(payment){
 
-   $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username')});
+   $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username'), receiver_phone:localStorage.getItem('phoneNo')});
            $scope.paymentSuccess.$promise.then(function(result) {
           if(result.transaction_status=='Success'){
             localStorage.setItem('payID', result.orderID);
