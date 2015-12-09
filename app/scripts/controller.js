@@ -208,7 +208,7 @@ $scope.file = localStorage.getItem('id');
 //$scope.raghav = raghav;
   $scope.approvePayment = function(payment){
 
-   $scope.paymentSuccess = alterDollar.paymentService();
+   $scope.paymentSuccess = alterDollar.paymentService({username:localStorage.getItem('username')});
            $scope.paymentSuccess.$promise.then(function(result) {
           if(result.transaction_status=='Success'){
             localStorage.setItem('payID', result.orderID);
