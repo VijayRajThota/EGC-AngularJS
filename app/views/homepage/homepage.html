@@ -1,27 +1,20 @@
-<link rel="stylesheet" href="animate.css" type="text/css">
 
-<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
-
-
+    <link rel="stylesheet" href="animate.css" type="text/css">
+    <link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="views/coverpage/font-awesome/css/font-awesome.min.css" type="text/css">
-
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="views/coverpage/css/animate.min.css" type="text/css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
     <!-- Bootstrap Core CSS -->
     <link href="views/homepage/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="views/homepage/css/shop-homepage.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
 
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -30,184 +23,177 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+          <a class="navbar-brand page-scroll" href="http://www.suning.com/">Suning</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-           <ul class="nav navbar-nav">
-                    <li >
-                        <a href="#/deals">Today's Deal</a>
-                     <li>
-                        <a href="#/aboutus">About Us</a>
-                    </li> 
-                    </ul>
-          
+          <ul class="nav navbar-nav">
+            <li >
+              <a href="#/deals">Today's Deal</a>
+            <li>
+              <a href="#/aboutus">About Us</a>
+            </li> 
+          </ul>          
           <div id="demo" class="navbar-form navbar-right">
-
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >             
-
-          </div>
-           
-          
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+          </div>                   
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-<style>
-/** The Magic **/
-.btn-breadcrumb .btn:not(:last-child):after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
-  border-left: 10px solid white;
-  position: absolute;
-  top: 50%;
-  margin-top: -17px;
-  left: 100%;
-  z-index: 3;
-}
-.btn-breadcrumb .btn:not(:last-child):before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
-  border-left: 10px solid rgb(173, 173, 173);
-  position: absolute;
-  top: 50%;
-  margin-top: -17px;
-  margin-left: 1px;
-  left: 100%;
-  z-index: 3;
-}
+    <style>
+    /** The Magic **/
+    .btn-breadcrumb .btn:not(:last-child):after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 17px solid transparent;
+      border-bottom: 17px solid transparent;
+      border-left: 10px solid white;
+      position: absolute;
+      top: 50%;
+      margin-top: -17px;
+      left: 100%;
+      z-index: 3;
+    }
+    .btn-breadcrumb .btn:not(:last-child):before {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 17px solid transparent;
+      border-bottom: 17px solid transparent;
+      border-left: 10px solid rgb(173, 173, 173);
+      position: absolute;
+      top: 50%;
+      margin-top: -17px;
+      margin-left: 1px;
+      left: 100%;
+      z-index: 3;
+    }
 
-/** The Spacing **/
-.btn-breadcrumb .btn {
-  padding:6px 12px 6px 24px;
-}
-.btn-breadcrumb .btn:first-child {
-  padding:6px 6px 6px 10px;
-}
-.btn-breadcrumb .btn:last-child {
-  padding:6px 18px 6px 24px;
-}
+    /** The Spacing **/
+    .btn-breadcrumb .btn {
+      padding:6px 12px 6px 24px;
+    }
+    .btn-breadcrumb .btn:first-child {
+      padding:6px 6px 6px 10px;
+    }
+    .btn-breadcrumb .btn:last-child {
+      padding:6px 18px 6px 24px;
+    }
 
-/** Default button **/
-.btn-breadcrumb .btn.btn-default:not(:last-child):after {
-  border-left: 10px solid #fff;
-}
-.btn-breadcrumb .btn.btn-default:not(:last-child):before {
-  border-left: 10px solid #ccc;
-}
-.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
-  border-left: 10px solid #ebebeb;
-}
-.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
-  border-left: 10px solid #adadad;
-}
+    /** Default button **/
+    .btn-breadcrumb .btn.btn-default:not(:last-child):after {
+      border-left: 10px solid #fff;
+    }
+    .btn-breadcrumb .btn.btn-default:not(:last-child):before {
+      border-left: 10px solid #ccc;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+      border-left: 10px solid #ebebeb;
+    }
+    .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+      border-left: 10px solid #adadad;
+    }
 
-/** Primary button **/
-.btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-  border-left: 10px solid #428bca;
-}
-.btn-breadcrumb .btn.btn-primary:not(:last-child):before {
-  border-left: 10px solid #357ebd;
-}
-.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-  border-left: 10px solid #3276b1;
-}
-.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-  border-left: 10px solid #285e8e;
-}
+    /** Primary button **/
+    .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
+      border-left: 10px solid #428bca;
+    }
+    .btn-breadcrumb .btn.btn-primary:not(:last-child):before {
+      border-left: 10px solid #357ebd;
+    }
+    .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
+      border-left: 10px solid #3276b1;
+    }
+    .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
+      border-left: 10px solid #285e8e;
+    }
 
-/** Success button **/
-.btn-breadcrumb .btn.btn-success:not(:last-child):after {
-  border-left: 10px solid #5cb85c;
-}
-.btn-breadcrumb .btn.btn-success:not(:last-child):before {
-  border-left: 10px solid #4cae4c;
-}
-.btn-breadcrumb .btn.btn-success:hover:not(:last-child):after {
-  border-left: 10px solid #47a447;
-}
-.btn-breadcrumb .btn.btn-success:hover:not(:last-child):before {
-  border-left: 10px solid #398439;
-}
+    /** Success button **/
+    .btn-breadcrumb .btn.btn-success:not(:last-child):after {
+      border-left: 10px solid #5cb85c;
+    }
+    .btn-breadcrumb .btn.btn-success:not(:last-child):before {
+      border-left: 10px solid #4cae4c;
+    }
+    .btn-breadcrumb .btn.btn-success:hover:not(:last-child):after {
+      border-left: 10px solid #47a447;
+    }
+    .btn-breadcrumb .btn.btn-success:hover:not(:last-child):before {
+      border-left: 10px solid #398439;
+    }
 
-/** Danger button **/
-.btn-breadcrumb .btn.btn-danger:not(:last-child):after {
-  border-left: 10px solid #d9534f;
-}
-.btn-breadcrumb .btn.btn-danger:not(:last-child):before {
-  border-left: 10px solid #d43f3a;
-}
-.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
-  border-left: 10px solid #d2322d;
-}
-.btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
-  border-left: 10px solid #ac2925;
-}
+    /** Danger button **/
+    .btn-breadcrumb .btn.btn-danger:not(:last-child):after {
+      border-left: 10px solid #d9534f;
+    }
+    .btn-breadcrumb .btn.btn-danger:not(:last-child):before {
+      border-left: 10px solid #d43f3a;
+    }
+    .btn-breadcrumb .btn.btn-danger:hover:not(:last-child):after {
+      border-left: 10px solid #d2322d;
+    }
+    .btn-breadcrumb .btn.btn-danger:hover:not(:last-child):before {
+      border-left: 10px solid #ac2925;
+    }
 
-/** Warning button **/
-.btn-breadcrumb .btn.btn-warning:not(:last-child):after {
-  border-left: 10px solid #f0ad4e;
-}
-.btn-breadcrumb .btn.btn-warning:not(:last-child):before {
-  border-left: 10px solid #eea236;
-}
-.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):after {
-  border-left: 10px solid #ed9c28;
-}
-.btn-breadcrumb .btn.btn-warning:hover:not(:last-child):before {
-  border-left: 10px solid #d58512;
-}
+    /** Warning button **/
+    .btn-breadcrumb .btn.btn-warning:not(:last-child):after {
+      border-left: 10px solid #f0ad4e;
+    }
+    .btn-breadcrumb .btn.btn-warning:not(:last-child):before {
+      border-left: 10px solid #eea236;
+    }
+    .btn-breadcrumb .btn.btn-warning:hover:not(:last-child):after {
+      border-left: 10px solid #ed9c28;
+    }
+    .btn-breadcrumb .btn.btn-warning:hover:not(:last-child):before {
+      border-left: 10px solid #d58512;
+    }
 
-/** Info button **/
-.btn-breadcrumb .btn.btn-info:not(:last-child):after {
-  border-left: 10px solid #5bc0de;
-}
-.btn-breadcrumb .btn.btn-info:not(:last-child):before {
-  border-left: 10px solid #46b8da;
-}
-.btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
-  border-left: 10px solid #39b3d7;
-}
-.btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
-  border-left: 10px solid #269abc;
-}
-</style>
-<div class="container">
+    /** Info button **/
+    .btn-breadcrumb .btn.btn-info:not(:last-child):after {
+      border-left: 10px solid #5bc0de;
+    }
+    .btn-breadcrumb .btn.btn-info:not(:last-child):before {
+      border-left: 10px solid #46b8da;
+    }
+    .btn-breadcrumb .btn.btn-info:hover:not(:last-child):after {
+      border-left: 10px solid #39b3d7;
+    }
+    .btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
+      border-left: 10px solid #269abc;
+    }
+    </style>
+  <div class="container">
     <div class="row">
-        <div class="btn-group btn-breadcrumb">
-            <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
-            <a  class="btn btn-warning">Select Card</a>
-            <a  class="btn btn-default">Confirm Card</a>
-            <a  class="btn btn-default">Payment Information</a>
-            <a  class="btn btn-default">Confirmation</a>
-        </div>
+      <div class="btn-group btn-breadcrumb">
+        <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
+        <a  class="btn btn-warning">Select Card</a>
+        <a  class="btn btn-default">Confirm Card</a>
+        <a  class="btn btn-default">Payment Information</a>
+        <a  class="btn btn-default">Confirmation</a>
+      </div>
     </div>
-</div>
+  </div>
 
-
- <div class="row" style="margin-left:20%;margin-right:20%;">
+  <div class="row" style="margin-left:20%;margin-right:20%;">
     <h2>Shop Now</h2>           
     <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a class="btn btn-success" ng-click="cardDisp()">Select Card</a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a ng-click="personDisp()" class="btn btn-success"> Personalize Card</a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a  class="btn btn-success" ng-click="customDisp()">Customize Card</a>
-                </div>
-               
-            </div>
+    <div class="container-fluid">
+      <div class="row no-gutter">
+        <div class="col-lg-4 col-sm-6">
+          <a class="btn btn-success" ng-click="cardDisp()">Select Card</a>
         </div>
+        <div class="col-lg-4 col-sm-6">
+          <a ng-click="personDisp()" class="btn btn-success"> Personalize Card</a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a  class="btn btn-success" ng-click="customDisp()">Customize Card</a>
+        </div>               
+      </div>
+    </div>
     </section>
   </div>
   <br>
@@ -215,217 +201,176 @@
   <br>
   <br>
     
-<div ng-show="displayCard=='1'">
-<div class="container">
-    <div class="col-md-9" style="
-          float:left;  
-          width: 610px;
-          height: 152px;
-          padding-top: -60px;
-          top: ;
-          top: ;">
-          <h2>Search for Gift card templates</h2>
-           <div class="form-group">
-              <input ng-model="query" placeholder="Search Templates" class="form-control" >
-
-            </div>
+  <div ng-show="displayCard=='1'">
+    <div class="container">
+      <div class="col-md-9" style="
+        float:left;  
+        width: 610px;
+        height: 152px;
+        padding-top: -60px;
+        top: ;
+        top: ;">
+        <h2>Search for Gift card templates</h2>
+        <div class="form-group">
+          <input ng-model="query" placeholder="Search Templates" class="form-control" >
+        </div>
           Sort by:
-      <select ng-model="orderProp">
-        <option value="count">Popular</option>
-        <option value="age">Newest</option>
-      </select>
-
+          <select ng-model="orderProp">
+          <option value="count">Popular</option>
+          <option value="age">Newest</option>
+          </select>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">Select your Card</h1>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" >
+          <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt=""> 
+          <br>              
+        </div>          
+      </div>
     </div>
-</div>
-<div class="container">
-      <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Select your Card                 
-                </h1>
-            </div>
-        </div>
-      <div class="row">
-            <div class="col-md-2 portfolio-item" ng-repeat="card in cards | filter:query | orderBy:orderProp:reverse" >
-               <img class="img-responsive" ng-src="{{card.url}}" ng-click="specificCard(card)" width="150px" height="100px" alt=""> 
-               <br>              
-            </div>
-            
-            
-        </div>
-</div>
-</div>
+  </div>
 
-<div ng-show="displayCard=='2'">
+  <div ng-show="displayCard=='3'" >
+    <div id="bd-wrapper" ng-controller="personalizeCtrl">
+      <div id="canvas-wrapper" style="position:relative;width:704px;float:left;">
+        <div id="canvas-container" style="width: 700px; height: 400px; position: relative; -webkit-user-select: none;">
+          <canvas id="canvas" width="650px" height="400px" style="position: absolute; width: 700px; height: 400px; left: 0px; top: 0px; -webkit-user-select: none; border:1px solid black;"></canvas>
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab-content">
+          <div class="tab active" id="simple">
+            <p>Add <strong>text</strong> to canvas:</p>
+            <p>
+            <div >
+              <input type="username" ng-model="personalize.text" c>
+              <button type="button" ng-click="addText(personalize)">Add Text</button>
+            </div>
+            </p>
+            <p>Add <strong>shapes</strong> to canvas:</p>
+            <p>
+              <button type="button" ng-click="addRect()">Rectangle</button>
+              <button type="button" ng-click="addCircle()">Circle</button>
+              <button type="button" ng-click="addTraingle()">Triangle</button>
+            </p>
+
+            <p>Add <strong>images</strong> to canvas:</p>
+            <p>
+              <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
+              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
+              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
+              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
+              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
+              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
+            </p>
+            <br>        
+          </div>
+          <br>
+          <div class="tab" id="controls">
+              <p>
+                <button type="button" ng-click="save()" style="background-color:lightgreen">Save Image</button>
+              </p>
+              <p>
+                <button type="button" ng-click="remove()" style="background-color:lightgreen">Remove selected object</button>
+              </p>
+              <p>
+                <button type="button" ng-click="clear()" style="background-color:red">Clear Canvas</button>
+              </p>                             
+          </div>
+        </div>
+      </div>     
+    </div>
+  </div>
+
+  <div ng-show="displayCard=='2'">
     <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
     <link rel="stylesheet" href="http://fabricjs.com/css/master.css">
     <style>
       pre { margin-left: 15px !important }
     </style>
-  <div id="bd-wrapper" ng-controller="CustomizeCtrl">
+    <div id="bd-wrapper" ng-controller="CustomizeCtrl">
       <style>
-#drawing-mode {
-  margin-bottom: 10px;
-  vertical-align: top;
-}
-#drawing-mode-options {
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  background: #f5f2f0;
-  padding: 10px;
-}
-label {
-  display: inline-block; width: 130px;
-}
-.info {
-  display: inline-block;
-  width: 25px;
-  background: #ffc;
-}
-#bd-wrapper {
-  min-width: 1500px;
-}
-</style>
-<canvas id="c" width="500" height="500" style="border:1px solid #aaa"></canvas>
-    <div style="display: inline-block; margin-left: 10px">
-
- <button id="drawing-mode" ng-click="drawingMode()" class="btn btn-info">Cancel drawing mode</button><br>
-
-
-
-      <div id="drawing-mode-options" ng-show="drawingModeOptions=='1'">
-    <label for="drawing-mode-selector">Mode:</label>
-  <select ng-options="item.code as item.style for item in styles" ng-model="test" ng-change="customStyle()"></select>
-  <br>
-
-    <label for="drawing-line-width">Line width:</label>
-    <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width" ng-model="lineWidth" ng-change="drawingLineWidth()"><br>
-
-    <label for="drawing-color">Line color:</label>
-    <input type="color" value="#005E7A" id="drawing-color" ng-model="lineColor" ng-change="drawingColor()"><br>
-
-    <label for="drawing-shadow-color">Shadow color:</label>
-    <input type="color" value="#005E7A" id="drawing-shadow-color" ng-model="shadowColor" ng-change="drawingShadowColor()"><br>
-
-    <label for="drawing-shadow-width">Shadow width:</label>
-    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width" ng-model="shadowWidth" ng-change="drawingShadowWidth()"><br>
-
-    <label for="drawing-shadow-offset">Shadow offset:</label>
-    <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset" ng-model="shadowOffset" ng-change="drawingShadowOffset()"><br>
+        #drawing-mode {
+          margin-bottom: 10px;
+          vertical-align: top;
+        }
+        #drawing-mode-options {
+          display: inline-block;
+          vertical-align: top;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          background: #f5f2f0;
+          padding: 10px;
+        }
+        label {
+          display: inline-block; width: 130px;
+        }
+        .info {
+          display: inline-block;
+          width: 25px;
+          background: #ffc;
+        }
+        #bd-wrapper {
+          min-width: 1500px;
+        }
+      </style>
+      <canvas id="c" width="500" height="500" style="border:1px solid #aaa"></canvas>
+      <div style="display: inline-block; margin-left: 10px">
+        <button id="drawing-mode" ng-click="drawingMode()" class="btn btn-info">Cancel drawing mode</button><br>
+        <div id="drawing-mode-options" ng-show="drawingModeOptions=='1'">
+        <label for="drawing-mode-selector">Mode:</label>
+        <select ng-options="item.code as item.style for item in styles" ng-model="test" ng-change="customStyle()"></select><br>
+        <label for="drawing-line-width">Line width:</label>
+        <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width" ng-model="lineWidth" ng-change="drawingLineWidth()"><br>
+        <label for="drawing-color">Line color:</label>
+        <input type="color" value="#005E7A" id="drawing-color" ng-model="lineColor" ng-change="drawingColor()"><br>
+        <label for="drawing-shadow-color">Shadow color:</label>
+        <input type="color" value="#005E7A" id="drawing-shadow-color" ng-model="shadowColor" ng-change="drawingShadowColor()"><b>
+        <label for="drawing-shadow-width">Shadow width:</label>
+        <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width" ng-model="shadowWidth" ng-change="drawingShadowWidth()"><br>
+        <label for="drawing-shadow-offset">Shadow offset:</label>
+        <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset" ng-model="shadowOffset" ng-change="drawingShadowOffset()"><br>
       </div>
-       <div >
-              <p>Add <strong>text</strong> to canvas:</p>
-              <input type="username" ng-model="personalize.text" c>
-              <button type="button" ng-click="addText(personalize)">Add Text</button>
-                </p>
-              <p>
-              <button type="button" ng-click="save()" >Save Image</button><br>
-<button type="button" ng-click="remove()" >Remove selected object</button><br>
-<button type="button" ng-click="clear()" >Clear Canvas</button><br>
-<input type="file" id="imageLoader" name="imageLoader"/>
-              </p>
-    </div>
+      <div >
+        <p>Add <strong>text</strong> to canvas:</p>
+        <input type="username" ng-model="personalize.text" c>
+        <button type="button" ng-click="addText(personalize)">Add Text</button>
+        <p>
+          <button type="button" ng-click="save()" >Save Image</button><br>
+          <button type="button" ng-click="remove()" >Remove selected object</button><br>
+          <button type="button" ng-click="clear()" >Clear Canvas</button><br>
+          <input type="file" id="imageLoader" name="imageLoader"/>
+        </p>
+      </div>
     </div>
     <div class="container">
-  <p>Add <strong>shapes</strong> to canvas:</p>
-                <p>
-              <button type="button" ng-click="addRect()">Rectangle</button>
-              <button type="button" ng-click="addCircle()">Circle</button>
-              <button type="button" ng-click="addTraingle()">Triangle</button>
-            </p>
-
-   
-    
-
-                <p>Add <strong>images</strong> to canvas:</p>
-                <p>
-              <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
-              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
-              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
-              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
-              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
-              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
-            </p>
-<br>
+      <p>Add <strong>shapes</strong> to canvas:</p>
+      <p>
+        <button type="button" ng-click="addRect()">Rectangle</button>
+        <button type="button" ng-click="addCircle()">Circle</button>
+        <button type="button" ng-click="addTraingle()">Triangle</button>
+      </p>
+      <p>Add <strong>images</strong> to canvas:</p>
+      <p>
+        <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
+        <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
+        <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
+        <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
+        <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
+        <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
+      </p>
+      <br>
     </div>     
   </div>
-</div>
 
-<div ng-show="displayCard=='3'" >
-  <div id="bd-wrapper">
+  
 
-    <div id="canvas-wrapper" style="position:relative;width:704px;float:left;">
-      <div id="canvas-container" style="width: 700px; height: 400px; position: relative; -webkit-user-select: none;">
-          <canvas id="canvas" width="650px" height="400px" style="position: absolute; width: 700px; height: 400px; left: 0px; top: 0px; -webkit-user-select: none; border:1px solid black;"></canvas>
-      </div>
-    </div>
-
-    <div class="tabs">
-
-      <div class="tab-content">
-
-          <div class="tab active" id="simple">
-
-             <p>Add <strong>text</strong> to canvas:</p>
-                <p>
-            <div >
-              <input type="username" ng-model="personalize.text" c>
-              <button type="button" ng-click="addText(personalize)">Add Text</button>
-            </div>
-                </p>
-
-            <p>Add <strong>shapes</strong> to canvas:</p>
-                <p>
-              <button type="button" ng-click="addRect()">Rectangle</button>
-              <button type="button" ng-click="addCircle()">Circle</button>
-              <button type="button" ng-click="addTraingle()">Triangle</button>
-            </p>
-
-                <p>Add <strong>images</strong> to canvas:</p>
-                <p>
-              <button type="button" ng-click="addBirthday()"><img src="views/images/personalize/birthday.png" id="birthday" width="150px"></button>
-              <button type="button" ng-click="addAnniversary()"><img src="views/images/personalize/anniversary.png" id="anniversary" width="150px"></button>
-              <button type="button" ng-click="addUniversal()"><img src="views/images/personalize/universal.png" id="universal" width="150px"></button><br>
-              <button type="button" ng-click="addChritsmas()"><img src="views/images/personalize/christmas.png" id="chritsmas" width="150px"></button>
-              <button type="button" ng-click="addHalloween()"><img src="views/images/personalize/halloween.png" id="halloween" width="150px"></button>
-              <button type="button" ng-click="addBaby()"><img src="views/images/personalize/baby.png" id="baby" width="150px"></button>
-            </p>
-<br>
-
-           
-
-          </div>
-                    <br>
-
-          <div class="tab" id="controls">
-              <p>
-                  <button type="button" ng-click="save()" style="background-color:lightgreen">Save Image</button>
-                </p>
-              <p>
-                  <button type="button" ng-click="remove()" style="background-color:lightgreen">Remove selected object</button>
-                </p>
-
-                <p>
-                  <button type="button" ng-click="clear()" style="background-color:red">Clear Canvas</button>
-                </p>
-
-                
-                
-          </div>
-        </div>
-      </div>
-
-      
-
-    </div>
-  </div>
-</div>
-
-
-        <br>
-
-        <br>
 
                 
 

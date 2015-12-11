@@ -1,5 +1,5 @@
-<div ng-controller="redeemCtrl" > 
-    <link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
+<div ng-controller="redeemCoverCtrl">
+<link rel="stylesheet" href="views/coverpage/css/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -11,61 +11,64 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="views/coverpage/css/creative.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="views/demo.css"></link>
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+      <div class="container">
         <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>
+          </button>
         <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
                     <li >
-                        <a href="#/deals">Today's Deal</a>
-                     <li>
                         <a href="#/aboutus">About Us</a>
                     </li> 
-                    </ul>	
-
-        <form name="Signin" class="navbar-form navbar-right">
-            <div class="form-group">
+                    </ul>
+          
+          <form name="Signin" class="navbar-form navbar-right">
+          <div class="form-group">
               <input type="username" name="userName" ng-model="user.username" class="form-control" value="user.username" >    
-            </div>             
-            <div class="form-group">
+          </div>             
+          <div class="form-group">
               <input type="password" ng-model="user.password" class="form-control">
-            </div>
+          </div>
             <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
             
-            <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
+                  <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
-        </form> 
+      </form>
+           
+          
         </div><!--/.navbar-collapse -->
-    </div>
+      </div>
 </nav>
+     
 
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-                <h1>{{cover.title}}</h1>                
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 ng-click="gotonext()">{{cover.title}}</h1>                
                 <hr>
-                <p>{{cover.tag}}</p>
-                <p>Welcome {{userdetails.FirstName}},{{userdetails.Lastname}}</p>
+                <p>{{cover.tag}}</p>   
+                <button ng-click="gotonext()" class="btn btn-default btn-xl">Find Out More</button>                                    
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+    
 
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-8 col-lg-offset-2 text-center">                     
                     <h2 class="section-heading">We've make your Gifts even more worthy</h2>
                     <hr class="light">
                     <p class="text-faded">{{cover.Description}}</p>
-                    <a href="#/homepage" class="btn btn-default btn-xl">Explore</a>
+                    <button ng-click="gotonext()" class="btn btn-default btn-xl">Find Out More</button>
                 </div>
             </div>
         </div>
@@ -105,13 +108,135 @@
                         <h3>{{cover.feature4}}</h3>
                         <p class="text-muted">You have to make your websites with love these days!</p>
                     </div>
-                </div>
+                </div>                                
+                               
             </div>
         </div>
+
     </section>
-</div>
+
+
+    <div 
+    bn-modals 
+    ng-show="subview" 
+    class="m-modals"
+    ng-switch="subview">
+
+    
     
 
-   
-   
+    <!-- BEGIN: Confirm Modal. -->
+    <div 
+      ng-switch-when="confirm" 
+      ng-controller="ConfirmModalController"
+      class="modal">
+
+      <form name="Signup">
+              <fieldset>
+                <div style="background-color:#000040; color:#ffffcc; padding:10px;font-family:verdana; ">
+                <h4><b>Create An Account</b></h4>
+                </div>    
+                <div class="control-group">
+                <br>
+                <!-- Username -->
+                  <div class="controls">
+                  <input type="text" ng-model="signup.name" name="firstname" placeholder="Name" class="input-xlarge"  required>
+                 
+                  <div role="alert">
+                   <span class="error" ng-show="Signup.firstname.$error.required">
+                   Required!</span>
+
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+                
+                <div class="control-group">
+                <br>
+                <!-- Username -->
+                  <div class="controls">
+                  <input type="text" ng-model="signup.username" name="username" placeholder="UserName" class="input-xlarge"  required>
+                 
+                  <div role="alert">
+                   <span class="error" ng-show="Signup.username.$error.required">
+                   Required!</span>
+
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+
+                <div class="control-group">
+                <!-- email-->
+                  <div class="control-group">
+                <!-- Email-->
+                <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                  <input type="email" id="email" ng-model="signup.email" name="email" placeholder="your@email" class="input-xlarge" required>
+                    </div>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.email.$error.required">
+                   Required!</span>
+                  </div>
+        
+              
+                  <div class="control-group">
+                <!-- Password-->
+                  <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                    <input type="password" id="password" ng-model="signup.password" name="password" placeholder="" class="input-xlarge"  required>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.password.$error.required">
+                   Required!</span>
+                     <span class="error" ng-show="Signup.password.$error.minlength">
+                      Too short!</span>
+                      <span class="error" ng-show="Signup.password.$error.maxlength">
+                      Too long!</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                 
+
+                  <br>
+                  <div class="control-group">
+                <!-- email-->
+                  <div class="control-group">
+                <!-- Email-->
+                <label class="control-label" for="number">Phone Number</label>
+                    <div class="controls">
+                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge"  required>
+                    </div>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.phonenumber.$error.required">
+                   Required!</span>
+                   <span class="error" ng-show="Signup.phonenumber.$error.length">
+                      Invalid Phone Number!</span>
+                  </div>
+                  <br>
+              
+                  <div class="control-group">
+                <!-- Button -->
+                    <div class="controls">
+                  <button class="btn btn-success" ng-click="register(signup)">SignUP</button>
+                    </div>
+                  </div>
+              </fieldset>
+              </form>       
+
+      
+
+    </div>
+    <!-- END: Confirm Modal. -->
+    
+
+    
+
+  </div>
+  <!-- END: Modals Layout. -->
+
+  </div>
 
