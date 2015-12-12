@@ -622,6 +622,7 @@ $scope.myDate = new Date();
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
+     $cookies.put('cardDetails', confirmation);
       $scope.confirmCardResult = alterDollar.confirmingCard({username: $cookies.get('username'), card_id: $scope.sai , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
@@ -640,9 +641,10 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
  
  $scope.vijay = localStorage.getItem('id');
+ $scope.raghav = $cookie.get('cardDetails');
  var clientToken = alterDollar.clientToken();
- console.log(clientToken);
   $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'fake-valid-payroll-nonce'});
+  localStorage.setItem('test', clientToken);
 /*braintree.setup(clientToken, "dropin", {
   container: "payment-form",
   paymentMethodNonceReceived: function(obj){
