@@ -641,7 +641,7 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
  
  $scope.vijay = localStorage.getItem('id');
- $scope.raghav = $cookie.get('cardDetails');
+ $scope.raghav = $cookies.get('cardDetails');
  var clientToken = alterDollar.clientToken();
   $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'fake-valid-payroll-nonce'});
   localStorage.setItem('test', clientToken);
