@@ -642,6 +642,7 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
 $scope.vijay = localStorage.getItem('id');
 $scope.approvePayment = function(payment){ 
 $scope.clientToken = alterDollar.clientToken();
+
 braintree.setup(clientToken, "dropin", {
   container: "payment-form",
    paymentMethodNonceReceived: function (event, nonce) {
