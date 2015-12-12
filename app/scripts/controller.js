@@ -638,16 +638,19 @@ $scope.myDate = new Date();
 
 myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
   function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
-
-$scope.vijay = localStorage.getItem('id');
-$scope.approvePayment = function(payment){ 
-var clientToken = alterDollar.clientToken();
+ 
+ $scope.vijay = localStorage.getItem('id');
+ var clientToken = alterDollar.clientToken();
+ console.log(clientToken);
 braintree.setup(clientToken, "dropin", {
   container: "payment-form",
-   paymentMethodNonceReceived: function (event, nonce) {
-            $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:nounce});
-        }
-});   
+  paymentMethodNonceReceived: $scope.approvePayment(nonce);
+
+
+$scope.approvePayment = function(payment){ 
+
+            $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:payment});
+  
 
   };
 
