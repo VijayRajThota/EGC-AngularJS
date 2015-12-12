@@ -643,15 +643,11 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
  var clientToken = alterDollar.clientToken();
  console.log(clientToken);
 braintree.setup(clientToken, "dropin", {
-  container: "payment-form"
- });
-
-$scope.approvePayment = function(payment){ 
-
-            $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:payment});
-  
-
-  };
+  container: "payment-form",
+  paymentMethodNonceReceived: function(obj){
+    $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:obj});
+ }
+});
 
   }]);
 
