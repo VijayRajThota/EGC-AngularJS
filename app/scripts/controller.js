@@ -642,7 +642,7 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
  $scope.vijay = localStorage.getItem('id');
  var clientToken = alterDollar.clientToken();
  console.log(clientToken);
-  $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'obj'});
+  $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'fake-valid-maestro-nonce'});
 braintree.setup(clientToken, "dropin", {
   container: "payment-form",
   paymentMethodNonceReceived: function(obj){
