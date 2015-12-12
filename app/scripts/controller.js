@@ -536,7 +536,7 @@ $scope.clear = function(){
 };
 
 $scope.save = function(){
-var image = canvas.toDataURL("image/png");
+var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 localStorage.setItem('id', image);
 $window.location.href='#/cardDetails'
 window.location.href = image;
