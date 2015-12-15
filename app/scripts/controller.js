@@ -240,11 +240,7 @@ $scope.clear = function(){
         }
 };
 
-$scope.creds = {
-  bucket: 'vijayrajthota',
-  access_key: 'AKIAJ3RXEJP35R2S2PTQ',
-  secret_key: '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'
-};
+
 
 
 $scope.generateUUID = function(){
@@ -581,11 +577,6 @@ $scope.clear = function(){
         }
 };
 
-$scope.creds = {
-  bucket: 'vijayrajthota',
-  access_key: 'AKIAJ3RXEJP35R2S2PTQ',
-  secret_key: '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'
-};
 
 $scope.generateUUID = function(){
  var d = new Date().getTime();
