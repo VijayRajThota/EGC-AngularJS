@@ -240,11 +240,6 @@ $scope.clear = function(){
         }
 };
 
-$scope.creds = {
-  bucket: 'vijayrajthota',
-  access_key: 'AKIAJW56SW3GLBRIIHHQ',
-  secret_key: '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'
-}
 
 $scope.generateUUID = function(){
  var d = new Date().getTime();
