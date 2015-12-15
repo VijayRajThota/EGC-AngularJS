@@ -240,6 +240,11 @@ $scope.clear = function(){
         }
 };
 
+$scope.creds = {
+  bucket: 'vijayrajthota',
+  access_key: 'AKIAJW56SW3GLBRIIHHQ',
+  secret_key: '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'
+}
 
 
 
@@ -574,6 +579,12 @@ $scope.clear = function(){
         }
 };
 
+$scope.creds = {
+  bucket: 'vijayrajthota',
+  access_key: 'AKIAJW56SW3GLBRIIHHQ',
+  secret_key: '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'
+}
+
 
 $scope.generateUUID = function(){
  var d = new Date().getTime();
@@ -719,8 +730,18 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
  $scope.phone = $cookies.get('phone');
  $scope.message = $cookies.get('message');
  var clientToken = alterDollar.clientToken();
-  $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'fake-valid-payroll-nonce'});
-  localStorage.setItem('test', clientToken);
+  $scope.paymentSuccess = alterDollar.paymentService({phone : $scope.phone});
+  $scope.paymentSuccess.$promise.then(function(data) {
+          if(data.transaction_status=="Success"){
+            $cookies.put('ADR', data.ADR);
+            $window.location.href='#/confirmation';
+            console.log(data.ADR);
+          }
+          else{
+            $window.alert("Error");
+          }
+       });
+ // localStorage.setItem('test', clientToken);
 /*braintree.setup(clientToken, "dropin", {
   container: "payment-form",
   paymentMethodNonceReceived: function(obj){
