@@ -240,6 +240,12 @@ $scope.clear = function(){
         }
 };
 
+$scope.creds = {
+  bucket: 'vijayrajthota',
+  access_key: 'AKIAJW56SW3GLBRIIHHQ',
+  secret_key: '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'
+}
+
 
 $scope.generateUUID = function(){
  var d = new Date().getTime();
@@ -269,7 +275,7 @@ $scope.save = function(){
       }
       else {
         // Success!
-        var y = "httpshttps://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
+        var y = "https://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
         alterDollar.sendUrl({category:$cookies.get('category'), url:y});
         alert('Upload Done');
         $window.location.href='#/cardDetails';
@@ -572,6 +578,11 @@ $scope.clear = function(){
         }
 };
 
+$scope.creds = {
+  bucket: 'vijayrajthota',
+  access_key: 'AKIAJW56SW3GLBRIIHHQ',
+  secret_key: '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'
+}
 
 $scope.generateUUID = function(){
  var d = new Date().getTime();
@@ -602,7 +613,7 @@ var image = canvas.toDataURL("image/png");
       }
       else {
         // Success!
-        var y = "httpshttps://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
+        var y = "https://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
         alterDollar.sendUrl({category:$cookies.get('category'), url:y});
         alert('Upload Done');
         $window.location.href='#/cardDetails';
