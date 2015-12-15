@@ -746,6 +746,12 @@ myAppCtrl.controller('confirmCtrl',['$scope','$route','$routeParams', '$location
     $scope.email = $cookies.get('email');
 
     $scope.deleteCookies = function(){
+      $cookies.remove('ADR');
+      $cookies.remove('amount');
+      $cookies.remove('cardDetails');
+      $cookies.remove('email');
+      $cookies.remove('message');
+      $cookies.remove('phone');
       $window.location.href='#/dashboard';
       
     };
@@ -760,6 +766,8 @@ myAppCtrl.controller('redeemCtrl',['$scope','$route','$routeParams', '$location'
 //getCard
 
 $scope.hello = $routeParams.token;
+
+
 
 
 
