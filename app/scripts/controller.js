@@ -1,7 +1,7 @@
 var myAppCtrl = angular.module('myAppCtrl',['ngCookies']);
 
-myAppCtrl.controller('coverCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
+myAppCtrl.controller('coverCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
 
 //coverpage
  $scope.cover=eCard.details(); 
@@ -106,8 +106,8 @@ myAppCtrl.controller(
                 $scope.deny = modals.reject;
             }]);
 
-myAppCtrl.controller('homeCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
+myAppCtrl.controller('homeCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
  
 //card type
 $scope.cardDisp = function(){
@@ -118,7 +118,7 @@ $scope.customDisp = function(){
 };
 
 $scope.personDisp = function(){
-$scope.displayCard =3 ;
+$scope.displayCard =3;
 };
 
 
@@ -136,9 +136,8 @@ $scope.displayCard =3 ;
 
 
 
-myAppCtrl.controller('personalizeCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
-
+myAppCtrl.controller('personalizeCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
 var canvas = new fabric.Canvas('canvas');
 
  var rect = new fabric.Rect({
@@ -166,6 +165,7 @@ canvas.renderAll();
 
 
 $scope.addBirthday = function (){
+        $cookies.put('category','birthday');
         var imgElementB = document.getElementById('birthday');
         var imgInstanceB = new fabric.Image(imgElementB,{
             height: 300,
@@ -176,6 +176,7 @@ $scope.addBirthday = function (){
 
       };
 $scope.addAnniversary = function (){
+        $cookies.put('category','anniversary');
         var imgElementA = document.getElementById('anniversary');
         var imgInstanceA = new fabric.Image(imgElementA,{
           height: 300,
@@ -185,6 +186,7 @@ $scope.addAnniversary = function (){
         canvas.add(imgInstanceA);
       };
 $scope.addUniversal = function (){
+        $cookies.put('category','universal');
         var imgElementU = document.getElementById('universal');
         var imgInstanceU = new fabric.Image(imgElementU,{
          height: 300,
@@ -194,6 +196,7 @@ $scope.addUniversal = function (){
         canvas.add(imgInstanceU);
       };
 $scope.addChritsmas = function (){
+        $cookies.put('category','Christmas');
         var imgElementC = document.getElementById('chritsmas');
         var imgInstanceC = new fabric.Image(imgElementC,{
           height: 300,
@@ -204,6 +207,7 @@ $scope.addChritsmas = function (){
       };
 
 $scope.addHalloween = function(){
+        $cookies.put('category','halloween');
         var imgElementH = document.getElementById('halloween');
         var imgInstanceH = new fabric.Image(imgElementH,{
          height: 300,
@@ -214,6 +218,7 @@ $scope.addHalloween = function(){
       };
 
 $scope.addBaby =function (){
+        $cookies.put('category','baby shower');
         var imgElementN = document.getElementById('baby');
         var imgInstanceN = new fabric.Image(imgElementN,{
            height: 300,
@@ -235,11 +240,46 @@ $scope.clear = function(){
         }
 };
 
+$scope.creds = {
+  bucket: 'vijayrajthota',
+  access_key: 'AKIAJW56SW3GLBRIIHHQ',
+  secret_key: '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'
+}
+
+$scope.generateUUID = function(){
+ var d = new Date().getTime();
+ var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+ return uuid;
+};
+
 $scope.save = function(){
-var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-localStorage.setItem('id', image);
-$window.location.href='#/cardDetails'
-window.location.href = image;
+    var image = canvas.toDataURL("image/png");
+    localStorage.setItem('id', image);   
+   $scope.vijay= localStorage.getItem('id');
+   var x = $scope.generateUUID();
+    AWS.config.update({ accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key });
+    AWS.config.region = 'us-west-2';
+    var bucket = new AWS.S3({ params: { Bucket: $scope.creds.bucket } });
+    var x = $scope.generateUUID();
+    var params = { Key: x, ContentType: 'png' , Body: $scope.vijay, ServerSideEncryption: 'AES256' };
+    bucket.putObject(params, function(err, data) {
+      if(err) {
+        // There Was An Error With Your S3 Config
+        alert(err.message);
+        return false;
+      }
+      else {
+        // Success!
+        var y = "httpshttps://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
+        alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+        alert('Upload Done');
+        $window.location.href='#/cardDetails';
+      }
+    });
 };
 
 $scope.remove = function(){
@@ -252,9 +292,11 @@ $scope.remove = function(){
 
   }]);
 
-myAppCtrl.controller('CustomizeCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
+myAppCtrl.controller('CustomizeCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
 var canvas = new fabric.Canvas('c', {isDrawingMode: true });
+
+$cookies.put('category', $scope.personalize_theme);
 
 $scope.drawingModeOptions = 1;
 
@@ -535,11 +577,42 @@ $scope.clear = function(){
         }
 };
 
+
+$scope.generateUUID = function(){
+ var d = new Date().getTime();
+ var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+ return uuid;
+};
+
 $scope.save = function(){
-var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-localStorage.setItem('id', image);
-$window.location.href='#/cardDetails'
-window.location.href = image;
+var image = canvas.toDataURL("image/png");
+    localStorage.setItem('id', image);   
+   $scope.vijay= localStorage.getItem('id');
+   var x = $scope.generateUUID();
+    AWS.config.update({ accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key });
+    AWS.config.region = 'us-west-2';
+    var bucket = new AWS.S3({ params: { Bucket: $scope.creds.bucket } });
+    var x = $scope.generateUUID();
+    var params = { Key: x, ContentType: 'png' , Body: $scope.vijay, ServerSideEncryption: 'AES256' };
+
+    bucket.putObject(params, function(err, data) {
+      if(err) {
+        // There Was An Error With Your S3 Config
+        alert(err.message);
+        return false;
+      }
+      else {
+        // Success!
+        var y = "httpshttps://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
+        alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+        alert('Upload Done');
+        $window.location.href='#/cardDetails';
+      }
+    });
  
 };
 $scope.remove = function(){
@@ -573,8 +646,8 @@ var reader = new FileReader();
 
 }]);
 
-myAppCtrl.controller('cardDetailsCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
+myAppCtrl.controller('cardDetailsCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
 
 //image display
 $scope.vijay = localStorage.getItem('id');
@@ -622,7 +695,10 @@ $scope.myDate = new Date();
       $scope.myDate.getDate()); 
 
   $scope.confirmCard = function(confirmation){
-     $cookies.put('cardDetails', confirmation);
+     $cookies.put('amount', confirmation.amount);
+     $cookies.put('email', confirmation.email);
+     $cookies.put('phone', confirmation.phone);
+     $cookies.put('message', confirmation.message);
       $scope.confirmCardResult = alterDollar.confirmingCard({username: $cookies.get('username'), card_id: $scope.sai , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
@@ -637,11 +713,14 @@ $scope.myDate = new Date();
 
   }]);
 
-myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
+myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
  
  $scope.vijay = localStorage.getItem('id');
- $scope.raghav = $cookies.get('cardDetails');
+ $scope.amount = $cookies.get('amount');
+ $scope.email = $cookies.get('email');
+ $scope.phone = $cookies.get('phone');
+ $scope.message = $cookies.get('message');
  var clientToken = alterDollar.clientToken();
   $scope.paymentSuccess = alterDollar.paymentService({payment_method_nonce:'fake-valid-payroll-nonce'});
   localStorage.setItem('test', clientToken);
@@ -654,13 +733,19 @@ myAppCtrl.controller('paymentCtrl',['$routeParams','$scope','eCard','$http','alt
 
   }]);
 
-myAppCtrl.controller('redeemCoverCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
 
-//coverpage
- $scope.cover=eCard.details(); 
 
-//login
+myAppCtrl.controller('redeemCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
+
+//getCard
+
+$scope.hello = $routeParams.token;
+
+
+
+
+  //login
  $scope.update = function(user) {
      /*    var x = user.username;
         var y = user.password;
@@ -679,7 +764,7 @@ myAppCtrl.controller('redeemCoverCtrl',['$routeParams','$scope','eCard','$http',
         $scope.SignInResult = alterDollar.signingIn({username:user.username,password:user.password});
         $scope.SignInResult.$promise.then(function(data) {
           if(data.message=="success"){
-            $window.location.href='#/redeemption';            
+            $window.location.href='#/confirmDetails';            
           }
           else{
             $cookies.remove('username');
@@ -688,26 +773,6 @@ myAppCtrl.controller('redeemCoverCtrl',['$routeParams','$scope','eCard','$http',
        });
     //  }
       };
-
-//pop up     
-$scope.confirmSomething = function() {
-                    // The .open() method returns a promise that will be either
-                    // resolved or rejected when the modal window is closed.
-                    var promise = modals.open(
-                        "confirm",
-                        {
-                            message: "Are you sure you want to taste that?!"
-                        }
-                    );
-                    promise.then(
-                        function handleResolve( response ) {
-                            console.log( "Confirm resolved." );
-                        },
-                        function handleReject( error ) {
-                            console.warn( "Confirm rejected!" );
-                        }
-                    );
-                };
 
 //signup
 $scope.register=function(signup){
@@ -731,7 +796,7 @@ $scope.register=function(signup){
     $scope.signUpResult=alterDollar.signingUp({name:signup.name, username:signup.username, email:signup.email, password:signup.password, phone:signup.phone});
     $scope.signUpResult.$promise.then(function(data) {
           if(data.message=="success"){
-            $window.location.href='#/redeemption';
+            $window.location.href='#/confirmDetails';
           }
           else{
             $cookies.remove('username');
@@ -741,46 +806,6 @@ $scope.register=function(signup){
  //  }
   };
 
-}]);
-
-myAppCtrl.controller('redeemCtrl',['$routeParams','$scope','eCard','$http','alterDollar', '$location','$cookies','$anchorScroll','$window','modals',
-  function($http,$scope,eCard,$routeParams, alterDollar, $location,$cookies,$anchorScroll,$window,modals){
-
- $scope.redeem = function(code){
-  
-    $scope.redeemResult = alterDollar.redeemption({code:code.redeemCode});
-    $scope.redeemResult.$promise.then(function(data) {
-          if(data.message=="success"){
-            $window.location.href='#/homepage';
-          }
-          else{
-            $window.alert("Error");
-          }
-       }); 
-  };
-//slider
-   $scope.gotonext = function() {        
-        $location.hash('services');        
-        $anchorScroll();
-      };
-  $scope.slides=eCard.slides();
-  
-  $scope.currentIndex = 0;
-
-        $scope.setCurrentSlideIndex = function (index) {
-            $scope.currentIndex = index;
-        };
-
-        $scope.isCurrentSlideIndex = function (index) {
-            return $scope.currentIndex === index;
-        };
-        $scope.prevSlide = function () {
-            $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-        };
-
-        $scope.nextSlide = function () {
-            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-        };
 
 $scope.confirmSomething = function() {
                     // The .open() method returns a promise that will be either
@@ -800,4 +825,51 @@ $scope.confirmSomething = function() {
                         }
                     );
                 };
+  }]);
+
+myAppCtrl.controller('redeemCardCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
+//redemption
+
+$scope.redeem = function(redeemCode){
+$scope.redeemResult = alterDollar.redeemption({code:redeemCode});
+    $scope.redeemResult.$promise.then(function(data) {
+          if(data.message=="success"){
+            $window.location.href='#/dashboard';
+          }
+          else{
+            $window.alert("Error");
+          }
+       });
+
+};
+
+//pop up
+$scope.confirmSomething = function() {
+                    // The .open() method returns a promise that will be either
+                    // resolved or rejected when the modal window is closed.
+                    var promise = modals.open(
+                        "confirm",
+                        {
+                            message: "Are you sure you want to taste that?!"
+                        }
+                    );
+                    promise.then(
+                        function handleResolve( response ) {
+                            console.log( "Confirm resolved." );
+                        },
+                        function handleReject( error ) {
+                            console.warn( "Confirm rejected!" );
+                        }
+                    );
+                };
+
+  }]);
+myAppCtrl.controller('dashboardCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
+
+
+  $scope.username = $cookies.get('username');
+
+
   }]);

@@ -34,7 +34,7 @@
             </li> 
           </ul>          
           <div id="demo" class="navbar-form navbar-right">
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
+             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/profile.png" alt="" >
           </div>                   
         </div><!--/.navbar-collapse -->
       </div>
@@ -342,6 +342,9 @@
         <input type="username" ng-model="personalize.text" c>
         <button type="button" ng-click="addText(personalize)">Add Text</button>
         <p>
+        <p>
+        <input type="username" ng-model="personalize_theme" placeholder="Enter the category ">
+        </p>
           <button type="button" ng-click="save()" >Save Image</button><br>
           <button type="button" ng-click="remove()" >Remove selected object</button><br>
           <button type="button" ng-click="clear()" >Clear Canvas</button><br>

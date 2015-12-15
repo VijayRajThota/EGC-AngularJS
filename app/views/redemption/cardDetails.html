@@ -19,7 +19,8 @@
 
     <!-- Custom CSS -->
     <link href="views/homepage/css/shop-homepage.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="views/demo.css"></link>
+
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -31,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand page-scroll" href="http://www.suning.com/">{{cover.organization}}</a>
+        <a class="navbar-brand page-scroll" href="http://www.suning.com/">Suning</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
@@ -40,16 +41,7 @@
                      <li>
                         <a href="#/aboutus">About Us</a>
                     </li> 
-                    </ul>
-          
-          <div id="demo" class="navbar-form navbar-right">
-           
-             
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
-             
-
-          </div>
-           
+                    </ul>          
           
         </div><!--/.navbar-collapse -->
       </div>
@@ -186,78 +178,107 @@
         <div class="btn-group btn-breadcrumb">
             <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
             <a  class="btn btn-warning">Start Redeemption</a>
-            <a class="btn btn-warning">Claim Code</a>
+            <a  class="btn btn-default">Claim Code</a>
             <a  class="btn btn-default">Confirmation</a>
         </div>
     </div>
 </div>
-<!link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<!script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
-
-<!-- If you're using Stripe for payments -->
-<!script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<style>
-body { margin-top:20px; }
-
-/* CSS for Credit Card Payment form */
-.panel-title {display: inline;font-weight: bold;}
-.checkbox.pull-right { margin: 0; }
-.pl-ziro { padding-left: 0px; }
-.form-control.error {
-    border-color: red;
-    outline: 0;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
-}
-label.error {
-  font-weight: bold;
-  color: red;
-  padding: 2px 8px;
-  margin-top: 2px;
-}
-.payment-errors {
-  font-weight: bold;
-  color: red;
-  padding: 2px 8px;
-  margin-top: 2px;
-}
-</style>
 <br>
 <br>
-<!-- Credit card form -->
 <div class="container">
-    <div class="row">
-    
-       <div class="col-xs-12 col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Gift Card Details </h3>
+  <div class="row">    
+      <div class="col-xs-12 col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order Details</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" id="payment-form">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                  <label for="cardNumber">Your Gift Card</label>
+                  <div class="container" style="padding:20px;">
+                    <div class="row">
+                      <div style="float:left;width:400px;margin-left:50px;" >
+                        <img ng-src="{{vijay}}" width="350"/>
+                      </div>
+                      <div style="float:left;width:400px;margin-right: 100px;font-weight: bold;">
+                        <p> Amount = {{amount}} </p>
+                        <p> Recepient Email = {{email}}</p>
+                        <p> Recepient Phone = {{phone}}</p>
+                        <p> Message = {{message}}</p>
+                      </div>  
+                    </div>                                      
+                  </div>
+                </div>                            
+              </div>
+            </div>
+          </form>
+        </div>    
+      </div>
+    </div>
+  </div>      
+</div>
+<br>
+<br>
+
+ <div class="row" style="margin-left:45%;margin-right:45%;">        
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div style="align:center">
+                    <button class="btn btn-success" ng-click="confirmSomething()">Redeem Card</button>
                 </div>
-                <div class="panel-body">
-                    <form role="form" id="payment-form">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <div style="float:left;width:400px;margin-left:50px;" >
-                                    <img ng-src="{{vijay}}" width="350"/>
-                                        </div>
-                                        <div style="float:left;width: 450px;margin-right: 100px;font-weight: bold;">
-                                        <p> Amount = {{sai.amount}} </p>
-                                        <p>Sent From = {{sai.reciever_email}}</p>
-                                        <p> Message = {{sai.message}}</p>
-                                        <button class="btn btn-success" ng-click="confirmSomething()">Confirm</button>
-                                        </div>    
-                                    </div>
-                                </div>                            
-                            </div>
-                        </div>
-                    </form>
-                </div>    
+                
+               
             </div>
         </div>
+    </section>
+  </div>
+
+
+  <div 
+    bn-modals 
+    ng-show="subview" 
+    class="m-modals"
+    ng-switch="subview">
+
     
+    
+
+    <!-- BEGIN: Confirm Modal. -->
+    <div 
+      ng-switch-when="confirm" 
+      ng-controller="ConfirmModalController"
+      class="modal" style="width:360px;height:200px;">
+
+      <form class="form-horizontal" action='' method="POST">
+              <fieldset>
+                <div id="legend">
+                <legend class="">Enter Claim Code</legend>
+                </div>    
+                <div class="control-group">
+                <!-- Claim Code -->
+                  <div class="controls">
+                  <input type="text" id="username" ng-model="code.redeemCode" name="username" placeholder="" class="input-xlarge">
+                  </div>
+                </div>
+            
+
+                  <br>
+              
+                  <div class="control-group">
+                <!-- Button -->
+                    <div class="controls">
+                  <button class="btn btn-success" ng-click="redeem(code)">Submit</button>
+                    </div>
+                  </div>
+              </fieldset>
+              </form>       
+
+      
+
     </div>
-</div>
-
-
-
+   
 

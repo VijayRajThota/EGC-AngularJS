@@ -20,7 +20,7 @@
     <!-- Custom CSS -->
     <link href="views/homepage/css/shop-homepage.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="views/demo.css"></link>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,13 +43,18 @@
                     </li> 
                     </ul>
           
-          <form id="demo" class="navbar-form navbar-right">
-           
-             
-             <img onclick="location.href='#/dashboard';" width =60 height= 40 src="views/images/empty-cart-dark.png" alt="" >
-             
+          <form name="Signin" class="navbar-form navbar-right">
+          <div class="form-group">
+              <input type="username" name="userName" ng-model="user.username" class="form-control" value="user.username" >    
+          </div>             
+          <div class="form-group">
+              <input type="password" ng-model="user.password" class="form-control">
+          </div>
+            <button type="submit" class="btn btn-success" ng-click="update(user)">Sign in</button>
+            
+                  <button class="btn btn-success" ng-click="confirmSomething()" >Sign up</button>                       
 
-          </form>
+      </form>
            
           
         </div><!--/.navbar-collapse -->
@@ -186,27 +191,48 @@
     <div class="row">
         <div class="btn-group btn-breadcrumb">
             <a  class="btn btn-warning"><i class="glyphicon glyphicon-home"></i></a>
-            <a  class="btn btn-warning">Start Redeemption</a>
+            <a  class="btn btn-default">Start Redeemption</a>
             <a  class="btn btn-default">Claim Code</a>
             <a  class="btn btn-default">Confirmation</a>
         </div>
     </div>
 </div>
-<div class="container slider">
-    <img ng-repeat="slide in slides" class="slide slide-animation"
-        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
-        <a class="arrow prev" href="#/redemption" ng-click="nextSlide()"></a>
-
-    <a class="arrow next" href="#/redemption" ng-click="prevSlide()"></a>
-    <nav style="position:absolute" class="nav">
-        <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <a href="#/redemption" ng-class="{'active':isCurrentSlideIndex($index)}"
-                      ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
-            </ul>
-        </div>
-    </nav>
+<br>
+<br>
+<div class="container">
+  <div class="row">    
+      <div class="col-xs-12 col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order Details</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" id="payment-form">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                  <label for="cardNumber">Your Gift Card</label>
+                  <div class="container" style="padding:20px;">
+                    <div class="row">
+                      <div style="float:left;width:400px;margin-left:50px;" >
+                        <img ng-src="{{vijay}}" width="350"/>
+                      </div>
+                      <div style="float:left;width:400px;margin-right: 100px;font-weight: bold;">
+                        <p> Amount = {{card.amount}} </p>
+                        <p> Recepient Email = {{card.email}}</p>
+                        <p> Recepient Phone = {{card.phone}}</p>
+                        <p> Message = {{card.message}}</p>
+                      </div>  
+                    </div>                                      
+                  </div>
+                </div>                            
+              </div>
+            </div>
+          </form>
+        </div>    
+      </div>
+    </div>
+  </div>      
 </div>
 <br>
 <br>
@@ -216,7 +242,7 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div style="align:center">
-                    <button class="btn btn-success" ng-click="confirmSomething()">Redeem Card</button>
+                    <button class="btn btn-success" ng-click="confirmSomething()">Login In to Redeem Card</button>
                 </div>
                 
                
@@ -239,27 +265,99 @@
     <div 
       ng-switch-when="confirm" 
       ng-controller="ConfirmModalController"
-      class="modal" style="width:360px;height:200px;">
+      class="modal">
 
-      <form class="form-horizontal" action='' method="POST">
+      <form name="Signup">
               <fieldset>
-                <div id="legend">
-                <legend class="">Enter Claim Code</legend>
+                <div style="background-color:#000040; color:#ffffcc; padding:10px;font-family:verdana; ">
+                <h4><b>Create An Account</b></h4>
                 </div>    
                 <div class="control-group">
-                <!-- Claim Code -->
+                <br>
+                <!-- Username -->
                   <div class="controls">
-                  <input type="text" id="username" ng-model="code.redeemCode" name="username" placeholder="" class="input-xlarge">
+                  <input type="text" ng-model="signup.name" name="firstname" placeholder="Name" class="input-xlarge"  required>
+                 
+                  <div role="alert">
+                   <span class="error" ng-show="Signup.firstname.$error.required">
+                   Required!</span>
+
+                    </div>
+
                   </div>
                 </div>
-            
+                <br>
+                
+                <div class="control-group">
+                <br>
+                <!-- Username -->
+                  <div class="controls">
+                  <input type="text" ng-model="signup.username" name="username" placeholder="UserName" class="input-xlarge"  required>
+                 
+                  <div role="alert">
+                   <span class="error" ng-show="Signup.username.$error.required">
+                   Required!</span>
 
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+
+                <div class="control-group">
+                <!-- email-->
+                  <div class="control-group">
+                <!-- Email-->
+                <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                  <input type="email" id="email" ng-model="signup.email" name="email" placeholder="your@email" class="input-xlarge" required>
+                    </div>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.email.$error.required">
+                   Required!</span>
+                  </div>
+        
+              
+                  <div class="control-group">
+                <!-- Password-->
+                  <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                    <input type="password" id="password" ng-model="signup.password" name="password" placeholder="" class="input-xlarge"  required>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.password.$error.required">
+                   Required!</span>
+                     <span class="error" ng-show="Signup.password.$error.minlength">
+                      Too short!</span>
+                      <span class="error" ng-show="Signup.password.$error.maxlength">
+                      Too long!</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                 
+
+                  <br>
+                  <div class="control-group">
+                <!-- email-->
+                  <div class="control-group">
+                <!-- Email-->
+                <label class="control-label" for="number">Phone Number</label>
+                    <div class="controls">
+                  <input type="number" id="phonenumber" ng-model="signup.phone" name="phonenumber" placeholder="P.No" class="input-xlarge"  required>
+                    </div>
+                    <div role="alert">
+                    <span class="error" ng-show="Signup.phonenumber.$error.required">
+                   Required!</span>
+                   <span class="error" ng-show="Signup.phonenumber.$error.length">
+                      Invalid Phone Number!</span>
+                  </div>
                   <br>
               
                   <div class="control-group">
                 <!-- Button -->
                     <div class="controls">
-                  <button class="btn btn-success" ng-click="redeem(code)">Submit</button>
+                  <button class="btn btn-success" ng-click="register(signup)">SignUP</button>
                     </div>
                   </div>
               </fieldset>
@@ -268,5 +366,12 @@
       
 
     </div>
-   
-</div>
+    <!-- END: Confirm Modal. -->
+    
+
+    
+
+  </div>
+  <!-- END: Modals Layout. -->
+
+  </div>

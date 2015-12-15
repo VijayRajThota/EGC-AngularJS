@@ -30,7 +30,7 @@ myApp.config(['$routeProvider',
       templateUrl:'views/template.html'
      }).
      when('/dashboard',{
-      controller: 'cardCtrl',
+      controller: 'dashboardCtrl',
       templateUrl: 'views/dashboard/dashboard.html'
      }).
      when('/aboutus',{
@@ -41,21 +41,17 @@ myApp.config(['$routeProvider',
        controller: 'paymentCtrl',
       templateUrl: 'views/payment/payment.html' 
      }).
-     when('/redemption',{
+     when('/redemption/:token',{
       controller: 'redeemCtrl',
        templateUrl: 'views/redemption/redeemption.html'
-     }).
-     when('/coverpage',{
-       controller: 'redeemCoverCtrl',
-        templateUrl: 'views/coverpage/coverpage1.html'
      }).
      when('/confirmation',{
       controller: 'cardCtrl',
         templateUrl: 'views/payment/confirmation.html'
      }).
       when('/confirmDetails', {
-        controller: 'cardCtrl',
-        templateUrl: 'views/test.html'
+        controller: 'redeemCardCtrl',
+        templateUrl: 'views/redemption/cardDetails.html'
       }).
       otherwise({
         redirectTo: '/homepage'
