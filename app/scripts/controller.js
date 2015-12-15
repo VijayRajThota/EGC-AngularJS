@@ -272,7 +272,10 @@ $scope.save = function(){
       else {
         // Success!
         var y = "https://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
-        alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+         $scope.makeTemplate = alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+        $scope.makeTemplate.$promise.then(function(data) {
+          localStorage.setItem('cardID', data.card_id);
+          });
         alert('Upload Done');
         $window.location.href='#/cardDetails';
       }
@@ -606,7 +609,10 @@ var image = canvas.toDataURL("image/png");
       else {
         // Success!
         var y = "https://s3-us-west-2.amazonaws.com/vijayrajthota/"+x;
-        alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+        $scope.makeTemplate = alterDollar.sendUrl({category:$cookies.get('category'), url:y});
+        $scope.makeTemplate.$promise.then(function(data) {
+          localStorage.setItem('cardID', data.card_id);
+          });
         alert('Upload Done');
         $window.location.href='#/cardDetails';
       }
@@ -700,6 +706,7 @@ $scope.myDate = new Date();
       $scope.confirmCardResult = alterDollar.confirmingCard({username: $cookies.get('username'), card_id: $scope.sai , amount: confirmation.amount, receiver_name: confirmation.name, receiver_email: confirmation.email, receiver_phone: confirmation.phone, message:confirmation.message, delivery_date: confirmation.date});
      $scope.confirmCardResult.$promise.then(function(data) {
           if(data.message=="success"){
+            $cookies.put('orderID', data.order_id);
             $window.location.href='#/payment';
           }
           else{
@@ -722,7 +729,7 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
  var clientToken = alterDollar.clientToken();
 
  $scope.payment = function(){
-  $scope.paymentSuccess = alterDollar.paymentService({phone : $scope.phone});
+  $scope.paymentSuccess = alterDollar.paymentService({phone : $scope.phone, order_id: $cookies.get('orderID')});
   $scope.paymentSuccess.$promise.then(function(data) {          
             $cookies.put('ADR', data.ADR);
             $window.location.href='#/confirmation';
