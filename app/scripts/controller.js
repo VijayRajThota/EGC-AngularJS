@@ -723,15 +723,10 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
 
  $scope.payment = function(){
   $scope.paymentSuccess = alterDollar.paymentService({phone : $scope.phone});
-  $scope.paymentSuccess.$promise.then(function(data) {
-          if(data.transaction_status=="Success"){
+  $scope.paymentSuccess.$promise.then(function(data) {          
             $cookies.put('ADR', data.ADR);
             $window.location.href='#/confirmation';
-            console.log(data.ADR);
-          }
-          else{
-            $window.alert("Error");
-          }
+            console.log(data.ADR);          
        });
  };
  // localStorage.setItem('test', clientToken);
