@@ -46,7 +46,7 @@ myApp.config(['$routeProvider',
        templateUrl: 'views/redemption/redeemption.html'
      }).
      when('/confirmation',{
-      controller: 'cardCtrl',
+      controller: 'confirmCtrl',
         templateUrl: 'views/payment/confirmation.html'
      }).
       when('/confirmDetails', {

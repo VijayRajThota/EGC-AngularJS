@@ -744,6 +744,19 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
 
   }]);
 
+myAppCtrl.controller('confirmCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
+  function($scope,$route,$routeParams,$location,eCard,alterDollar,$cookies,$anchorScroll,$window,modals,$http){
+
+    $scope.ADR = $cookies.get('ADR');
+    $scope.email = $cookies.get('email');
+
+    $scope.deleteCookies = function(){
+      $window.location.href='#/dashboard';
+      
+    };
+
+  }]);
+
 
 
 myAppCtrl.controller('redeemCtrl',['$scope','$route','$routeParams', '$location','eCard','alterDollar','$cookies','$anchorScroll','$window','modals','$http',
