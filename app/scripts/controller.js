@@ -720,6 +720,8 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
  $scope.phone = $cookies.get('phone');
  $scope.message = $cookies.get('message');
  var clientToken = alterDollar.clientToken();
+
+ $scope.payment = function(){
   $scope.paymentSuccess = alterDollar.paymentService({phone : $scope.phone});
   $scope.paymentSuccess.$promise.then(function(data) {
           if(data.transaction_status=="Success"){
@@ -731,6 +733,7 @@ myAppCtrl.controller('paymentCtrl',['$scope','$route','$routeParams', '$location
             $window.alert("Error");
           }
        });
+ };
  // localStorage.setItem('test', clientToken);
 /*braintree.setup(clientToken, "dropin", {
   container: "payment-form",
